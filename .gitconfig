@@ -1,0 +1,9 @@
+[credential]
+	helper = store
+[user]
+	name = Ben Hunter
+	email = code@benhunter.me
+[init]
+	defaultBranch = main
+[alias]
+	st = status -sb
