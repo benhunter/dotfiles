@@ -59,7 +59,9 @@ Xcursor.size:                     0
 
 // original font setting:
 // URxvt.font:                       xft:TerminessTTFNerdFontMono:size=16
-URxvt.font:                       xft:Hack:size=12
+// previous settings, before 2021-11-16
+// URxvt.font:                       xft:Hack:size=12
+URxvt.font:                       xft:Hack Nerd Font:size=12
 
 ! alternative font settings with 'terminus':
 ! URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
