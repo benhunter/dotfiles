@@ -14,7 +14,7 @@ call plug#end()
 " Windows Terminal Nord Theme
 augroup nord-theme-overrides
   autocmd!
-  autocmd ColorScheme nord highlight vimComment ctermfg=darkgray
+  autocmd ColorScheme nord highlight Comment ctermfg=darkgray
 augroup END
 
 colorscheme nord
@@ -210,4 +210,3 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 """ coc end
-
