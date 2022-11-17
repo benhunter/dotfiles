@@ -1,3 +1,5 @@
+" Vim and Neovim config for Ubuntu, Manjaro, and Mac
+
 " Plugins will be downloaded under the specified directory.
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
