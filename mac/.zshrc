@@ -113,7 +113,7 @@ source $ZSH/oh-my-zsh.sh
 alias dbeaver="open /usr/local/Caskroom/dbeaver-community/21.2.1/DBeaver.app"
 #
 # Open Visual Studio Code by Homebrew so I have the latest version
-alias vscode="open /Users/b2186555/brew-applications/Visual\ Studio\ Code.app"
+alias vscode="open /Users/!!TODO!!/brew-applications/Visual\ Studio\ Code.app"
 
 alias hollywood="docker run --rm -it bcbcarl/hollywood" # Hollywood CLI
 
@@ -146,11 +146,32 @@ export EDITOR=nvim
 export VISUAL=$EDITOR
 
 # Open Weather
-export OPEN_WEATHER_API_KEY=""
-launchctl setenv OPEN_WEATHER_API_KEY 
+export OPEN_WEATHER_API_KEY="!!TODO!!"
+launchctl setenv OPEN_WEATHER_API_KEY !!TODO!!
+
+export GITLAB_TOKEN="!!TODO!!"
 
 # Commands
 j11  # set Java 11 as default
+
 # brew outdated  # list brews that need updates
 
+eval "$(direnv hook zsh)" # direnv hook
+
+# fnm - Fast node manager
+eval "$(fnm env --use-on-cd)"
+
+# Ruby - using chruby and ruby-install
+# 2022-12-22
+# Installed with: 
+# 	brew install chruby ruby-install xz
+#source /usr/local/opt/chruby/share/chruby/chruby.sh
+#source /usr/local/opt/chruby/share/chruby/auto.sh
+#chruby ruby-3.1.2
+
+# Ruby - installed with brew install ruby
+# Put Ruby first in PATH
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+# Gems installed here:
+export PATH="/usr/local/lib/ruby/gems/3.1.0/bin:$PATH"
 
