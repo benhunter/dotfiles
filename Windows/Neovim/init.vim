@@ -1,3 +1,3 @@
-# Use system clipboard. Works with VSCode Neovim plugin too.
+" Use system clipboard. Works with VSCode Neovim plugin too.
 set clipboard+=unnamedplus
 
