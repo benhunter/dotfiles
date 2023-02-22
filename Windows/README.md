@@ -15,3 +15,7 @@ irm get.scoop.sh | iex
 ```
 
 `install-scoop-packages.ps1` - Installs all the packages.
+
+## Neovim config
+
+C:\Users\username\AppData\Local\nvim\init.vim
