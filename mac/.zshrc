@@ -132,11 +132,9 @@ alias ll='lsd -lah'
 alias cat='bat' # bat instead of cat
 
 # Set Java JDK Version
+alias j19="export JAVA_HOME=`/usr/libexec/java_home -v 19`; java --version"
 alias j17="export JAVA_HOME=`/usr/libexec/java_home -v 17`; java --version"
 alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java --version"
-
-# Git Aliases
-alias gs='git st'
 
 # docker-compose
 alias dcp='docker-compose'
