@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/b2186555/.oh-my-zsh"
+export ZSH="/Users/TODO/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -113,7 +113,7 @@ source $ZSH/oh-my-zsh.sh
 alias dbeaver="open /usr/local/Caskroom/dbeaver-community/21.2.1/DBeaver.app"
 #
 # Open Visual Studio Code by Homebrew so I have the latest version
-alias vscode="open /Users/!!TODO!!/brew-applications/Visual\ Studio\ Code.app"
+alias vscode="open /Users/TODO/brew-applications/Visual\ Studio\ Code.app"
 
 alias hollywood="docker run --rm -it bcbcarl/hollywood" # Hollywood CLI
 
@@ -128,26 +128,50 @@ export PATH="/usr/local/opt/libpq/bin:$PATH" # PostgreSQL, psql, pg_dump, pg_res
 alias l='lsd -a'
 alias ls='lsd'
 alias ll='lsd -lah'
-
 alias cat='bat' # bat instead of cat
+alias mkd='mkdir'
+alias dcp='docker-compose'
+alias dus='du -hs * | sort -hr'
+alias dusa='du -hs .[^.]* * | sort -hr'
+alias watch1='watch -n 1'
+alias rmrf='rm -rf'
+alias gs=gst
 
 # Set Java JDK Version
 alias j19="export JAVA_HOME=`/usr/libexec/java_home -v 19`; java --version"
 alias j17="export JAVA_HOME=`/usr/libexec/java_home -v 17`; java --version"
 alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java --version"
 
-# docker-compose
-alias dcp='docker-compose'
-
 # Neovim for git, etc
 export EDITOR=nvim
 export VISUAL=$EDITOR
 
 # Open Weather
-export OPEN_WEATHER_API_KEY="!!TODO!!"
-launchctl setenv OPEN_WEATHER_API_KEY !!TODO!!
+export OPEN_WEATHER_API_KEY="TODO"
+launchctl setenv OPEN_WEATHER_API_KEY $OPEN_WEATHER_API_KEY
 
-export GITLAB_TOKEN="!!TODO!!"
+export GITLAB_TOKEN_CREATE="TODO"
+export GITLAB_HOST_CREATE="TODO"
+export SWF_GITLAB_TOKEN=$GITLAB_TOKEN_CREATE
+export SWF_GITLAB_HOST="TODO"
+
+# default to CREATE Gitlab
+export GITLAB_TOKEN=$GITLAB_TOKEN_CREATE
+export GITLAB_HOST=$GITLAB_HOST_CREATE
+
+export NODE_EXTRA_CA_CERTS="$HOME/.certs/DigiCert-High-Assurance-EV-Root-CA.pem"
+
+export CI_JOB_TOKEN=$GITLAB_TOKEN_CREATE
+export GITLAB_PAT=$GITLAB_TOKEN_CREATE
+
+export NPM_ASVE_READ_ONLY_TOKEN_CREATE="TODO"
+
+# 2022 Avi-X / TRMS
+export AVIX_DEPLOY_TOKEN="TODO"
+
+
+# 2023-01 cDSO R2D2
+export CREATE_JOB_TOKEN=$GITLAB_TOKEN_CREATE
 
 # Commands
 j11  # set Java 11 as default
@@ -158,18 +182,4 @@ eval "$(direnv hook zsh)" # direnv hook
 
 # fnm - Fast node manager
 eval "$(fnm env --use-on-cd)"
-
-# Ruby - using chruby and ruby-install
-# 2022-12-22
-# Installed with: 
-# 	brew install chruby ruby-install xz
-#source /usr/local/opt/chruby/share/chruby/chruby.sh
-#source /usr/local/opt/chruby/share/chruby/auto.sh
-#chruby ruby-3.1.2
-
-# Ruby - installed with brew install ruby
-# Put Ruby first in PATH
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-# Gems installed here:
-export PATH="/usr/local/lib/ruby/gems/3.1.0/bin:$PATH"
 

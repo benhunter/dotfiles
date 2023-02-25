@@ -32,3 +32,22 @@ brew reinstall openjdk@11
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+# Ruby (hope I don't need this ever again)
+
+Add to `.zshrc`
+
+```shell
+# Ruby - using chruby and ruby-install
+# 2022-12-22
+# Installed with: 
+# 	brew install chruby ruby-install xz
+#source /usr/local/opt/chruby/share/chruby/chruby.sh
+#source /usr/local/opt/chruby/share/chruby/auto.sh
+#chruby ruby-3.1.2
+
+# Ruby - installed with brew install ruby
+# Put Ruby first in PATH
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+# Gems installed here:
+export PATH="/usr/local/lib/ruby/gems/3.1.0/bin:$PATH"
+```
