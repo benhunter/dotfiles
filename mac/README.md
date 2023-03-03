@@ -16,10 +16,12 @@ brew tap homebrew/cask-fonts && brew install --cask font-meslo-lg-nerd-font
 brew tap homebrew/cask-fonts && brew install --cask font-hack-nerd-font
 ```
 
-Java - Read the post install instructions to link the java directories.
 Rectangle - window management and resizing shortcuts for mac. https://github.com/rxhanson/Rectangle
 
+Java - Read the post install instructions to link the java directories.
+
 ```shell
+sudo ln -sfn /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
 sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
 
 brew install openjdk@11
