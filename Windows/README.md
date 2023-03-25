@@ -23,3 +23,32 @@ Copy init.vim to:
 C:\Users\username\AppData\Local\nvim\init.vim
 
 Yank to system clipboard works!
+
+## VSCode
+
+- use Neovim with config above
+
+`keybindings.json`
+
+```json
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+`",
+        "command": "-workbench.action.selectTheme"
+    },
+    {
+        "command": "-vscode-neovim.send",
+        "key": "ctrl+a"
+    },
+    {
+        "command": "-vscode-neovim.send",
+        "key": "ctrl+c"
+    },
+    {
+        "command": "-vscode-neovim.send",
+        "key": "ctrl+v"
+    }
+]
+
+```
