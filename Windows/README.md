@@ -18,4 +18,8 @@ irm get.scoop.sh | iex
 
 ## Neovim config
 
+Copy init.vim to:
+
 C:\Users\username\AppData\Local\nvim\init.vim
+
+Yank to system clipboard works!
