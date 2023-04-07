@@ -52,3 +52,10 @@ Yank to system clipboard works!
 ]
 
 ```
+
+## Remove the cruft
+
+```shell
+# bye cortana - Windows 10
+Get-AppxPackage -allusers Microsoft. 549981C3F5F10 | Remove-AppxPackage
+```
