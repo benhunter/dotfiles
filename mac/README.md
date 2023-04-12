@@ -7,8 +7,6 @@
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-Fast Node Manager - fnm. Uses .nvmrc files.
-
 # Homebrew
 
 ```shell
@@ -29,10 +27,20 @@ brew info openjdk@11
 brew reinstall openjdk@11
 ```
 
-
 # Tmux Plugin Manager
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Neovim
+
+Install NvChad.
+Copy custom config.
+
+`cp -R ~/projects/dotfiles/mac/.config/nvim/lua/custom /.config/nvim/lua`
+
+# Misc
+
+Fast Node Manager - fnm. Uses .nvmrc files.
 
 # Ruby (hope I don't need this ever again)
 
