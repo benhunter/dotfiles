@@ -2,9 +2,16 @@
 
 # Install Software
 
-```bash
+oh-my-zsh
+
+```shell
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+Update oh-my-zsh
+```shell
+omz update
 ```
 
 # Homebrew
@@ -25,6 +32,12 @@ sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/Java
 brew install openjdk@11
 brew info openjdk@11
 brew reinstall openjdk@11
+```
+
+## Backup Homebrew
+
+```shell
+brew bundle dump -f 
 ```
 
 # Tmux Plugin Manager
