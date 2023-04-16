@@ -53,6 +53,10 @@ Yank to system clipboard works!
 
 ```
 
+## IdeaVim Plugin for IntelliJ, PyCharm, etc
+
+Copy `.ideavimrc` to user folder: `C:\Users\ben\`
+
 ## Remove the cruft
 
 ```shell
