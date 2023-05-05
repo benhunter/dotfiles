@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/TODO/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -79,11 +79,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker)
+plugins=(git docker kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+source ~/.secrets.zshrc
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -113,22 +115,23 @@ source $ZSH/oh-my-zsh.sh
 alias dbeaver="open /usr/local/Caskroom/dbeaver-community/21.2.1/DBeaver.app"
 #
 # Open Visual Studio Code by Homebrew so I have the latest version
-alias vscode="open /Users/TODO/brew-applications/Visual\ Studio\ Code.app"
+# alias vscode="open /Applications/Visual\ Studio\ Code.app"
+# alias code=vscode
 
 alias hollywood="docker run --rm -it bcbcarl/hollywood" # Hollywood CLI
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH=$PATH:/usr/local/mysql/bin # MySql
+export PATH="$HOME/bin:$PATH"
+export PATH="$PATH:/usr/local/mysql/bin" # MySql
 export PATH="/usr/local/opt/openssl/bin:$PATH" # OpenSSL
 export PATH="/usr/local/opt/libpq/bin:$PATH" # PostgreSQL, psql, pg_dump, pg_restore
 
-# lsd instead of ls. https://github.com/Peltoche/lsd
-alias l='lsd -a'
+alias l='lsd -a' # lsd https://github.com/Peltoche/lsd
 alias ls='lsd'
 alias ll='lsd -lah'
-alias cat='bat' # bat instead of cat
+alias cat='bat'
 alias mkd='mkdir'
 alias dcp='docker-compose'
 alias dus='du -hs * | sort -hr'
@@ -136,50 +139,27 @@ alias dusa='du -hs .[^.]* * | sort -hr'
 alias watch1='watch -n 1'
 alias rmrf='rm -rf'
 alias gs=gst
+alias ch='curl cht.sh'
+alias nv='nvim'
 
 # Set Java JDK Version
 alias j19="export JAVA_HOME=`/usr/libexec/java_home -v 19`; java --version"
 alias j17="export JAVA_HOME=`/usr/libexec/java_home -v 17`; java --version"
 alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java --version"
 
+# zsh history size
+export HISTSIZE=1000000000
+
 # Neovim for git, etc
 export EDITOR=nvim
 export VISUAL=$EDITOR
 
-# Open Weather
-export OPEN_WEATHER_API_KEY="TODO"
-launchctl setenv OPEN_WEATHER_API_KEY $OPEN_WEATHER_API_KEY
-
-export GITLAB_TOKEN_CREATE="TODO"
-export GITLAB_HOST_CREATE="TODO"
-export SWF_GITLAB_TOKEN=$GITLAB_TOKEN_CREATE
-export SWF_GITLAB_HOST="TODO"
-
-# default to CREATE Gitlab
-export GITLAB_TOKEN=$GITLAB_TOKEN_CREATE
-export GITLAB_HOST=$GITLAB_HOST_CREATE
-
 export NODE_EXTRA_CA_CERTS="$HOME/.certs/DigiCert-High-Assurance-EV-Root-CA.pem"
 
-export CI_JOB_TOKEN=$GITLAB_TOKEN_CREATE
-export GITLAB_PAT=$GITLAB_TOKEN_CREATE
-
-export NPM_ASVE_READ_ONLY_TOKEN_CREATE="TODO"
-
-# 2022 Avi-X / TRMS
-export AVIX_DEPLOY_TOKEN="TODO"
-
-
-# 2023-01 cDSO R2D2
-export CREATE_JOB_TOKEN=$GITLAB_TOKEN_CREATE
 
 # Commands
 j11  # set Java 11 as default
-
 # brew outdated  # list brews that need updates
-
 eval "$(direnv hook zsh)" # direnv hook
-
-# fnm - Fast node manager
-eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd)" # fnm - Fast node manager
 
