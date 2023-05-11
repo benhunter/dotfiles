@@ -29,7 +29,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -79,7 +79,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker kubectl helm)
+plugins=(
+  git
+  docker
+  kubectl
+  helm
+  zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 

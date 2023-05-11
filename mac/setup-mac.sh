@@ -6,3 +6,6 @@ mkdir $HOME/bin
 ln -s $HOME/projects/scripts/*.sh $HOME/bin
 ln -s $HOME/projects/secrets/.secrets.zshrc $HOME/.secrets.zshrc
 
+# zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions pull
