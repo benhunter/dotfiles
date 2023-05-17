@@ -169,3 +169,5 @@ j11  # set Java 11 as default
 eval "$(direnv hook zsh)" # direnv hook
 eval "$(fnm env --use-on-cd)" # fnm - Fast node manager
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
