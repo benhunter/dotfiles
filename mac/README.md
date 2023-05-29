@@ -1,14 +1,8 @@
 # MacOS Dotfiles
 
 - Install `setup-mac.sh`
-- Update
+- Update `update-mac.sh`
 - Backup `backup-mac.sh`
-
-## TODO
-
-- [ ] write an update script
-- [ ] backup - git commit
-- [ ] check scripts
 
 ## Install and Setup
 
