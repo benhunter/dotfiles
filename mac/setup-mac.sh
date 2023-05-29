@@ -15,6 +15,10 @@ ln -s $HOME/projects/scripts/*.sh $HOME/bin
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions pull
 
+# Git
+cp $SCRIPT_DIR/.gitignore_global ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
+
 # Misc
 ln -s $SCRIPT_DIR/.ideavimrc $HOME/.ideavimrc
 brew upgrade

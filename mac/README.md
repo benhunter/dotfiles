@@ -42,7 +42,7 @@ Copy custom config.
 `cp -R ~/projects/dotfiles/mac/.config/nvim/lua/custom /.config/nvim/lua`
 
 [Example config](https://github.com/NvChad/example_config/tree/v2.0_featureful)
-
+ 
 ### Misc
 
 Rectangle - window management and resizing shortcuts for mac. https://github.com/rxhanson/Rectangle
