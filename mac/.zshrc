@@ -162,6 +162,10 @@ export VISUAL=$EDITOR
 
 export NODE_EXTRA_CA_CERTS="$HOME/.certs/DigiCert-High-Assurance-EV-Root-CA.pem"
 
+# Puppeteer arm64 for Destreamer (https://github.com/snobu/destreamer)
+export PUPPETEER_EXECUTABLE_PATH=`which chromium`
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+
 
 # Commands
 j11  # set Java 11 as default

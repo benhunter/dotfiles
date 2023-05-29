@@ -1,25 +1,49 @@
 # MacOS Dotfiles
 
-# Install Software
+- Install `setup-mac.sh`
+- Update
+- Backup `backup-mac.sh`
 
-oh-my-zsh
+## TODO
+
+- [ ] write an update script
+- [ ] backup - git commit
+- [ ] check scripts
+
+## Install and Setup
+
+### oh-my-zsh
 
 ```shell
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-Update oh-my-zsh
-```shell
-omz update
-```
-
-# Homebrew
+### Homebrew
 
 ```shell
 brew tap homebrew/cask-fonts && brew install --cask font-meslo-lg-nerd-font
 brew tap homebrew/cask-fonts && brew install --cask font-hack-nerd-font
 ```
+
+### Fast Node Manager
+
+fnm. Set .nvmrc file in Node project directories.
+
+### Tmux Plugin Manager
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+### Neovim
+
+Install NvChad.
+Copy custom config.
+
+`cp -R ~/projects/dotfiles/mac/.config/nvim/lua/custom /.config/nvim/lua`
+
+[Example config](https://github.com/NvChad/example_config/tree/v2.0_featureful)
+
+### Misc
 
 Rectangle - window management and resizing shortcuts for mac. https://github.com/rxhanson/Rectangle
 
@@ -34,28 +58,25 @@ brew info openjdk@11
 brew reinstall openjdk@11
 ```
 
-## Backup Homebrew
+## Update
+
+### oh-my-zsh
+
+```shell
+omz update
+```
+
+## Backup 
+
+Homebrew
 
 ```shell
 brew bundle dump -f 
 ```
 
-# Tmux Plugin Manager
-
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# Neovim
-
-Install NvChad.
-Copy custom config.
-
-`cp -R ~/projects/dotfiles/mac/.config/nvim/lua/custom /.config/nvim/lua`
-
 # Misc
 
-Fast Node Manager - fnm. Uses .nvmrc files.
-
-# Ruby (hope I don't need this ever again)
+## Ruby (hope I don't need this ever again)
 
 Add to `.zshrc`
 
