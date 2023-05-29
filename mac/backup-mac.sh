@@ -12,5 +12,7 @@ echo "Copying Neovim NvChad config..."
 # cp -r ~/.config/nvim/lua/custom/ $SCRIPT_DIR/.config/nvim/lua/custom/
 rsync -av --exclude='.git' ~/.config/nvim/lua/custom/ $SCRIPT_DIR/.config/nvim/lua/custom/
 
+git -C $SCRIPT_DIR switch main
 git -C $SCRIPT_DIR add -A
 git -C $SCRIPT_DIR commit -v
+git -C $SCRIPT_DIR push
