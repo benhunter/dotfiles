@@ -49,6 +49,21 @@ local plugins = {
 
   { import = "custom.configs.extras.copilot" },
 
+  {
+    "hrsh7th/nvim-cmp",
+    -- lazy = false,
+  --   opts = overrides.cmp,
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    },
+    opts = overrides.cmp,
+  },
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
