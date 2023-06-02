@@ -147,6 +147,14 @@ alias rmrf='rm -rf'
 alias gs=gst
 alias ch='curl cht.sh'
 alias nv='nvim'
+alias n='nvim'
+alias gp='git push && git push --tags'
+alias gpt='git push --tags'
+alias gpot='git push origin --tags'
+
+glab-ci-run() {
+  glab ci run -b "$(git rev-parse --abbrev-ref HEAD)"
+}
 
 # Set Java JDK Version
 alias j19="export JAVA_HOME=`/usr/libexec/java_home -v 19`; java --version"
