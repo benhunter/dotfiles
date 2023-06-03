@@ -7,15 +7,18 @@ mv $HOME/.zshrc $HOME/.zshrc.bak
 ln -s $SCRIPT_DIR/.zshrc $HOME/.zshrc
 ln -s $HOME/projects/secrets/.secrets.zshrc $HOME/.secrets.zshrc
 
+# oh-my-zsh
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions pull
+
 # Scripts
 mkdir $HOME/bin
 ln -s $HOME/projects/scripts/*.sh $HOME/bin
 # ln -s $SCRIPT_DIR/update-mac.sh $HOME/bin/update-mac.sh
 ln -s $SCRIPT_DIR/*.sh $HOME/bin/
-
-# zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions pull
 
 # Tmux
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
