@@ -30,4 +30,4 @@ git config --global core.excludesfile ~/.gitignore_global
 
 # Misc
 ln -s $SCRIPT_DIR/.ideavimrc $HOME/.ideavimrc
-brew upgrade
+$SCRIPT_DIR/update-mac.sh

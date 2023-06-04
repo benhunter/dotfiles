@@ -54,6 +54,8 @@ brew info openjdk@11
 brew reinstall openjdk@11
 ```
 
+[Pandoc](https://pandoc.org/installing.html#macos)
+
 ## Update
 
 ### oh-my-zsh

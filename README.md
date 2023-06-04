@@ -14,3 +14,7 @@ My dotfiles, config, preference, settings, etc
 ## Tmux
 
 - `.tmux.conf`
+
+## Obsidian
+
+- [obsidian-pandoc](https://github.com/OliverBalfour/obsidian-pandoc)
