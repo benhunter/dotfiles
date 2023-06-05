@@ -63,3 +63,9 @@ Copy `.ideavimrc` to user folder: `C:\Users\ben\`
 # bye cortana - Windows 10
 Get-AppxPackage -allusers Microsoft. 549981C3F5F10 | Remove-AppxPackage
 ```
+
+Run as admin:
+
+```powershell
+windows11-remove-widgets.ps1
+```
