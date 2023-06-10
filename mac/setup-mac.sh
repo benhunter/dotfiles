@@ -30,4 +30,6 @@ git config --global core.excludesfile ~/.gitignore_global
 
 # Misc
 ln -s $SCRIPT_DIR/.ideavimrc $HOME/.ideavimrc
+
+# Update - Do Last
 $SCRIPT_DIR/update-mac.sh

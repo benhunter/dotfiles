@@ -93,3 +93,13 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 # Gems installed here:
 export PATH="/usr/local/lib/ruby/gems/3.1.0/bin:$PATH"
 ```
+
+## BasicTeX
+
+Currently using MacTex instead of BasicTeX
+
+Pandoc and BasicTeX fonts, algorithms.
+```shell
+sudo tlmgr install collection-fontsrecommended
+sudo tlmgr install algorithms
+```
