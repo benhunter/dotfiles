@@ -28,6 +28,9 @@ $HOME/.tmux/plugins/tpm/bin/update_plugins all
 cp $SCRIPT_DIR/.gitignore_global ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
 
+# Pandoc Templates
+cp -r $SCRIPT_DIR/.pandoc $HOME/.pandoc
+
 # Misc
 ln -s $SCRIPT_DIR/.ideavimrc $HOME/.ideavimrc
 

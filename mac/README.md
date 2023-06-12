@@ -38,6 +38,10 @@ Copy custom config.
 [Example config](https://github.com/NvChad/example_config/tree/v2.0_featureful)
 
 Setup Copilot with `:Copilot auth`.
+
+### Helm
+
+[Helm autocompletions for zsh](https://helm.sh/docs/helm/helm_completion_zsh/)
  
 ### Misc
 
