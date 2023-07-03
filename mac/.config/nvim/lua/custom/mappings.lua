@@ -7,6 +7,19 @@ M.general = {
   },
 }
 
+M.lspconfig = {
+  plugin = true,
+  -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
+  n = {
+    ["gr"] = {
+      function()
+        vim.lsp.buf.references()
+      end,
+      "LSP references",
+    },
+  },
+} -- M.lspconfig
+
 -- Extras example
 -- M.symbols_outline = {
 --   n = {
