@@ -85,6 +85,9 @@ plugins=(
   kubectl
   helm
   zsh-autosuggestions
+  ripgrep
+  fd
+  fzf
 )
 
 source $ZSH/oh-my-zsh.sh
