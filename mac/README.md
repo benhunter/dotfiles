@@ -58,6 +58,8 @@ brew info openjdk@11
 brew reinstall openjdk@11
 ```
 
+Hub - [GitHub and git utility](https://hub.github.com/)
+
 [Pandoc](https://pandoc.org/installing.html#macos)
 
 ## Update
