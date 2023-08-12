@@ -122,10 +122,6 @@ source ~/.secrets.zshrc
 
 # Open DBeaver installed by Homebrew without admin permissions
 alias dbeaver="open /usr/local/Caskroom/dbeaver-community/21.2.1/DBeaver.app"
-#
-# Open Visual Studio Code by Homebrew so I have the latest version
-# alias vscode="open /Applications/Visual\ Studio\ Code.app"
-# alias code=vscode
 
 alias hollywood="docker run --rm -it bcbcarl/hollywood" # Hollywood CLI
 
@@ -159,18 +155,23 @@ glab-ci-run() {
   glab ci run -b "$(git rev-parse --abbrev-ref HEAD)"
 }
 
-# Set Java JDK Version
+# Java JDK Version
 alias j19="export JAVA_HOME=`/usr/libexec/java_home -v 19`; java --version"
 alias j17="export JAVA_HOME=`/usr/libexec/java_home -v 17`; java --version"
 alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java --version"
+alias j11-quiet="export JAVA_HOME=`/usr/libexec/java_home -v 11`"
 
-# zsh history size
+# zsh
 export HISTSIZE=1000000000
 
 # Neovim for git, etc
 export EDITOR=nvim
 export VISUAL=$EDITOR
 
+# gpg
+export GPG_TTY=$(tty)
+
+# Node
 export NODE_EXTRA_CA_CERTS="$HOME/.certs/DigiCert-High-Assurance-EV-Root-CA.pem"
 
 # Puppeteer arm64 for Destreamer (https://github.com/snobu/destreamer)
@@ -179,7 +180,7 @@ export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 
 # Commands
-j11  # set Java 11 as default
+j11-quiet  # set Java 11 as default
 # brew outdated  # list brews that need updates
 eval "$(direnv hook zsh)" # direnv hook
 eval "$(fnm env --use-on-cd)" # fnm - Fast node manager
