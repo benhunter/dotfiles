@@ -62,6 +62,8 @@ Hub - [GitHub and git utility](https://hub.github.com/)
 
 [Pandoc](https://pandoc.org/installing.html#macos)
 
+[BFG Repo Cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
+
 ## Update
 
 ### oh-my-zsh

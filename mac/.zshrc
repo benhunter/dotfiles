@@ -150,6 +150,7 @@ alias n='nvim'
 alias gp='git push && git push --tags'
 alias gpt='git push --tags'
 alias gpot='git push origin --tags'
+alias bfg='java -jar ~/bin/bfg.jar'
 
 glab-ci-run() {
   glab ci run -b "$(git rev-parse --abbrev-ref HEAD)"

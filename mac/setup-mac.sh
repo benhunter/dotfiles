@@ -7,6 +7,8 @@ mv $HOME/.zshrc $HOME/.zshrc.bak
 ln -s $SCRIPT_DIR/.zshrc $HOME/.zshrc
 ln -s $HOME/projects/secrets/.secrets.zshrc $HOME/.secrets.zshrc
 
+ln -s $SCRIPT_DIR/env $HOME/env
+
 # oh-my-zsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
@@ -14,8 +16,9 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions pull
 
-# Scripts
-mkdir $HOME/bin
+# Binaries and Scripts
+mkdir -p $HOME/bin
+ln -s $SCRIPT_DIR/bin/* $HOME/bin
 ln -s $HOME/projects/scripts/*.sh $HOME/bin
 # ln -s $SCRIPT_DIR/update-mac.sh $HOME/bin/update-mac.sh
 ln -s $SCRIPT_DIR/*.sh $HOME/bin/
