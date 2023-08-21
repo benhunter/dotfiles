@@ -31,6 +31,9 @@ git config --global core.excludesfile ~/.gitignore_global
 # Pandoc Templates
 cp -r $SCRIPT_DIR/.pandoc $HOME/.pandoc
 
+# Rust Programming Language
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 # Misc
 ln -s $SCRIPT_DIR/.ideavimrc $HOME/.ideavimrc
 

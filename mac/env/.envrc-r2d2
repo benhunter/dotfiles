@@ -1,0 +1,8 @@
+export GITLAB_TOKEN=$GITLAB_TOKEN_R2D2
+export GITLAB_HOST=$GITLAB_HOST_R2D2
+export GITLAB_PROJECT_ID=$(gitlab-get-project-id-from-current-repo.sh)
+export GITLAB_REGISTRY_ID=$(glab api projects/$GITLAB_PROJECT_ID/registry/repositories | jq ".[].id")
+
+# gitlab-check-image-publish-time.sh $GITLAB_PROJECT_ID test-config
+
+export JAVA_HOME=`/usr/libexec/java_home -v 17`; java --version
