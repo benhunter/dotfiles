@@ -39,6 +39,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Misc
 ln -s $SCRIPT_DIR/.ideavimrc $HOME/.ideavimrc
+xcode-select --install # Needed for TAP Iterate Cluster access
+tanzu plugin install --group vmware-tap/default:v1.6.1 # Needed for TAP Iterate Cluster access
+
 
 # Update - Do Last
 $SCRIPT_DIR/update-mac.sh
