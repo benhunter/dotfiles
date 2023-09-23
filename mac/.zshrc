@@ -192,3 +192,7 @@ eval "$(fnm env --use-on-cd)" # fnm - Fast node manager
 # CTRL-t	Fuzzy find all files and subdirectories of the working directory, and output the selection to STDOUT.
 # ALT-c	Fuzzy find all subdirectories of the working directory, and run the command “cd” with the output as argument.
 # CTRL-r	Fuzzy find through your shell history, and output the selection to STDOUT.
+
+# gcloud
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
