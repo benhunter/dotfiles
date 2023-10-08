@@ -1,15 +1,13 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
+    "actions": [
         {
             "command": "paste",
             "keys": "ctrl+v"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "copy",
                 "singleLine": false
             },
@@ -20,8 +18,7 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -32,18 +29,19 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "profiles": 
-    {
-        "defaults": 
+    "newTabMenu": [
         {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": {
+        "defaults": {
             "colorScheme": "Nord",
-            "font": 
-            {
+            "font": {
                 "face": "Hack Nerd Font Mono"
             }
         },
-        "list": 
-        [
+        "list": [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -51,16 +49,16 @@
                 "name": "Windows PowerShell"
             },
             {
-                "commandline": "%SystemRoot%\\System32\\cmd.exe",
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": false,
-                "name": "Command Prompt"
-            },
-            {
                 "guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
                 "hidden": true,
                 "name": "Ubuntu-22.04",
                 "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Command Prompt"
             },
             {
                 "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
@@ -82,8 +80,31 @@
             }
         ]
     },
-    "schemes": 
-    [
+    "schemes": [
+        {
+            "background": "#2E3440",
+            "black": "#3B4252",
+            "blue": "#81A1C1",
+            // "brightBlack": "#3B4252",  // need to fix this for comments that are hard to read
+            "brightBlack": "#3B4252",
+            "brightBlue": "#5E81AC",
+            "brightCyan": "#88C0D0",
+            "brightGreen": "#A3BE8C",
+            "brightPurple": "#B48EAD",
+            "brightRed": "#D08770",
+            "brightWhite": "#E5E9F0",
+            "brightYellow": "#EBCB8B",
+            "cursorColor": "#EBCB8B",
+            "cyan": "#88C0D0",
+            "foreground": "#E5E9F0",
+            "green": "#8FBCBB",
+            "name": "Nord",
+            "purple": "#B48EAD",
+            "red": "#BF616A",
+            "selectionBackground": "#434C5E",
+            "white": "#D8DEE9",
+            "yellow": "#EBCB8B"
+        },
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -129,30 +150,6 @@
             "selectionBackground": "#FFFFFF",
             "white": "#CCCCCC",
             "yellow": "#C19C00"
-        },
-        {
-            "background": "#2E3440",
-            "black": "#3B4252",
-            "blue": "#81A1C1",
-            // "brightBlack": "#3B4252",  // need to fix this for comments that are hard to read
-            "brightBlack": "#3B4252",
-            "brightBlue": "#5E81AC",
-            "brightCyan": "#88C0D0",
-            "brightGreen": "#A3BE8C",
-            "brightPurple": "#B48EAD",
-            "brightRed": "#D08770",
-            "brightWhite": "#E5E9F0",
-            "brightYellow": "#EBCB8B",
-            "cursorColor": "#EBCB8B",
-            "cyan": "#88C0D0",
-            "foreground": "#E5E9F0",
-            "green": "#8FBCBB",
-            "name": "Nord",
-            "purple": "#B48EAD",
-            "red": "#BF616A",
-            "selectionBackground": "#434C5E",
-            "white": "#D8DEE9",
-            "yellow": "#EBCB8B"
         },
         {
             "background": "#282C34",
