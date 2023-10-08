@@ -69,3 +69,20 @@ Run as admin:
 ```powershell
 windows11-remove-widgets.ps1
 ```
+
+# Powershell $PROFILE
+
+```powershell
+$PROFILE
+# C:\Users\benja\OneDrive\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+```
+
+Backup Profile
+```powershell
+cp $PROFILE .
+```
+
+Restore Profile
+```powershell
+cp Microsoft.PowerShell_profile.ps1 $PROFILE
+```
