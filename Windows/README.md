@@ -4,6 +4,7 @@
 
 Chocolatey
 - Package management on Windows is still a hot mess. Choco is nice, but there are too many packages that are out of date because they community maintained and therefore unusable.
+- Backup Chocolatey: `choco export <package.config>`
 
 Scoop
 - https://scoop.sh/
