@@ -21,3 +21,5 @@ function Watch-Command {
 Set-Alias -Name watch -Value Watch-Command
 
 Import-Module git-aliases -DisableNameChecking
+
+fnm env --use-on-cd | Out-String | Invoke-Expression
