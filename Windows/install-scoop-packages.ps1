@@ -7,5 +7,6 @@ scoop bucket add nerd-fonts # https://github.com/matthewjberger/scoop-nerd-fonts
 scoop install -g Hack-NF Hack-NF-Mono
 
 # Git Aliases
+# https://github.com/gluons/powershell-git-aliases
 scoop bucket add extras
 scoop install git-aliases

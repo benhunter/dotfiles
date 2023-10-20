@@ -22,4 +22,9 @@ Set-Alias -Name watch -Value Watch-Command
 
 Import-Module git-aliases -DisableNameChecking
 
+# Custom Aliases
+function gst {
+	git status $args
+}
+
 fnm env --use-on-cd | Out-String | Invoke-Expression
