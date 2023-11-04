@@ -60,6 +60,8 @@ alias gp='git push && git push --tags'
 alias gpt='git push --tags'
 alias gpot='git push origin --tags'
 alias bfg='java -jar ~/bin/bfg.jar'
+alias datestamp-local='date +%Y-%m-%d-%H%M%S'
+alias datestamp='date -u +%Y-%m-%dT%H:%M'
 
 glab-ci-run() {
   glab ci run -b "$(git rev-parse --abbrev-ref HEAD)"
@@ -86,7 +88,7 @@ export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 # Commands
-j11-quiet  # set Java 11 as default
+j17  # set Java 17 as default
 # brew outdated  # list brews that need updates. This slows down opening zsh...
 eval "$(direnv hook zsh)" # direnv hook
 eval "$(fnm env --use-on-cd)" # fnm - Fast node manager
