@@ -103,3 +103,13 @@ eval "$(fnm env --use-on-cd)" # fnm - Fast node manager
 # gcloud
 source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Android
+export ANDROID_HOME=$HOME/Library/Android/sdk && \
+  export PATH=$PATH:$ANDROID_HOME/emulator && \
+  export PATH=$PATH:$ANDROID_HOME/platform-tools
