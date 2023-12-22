@@ -68,10 +68,25 @@ glab-ci-run() {
 }
 
 # Java JDK Version
-alias j19="export JAVA_HOME=`/usr/libexec/java_home -v 19`; java --version"
-alias j17="export JAVA_HOME=`/usr/libexec/java_home -v 17`; java --version"
-alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java --version"
-alias j11-quiet="export JAVA_HOME=`/usr/libexec/java_home -v 11`"
+j21() {
+  export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+  echo "JAVA_HOME=$JAVA_HOME"
+}
+
+j19() {
+  export JAVA_HOME=$(/usr/libexec/java_home -v 19)
+  echo "JAVA_HOME=$JAVA_HOME"
+}
+
+j17() {
+  export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+  echo "JAVA_HOME=$JAVA_HOME"
+}
+
+j11() {
+  export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+  echo "JAVA_HOME=$JAVA_HOME"
+}
 
 # Neovim for git, etc
 export EDITOR=nvim
@@ -88,7 +103,7 @@ export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 # Commands
-j17  # set Java 17 as default
+#j17  # set Java 17 as default
 # brew outdated  # list brews that need updates. This slows down opening zsh...
 eval "$(direnv hook zsh)" # direnv hook
 eval "$(fnm env --use-on-cd)" # fnm - Fast node manager
