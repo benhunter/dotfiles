@@ -82,7 +82,15 @@ brew bundle dump -f
 
 # Misc
 
-## Ruby (hope I don't need this ever again)
+## Ruby and CocoaPods for XCode/Expo/React-Native
+
+```
+brew install ruby
+# update $PATH via `.zshrc`
+gem install cocoapods
+```
+
+## Ruby (old) (hope I don't need this ever again)
 
 Add to `.zshrc`
 

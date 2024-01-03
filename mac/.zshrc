@@ -42,6 +42,12 @@ export PATH="$PATH:/usr/local/mysql/bin" # MySql
 export PATH="/usr/local/opt/openssl/bin:$PATH" # OpenSSL
 export PATH="/usr/local/opt/libpq/bin:$PATH" # PostgreSQL, psql, pg_dump, pg_restore
 
+# Needed for CocoaPods. Ruby installed by Homebrew. Then: gem install cocoapods. (not brew install!)
+if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+  export PATH=/opt/homebrew/opt/ruby/bin:$PATH
+  export PATH=`gem environment gemdir`/bin:$PATH
+fi
+
 alias l='lsd -a' # lsd https://github.com/Peltoche/lsd
 alias ls='lsd'
 alias ll='lsd -lah'
@@ -73,11 +79,6 @@ j21() {
   echo "JAVA_HOME=$JAVA_HOME"
 }
 
-j19() {
-  export JAVA_HOME=$(/usr/libexec/java_home -v 19)
-  echo "JAVA_HOME=$JAVA_HOME"
-}
-
 j17() {
   export JAVA_HOME=$(/usr/libexec/java_home -v 17)
   echo "JAVA_HOME=$JAVA_HOME"
@@ -96,7 +97,8 @@ export VISUAL=$EDITOR
 export GPG_TTY=$(tty)
 
 # Node
-export NODE_EXTRA_CA_CERTS="$HOME/.certs/DigiCert-High-Assurance-EV-Root-CA.pem"
+# 2024-01-03 Disabled NODE_EXTRA_CA_CERTS to fix Expo/CocoaPods issue
+# export NODE_EXTRA_CA_CERTS="$HOME/.certs/DigiCert-High-Assurance-EV-Root-CA.pem"
 
 # Puppeteer arm64 for Destreamer (https://github.com/snobu/destreamer)
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`
