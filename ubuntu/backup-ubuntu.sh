@@ -8,6 +8,9 @@ echo "Script Directory: $SCRIPT_DIR"
 echo "Copying .zshrc"
 cp ~/.zshrc $SCRIPT_DIR/
 
+echo "Copying .gitconfig"
+cp ~/.gitconfig $SCRIPT_DIR/
+
 git -C $SCRIPT_DIR switch main
 
 # if pull fails, exit
