@@ -6,6 +6,14 @@
 
 ## Install and Setup
 
+### zsh
+
+Setup completions
+```
+autoload -Uz compinstall
+compinstall
+```
+
 ### oh-my-zsh
 
 ```shell
