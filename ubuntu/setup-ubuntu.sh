@@ -1,0 +1,40 @@
+#!/bin/sh
+
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+
+# update sudoers
+LINE="$USER ALL=(ALL) NOPASSWD:ALL"
+if [ ! -f /etc/sudoers/sudoers.d/user ];
+then echo $LINE | (sudo su -c 'EDITOR="tee" visudo -f /etc/sudoers.d/user')
+fi;
+
+# apt
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt install zsh -y
+chsh -s $(which zsh)
+
+sudo apt install neovim -y
+
+# mcso-aos
+sudo apt install aqemu make git gcc
+
+# Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# oh-my-zsh
+
+# PowerLevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc
+
+# .zshrc
+mv $HOME/.zshrc $HOME/.zshrc.bak
+ln -s $SCRIPT_DIR/.zshrc $HOME/.zshrc
+ln -s $SCRIPT_DIR/.p10k.sh $HOME/.p10k.sh
+
+# zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions pull
+
+ln -s $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
