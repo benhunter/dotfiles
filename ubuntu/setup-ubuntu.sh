@@ -31,7 +31,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 # .zshrc
 mv $HOME/.zshrc $HOME/.zshrc.bak
 ln -s $SCRIPT_DIR/.zshrc $HOME/.zshrc
-ln -s $SCRIPT_DIR/.p10k.sh $HOME/.p10k.sh
+ln -s $SCRIPT_DIR/.p10k.zsh $HOME/.p10k.zsh
 
 # zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
