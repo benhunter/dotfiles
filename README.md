@@ -2,9 +2,10 @@
 
 My dotfiles, config, preference, settings, etc
 
-- MacOS zsh in iTerm/Terminal
+- MacOS zsh in iTerm/Terminal in `mac/`
 - WSL Ubuntu in Windows Terminal
 - Windows 11
+- Ubuntu (Server 22.04) in `ubuntu/`
 
 ## Neovim
 

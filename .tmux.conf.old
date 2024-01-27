@@ -1,0 +1,17 @@
+set -g default-terminal "screen-256color"
+set -g history-limit 250000  # bigger scrollback buffer
+
+# Vi navigation in scrollback
+set-window-option -g mode-keys vi
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi V send -X select-line
+bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+
+# Neovim
+set-option -sg escape-time 10
+set-option -g focus-events on
+set-option -sa terminal-overrides ',xterm-256color:RGB'  # for MacOS Terminal
+set-option -ga terminal-overrides ',xterm-256color:Tc'  # for Windows Terminal in WSL Ubuntu in tmux
+
+# Powerline
+source /usr/share/powerline/bindings/tmux/powerline.conf

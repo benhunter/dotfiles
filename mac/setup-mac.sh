@@ -24,6 +24,7 @@ ln -s $HOME/projects/scripts/*.sh $HOME/bin
 ln -s $SCRIPT_DIR/*.sh $HOME/bin/
 
 # Tmux
+ln -s $SCRIPT_DIR/../.tmux.conf $HOME/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 $HOME/.tmux/plugins/tpm/bin/update_plugins all
 
