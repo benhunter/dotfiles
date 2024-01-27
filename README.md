@@ -7,7 +7,7 @@ My dotfiles, config, preference, settings, etc
 - Windows 11
 - Ubuntu (Server 22.04) in `ubuntu/`
 
-## Neovim
+## Neovim (old)
 
 - Dependencies: `neovim-install.sh`
 - Config: `.config/nvim/init.vim`
@@ -15,6 +15,7 @@ My dotfiles, config, preference, settings, etc
 ## Tmux
 
 - `.tmux.conf`
+- install `tmux-plugin`
 
 ## Obsidian
 
