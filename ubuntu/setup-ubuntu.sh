@@ -38,3 +38,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions pull
 
 ln -s $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
+
+# Tmux
+ln -s $SCRIPT_DIR/.tmux.conf $HOME/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+$HOME/.tmux/plugins/tpm/bin/update_plugins all
