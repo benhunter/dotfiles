@@ -43,3 +43,9 @@ ln -s $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
 ln -s $SCRIPT_DIR/../.tmux.conf $HOME/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 $HOME/.tmux/plugins/tpm/bin/update_plugins all
+
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# bottom
+cargo install bottom --locked
