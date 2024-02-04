@@ -18,7 +18,7 @@ chsh -s $(which zsh)
 sudo apt install neovim -y
 
 # mcso-aos
-sudo apt install aqemu make git gcc
+sudo apt install aqemu make git gcc valgrind inotify-tools
 
 # Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
