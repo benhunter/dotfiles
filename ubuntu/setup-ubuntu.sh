@@ -70,3 +70,6 @@ sudo apt-get install neovim python3-pip fonts-powerline ripgrep fd-find
 # https://nvchad.com/docs/quickstart/install
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 echo "Run NvChadUpdate and MasonInstallAll"
+
+# fd
+ln -s $(which fdfind) ~/.local/bin/fd

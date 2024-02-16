@@ -31,3 +31,6 @@ alias gs=gst
 # fnm
 export PATH="/home/ben/.local/share/fnm:$PATH"
 eval "`fnm env`"
+
+# fd
+export PATH="/home/ben/.local/bin:$PATH"
