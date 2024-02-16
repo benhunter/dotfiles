@@ -15,8 +15,6 @@ sudo apt upgrade -y
 sudo apt install zsh -y
 chsh -s $(which zsh)
 
-sudo apt install neovim -y
-
 # mcso-aos
 sudo apt install aqemu make git gcc valgrind inotify-tools tree
 
@@ -49,3 +47,20 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # bottom
 cargo install bottom --locked
+
+# Neovim
+# https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu
+# Use unstable repo for PPA
+sudo apt-get install software-properties-common
+sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
+sudo apt-get install neovim
+
+## Python prerequisites
+sudo apt-get install python2-dev python-pip python3-dev python3-pip
+
+# NvChad
+# https://nvchad.com/docs/quickstart/install
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+echo "Run NvChadUpdate and MasonInstallAll"
