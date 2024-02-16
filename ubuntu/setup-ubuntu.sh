@@ -55,10 +55,10 @@ sudo apt-get install software-properties-common
 sudo apt-get install python-software-properties
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
-sudo apt-get install neovim
+sudo apt-get install neovim python3-pip fonts-powerline ripgrep fd-find
 
-## Python prerequisites
-sudo apt-get install python2-dev python-pip python3-dev python3-pip
+## Python prerequisites - docs may be outdated
+#sudo apt-get install python2-dev python-pip python3-dev python3-pip
 
 # NvChad
 # https://nvchad.com/docs/quickstart/install
