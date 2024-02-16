@@ -27,3 +27,7 @@ export VISUAL=$EDITOR
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 alias gs=gst
+
+# fnm
+export PATH="/home/ben/.local/share/fnm:$PATH"
+eval "`fnm env`"

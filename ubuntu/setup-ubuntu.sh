@@ -48,6 +48,12 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # bottom
 cargo install bottom --locked
 
+# fnm and Node
+sudo apt install unzip
+curl -fsSL https://fnm.vercel.app/install | bash
+source $HOME/.zshrc
+fnm install 20
+
 # Neovim
 # https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu
 # Use unstable repo for PPA
