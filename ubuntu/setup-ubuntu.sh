@@ -16,7 +16,7 @@ sudo apt install zsh -y
 chsh -s $(which zsh)
 
 # mcso-aos
-sudo apt install aqemu make git gcc valgrind inotify-tools tree
+sudo apt install aqemu make git gcc valgrind inotify-tools tree fd-find
 
 # Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
