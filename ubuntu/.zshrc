@@ -34,3 +34,6 @@ eval "`fnm env`"
 
 # fd
 export PATH="/home/ben/.local/bin:$PATH"
+
+# 2024-02 AOS MCSO
+export PATH="$HOME/projects/aos_pintos/src/utils/:$PATH"
