@@ -21,3 +21,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # mcso-aos
 sudo apt install aqemu make git gcc
 ```
+
+# Hack Nerd Font
+
+https://www.nerdfonts.com/
