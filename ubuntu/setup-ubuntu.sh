@@ -66,10 +66,13 @@ sudo apt-get install neovim python3-pip fonts-powerline ripgrep fd-find
 ## Python prerequisites - docs may be outdated
 #sudo apt-get install python2-dev python-pip python3-dev python3-pip
 
-# NvChad
-# https://nvchad.com/docs/quickstart/install
+## NvChad
+## https://nvchad.com/docs/quickstart/install
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 echo "Run NvChadUpdate and MasonInstallAll"
+
+## Neovim config for VSCode Remote
+cp .config/nvim/init.lua $HOME/.config/nvim
 
 # fd
 ln -s $(which fdfind) ~/.local/bin/fd
