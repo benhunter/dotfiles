@@ -127,3 +127,11 @@ Pandoc and BasicTeX fonts, algorithms.
 sudo tlmgr install collection-fontsrecommended
 sudo tlmgr install algorithms
 ```
+
+# Themes
+
+## Nord
+
+## Catppuccin
+
+- [iTerm](https://github.com/catppuccin/iterm/tree/main/colors)
