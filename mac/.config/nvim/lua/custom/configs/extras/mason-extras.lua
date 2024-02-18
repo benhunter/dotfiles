@@ -57,6 +57,18 @@ local setup = function(_, opts)
     -- Example: disable auto configuring an LSP
     -- Here, we disable lua_ls so we can use NvChad's default config
     ["lua_ls"] = function() end,
+
+    -- Rust
+    -- ["rust_analyzer"] = function()
+    --   require("rust-tools").setup {
+    --     server = {
+    --       on_attach = function(client, bufnr)
+    --         on_attach(client, bufnr)
+    --       end,
+    --       capabilities = capabilities,
+    --     },
+    --   }
+    -- end,
   })
 end
 
