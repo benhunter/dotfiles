@@ -9,6 +9,7 @@ echo "Dumping brew..."
 brew bundle dump --file=$SCRIPT_DIR/Brewfile --force
 
 echo "Copying Neovim NvChad config..."
+cp "$HOME/.config/nvim/init.lua" "$SCRIPT_DIR/.config/nvim/init.lua"
 # cp -r ~/.config/nvim/lua/custom/ $SCRIPT_DIR/.config/nvim/lua/custom/
 rsync -av --exclude='.git' ~/.config/nvim/lua/custom/ $SCRIPT_DIR/.config/nvim/lua/custom/
 
