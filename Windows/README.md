@@ -87,3 +87,9 @@ Restore Profile
 ```powershell
 cp Microsoft.PowerShell_profile.ps1 $PROFILE
 ```
+
+# Hack Nerd Font
+
+https://www.nerdfonts.com/
+
+Download, right-click, install.
