@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# TODO setup one liner
+# Run with:
+# TODO curl -fsSL https://raw.githubusercontent.com/benhunter/dotfiles/main/ubuntu/setup-ubuntu.sh | bash
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
