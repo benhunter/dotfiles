@@ -40,7 +40,8 @@ M.mason = {
     "clang-format",
 
     -- rust
-    "rust_analyzer",
+    -- Confusing becuase the server name is rust_analyzer
+    "rust-analyzer",
   },
 }
 
