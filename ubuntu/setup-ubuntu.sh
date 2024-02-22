@@ -22,6 +22,7 @@ echo "Installing zsh..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh
 echo "Changing shell to zsh..."
 chsh -s $(which zsh)
+# TODO have to enter password for sudo. Can we chsh last?
 
 # mcso-aos
 echo "Installing mcso-aos dependencies..."
@@ -30,7 +31,7 @@ sudo apt install -y aqemu make git gcc valgrind inotify-tools tree fd-find
 # Oh My Zsh
 echo "Installing Oh My Zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# oh-my-zsh
+# TODO Oh My Zsh prompts to switch default shell to zsh. Then drops into zsh. Have to exit to continue script.
 
 # PowerLevel10k
 echo "Installing PowerLevel10k..."
@@ -62,6 +63,7 @@ $HOME/.tmux/plugins/tpm/bin/update_plugins all
 # Rust
 echo "Installing Rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# TODO Rust install prompts for options.
 
 # bottom
 echo "Installing bottom..."
@@ -69,9 +71,9 @@ cargo install bottom --locked
 
 # fnm and Node
 sudo DEBIAN_FRONTEND=noninteractive apt install -y unzip
-curl -fsSL https://fnm.vercel.app/install | bash
-source $HOME/.zshrc
-fnm install 20
+curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts to modify .bashrc but fails.
+source $HOME/.zshrc # TODO source not found?
+fnm install 20 # TODO fnm not found?
 
 # Neovim
 # https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu
@@ -79,7 +81,7 @@ fnm install 20
 echo "Installing Neovim..."
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python-software-properties
-sudo DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:neovim-ppa/unstable
+sudo DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:neovim-ppa/unstable # TODO prompts for Enter to continue.
 sudo DEBIAN_FRONTEND=noninteractive apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y neovim python3-pip fonts-powerline ripgrep fd-find
 
@@ -98,4 +100,5 @@ cp .config/nvim/init.lua $HOME/.config/nvim
 
 # fd
 echo "Linking fdfind to fd..."
+mkdir -p ~/.local/bin
 ln -s $(which fdfind) ~/.local/bin/fd
