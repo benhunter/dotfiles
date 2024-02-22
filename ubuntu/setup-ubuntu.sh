@@ -59,6 +59,7 @@ ln -s $SCRIPT_DIR/../.tmux.conf $HOME/.tmux.conf
 echo "Installing Tmux plugins..."
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 $HOME/.tmux/plugins/tpm/bin/update_plugins all
+echo "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
 
 # Rust
 echo "Installing Rust..."
@@ -92,7 +93,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y neovim python3-pip fonts-
 ## https://nvchad.com/docs/quickstart/install
 echo "Installing NvChad..."
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
-echo "!!\n!!\n!!  Run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
+echo "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
 
 ## Neovim config for VSCode Remote
 echo "Copying Neovim config..."
@@ -102,3 +103,7 @@ cp .config/nvim/init.lua $HOME/.config/nvim
 echo "Linking fdfind to fd..."
 mkdir -p ~/.local/bin
 ln -s $(which fdfind) ~/.local/bin/fd
+
+echo "Reminders:"
+echo "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
+echo "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
