@@ -12,11 +12,14 @@ if [ ! -f /etc/sudoers/sudoers.d/user ];
 then echo $LINE | (sudo su -c 'EDITOR="tee" visudo -f /etc/sudoers.d/user')
 fi;
 
-# apt
+# apt packages
 echo "Updating apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt update
 echo "Upgrading apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
+
+echo "Installing nice things from apt ..."
+sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip
 
 echo "Installing zsh..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh
@@ -26,7 +29,7 @@ chsh -s $(which zsh)
 
 # mcso-aos
 echo "Installing mcso-aos dependencies..."
-sudo apt install -y aqemu make git gcc valgrind inotify-tools tree fd-find
+sudo DEBIAN_FRONTEND=noninteractive apt install -y aqemu make git gcc valgrind inotify-tools
 
 # Oh My Zsh
 echo "Installing Oh My Zsh..."
@@ -71,7 +74,6 @@ echo "Installing bottom..."
 cargo install bottom --locked
 
 # fnm and Node
-sudo DEBIAN_FRONTEND=noninteractive apt install -y unzip
 curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts to modify .bashrc but fails.
 source $HOME/.zshrc # TODO source not found?
 fnm install 20 # TODO fnm not found?

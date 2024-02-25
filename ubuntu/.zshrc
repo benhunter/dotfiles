@@ -37,3 +37,9 @@ export PATH="/home/ben/.local/bin:$PATH"
 
 # 2024-02 AOS MCSO
 export PATH="$HOME/projects/aos_pintos/src/utils/:$PATH"
+
+# fzf
+# installed:
+# sudo apt install fzf
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
