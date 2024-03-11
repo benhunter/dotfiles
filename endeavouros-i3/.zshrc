@@ -10,21 +10,16 @@ fi
 #source ~/powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-
 plugins=(
 	git 
 	)
 
-
 source /usr/share/oh-my-zsh/oh-my-zsh.sh
-# TODO source $ZSH/oh-my-zsh.sh
-
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Neovim for git, etc
 export EDITOR=nvim
 export VISUAL=$EDITOR
-
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -46,3 +41,6 @@ export PATH="/home/ben/.local/bin:$PATH"
 
 alias l="ls -a"
 alias ll="ls -alh"
+
+# Dotfiles Scripts
+export PATH="$HOME/projects/dotfiles/endeavouros-i3:$PATH"

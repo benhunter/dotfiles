@@ -1,5 +1,5 @@
 Xcursor.theme: capitaine-cursors-light
 Xcursor.size: 12
-*.dpi: 150
-Xft.dpi: 150
+*.dpi: 120
+Xft.dpi: 120
 Xft.antialias: 1
