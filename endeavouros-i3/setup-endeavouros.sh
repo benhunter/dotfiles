@@ -55,6 +55,9 @@ sudo pacman -S acpilight
 # Hack Nerd Font
 sudo pacman -S ttf-hack-nerd
 
+# Catppuccin
+# xfce4-terminal theme https://github.com/catppuccin/xfce4-terminal/blob/main/src/catppuccin-mocha.theme
+
 echo "Reminders:"
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
 echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
