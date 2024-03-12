@@ -47,6 +47,14 @@ echo "Linking fdfind to fd..."
 # mkdir -p ~/.local/bin
 # TODO ln -s $(which fdfind) ~/.local/bin/fd
 
+# Screen Backlight
+# https://gitlab.com/wavexx/acpilight
+# https://wiki.archlinux.org/title/backlight#Backlight_utilities
+sudo pacman -S acpilight
+
+# Hack Nerd Font
+sudo pacman -S ttf-hack-nerd
+
 echo "Reminders:"
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
 echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
