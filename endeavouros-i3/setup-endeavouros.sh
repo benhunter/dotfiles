@@ -19,7 +19,7 @@ ln -s $SCRIPT_DIR/../.tmux.conf $HOME/.tmux.conf
 echo "Installing Tmux plugins..."
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 $HOME/.tmux/plugins/tpm/bin/update_plugins all
-echo "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
+echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
 
 exit # TODO remove
 
@@ -36,7 +36,7 @@ echo "Installing bottom..."
 ## https://nvchad.com/docs/quickstart/install
 echo "Installing NvChad..."
 # TODO git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
-echo "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
+echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
 
 ## Neovim config for VSCode Remote
 echo "Copying Neovim config..."
@@ -48,5 +48,5 @@ echo "Linking fdfind to fd..."
 # TODO ln -s $(which fdfind) ~/.local/bin/fd
 
 echo "Reminders:"
-echo "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
-echo "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
+echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
+echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
