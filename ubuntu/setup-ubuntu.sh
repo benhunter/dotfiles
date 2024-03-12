@@ -53,7 +53,7 @@ echo "Installing zsh-autosuggestions..."
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions pull
 
-echo "Linking .zshrc..."
+echo "Linking .gitconfig..."
 ln -s $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
 
 # Tmux
