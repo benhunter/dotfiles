@@ -16,6 +16,13 @@
 # EndeavourOS wiki holds some Information also: https://discovery.endeavouros.com/window-tiling-managers/i3-wm/
 # Please see http://i3wm.org/docs/userguide.html for the official i3 reference!
 
+##############################
+# Custom config starts here: #
+##############################
+
+# Swap workspaces between displays
+bindsym $mod+Shift+s exec $HOME/projects/dotfiles/endeavouros-i3/i3-display-swap.sh
+
 #######################
 # config starts here: #
 #######################
