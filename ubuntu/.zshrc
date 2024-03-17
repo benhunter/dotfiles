@@ -36,10 +36,17 @@ eval "`fnm env`"
 export PATH="/home/ben/.local/bin:$PATH"
 
 # 2024-02 AOS MCSO
-export PATH="$HOME/projects/aos_pintos/src/utils/:$PATH"
+# Project 1
+#export PATH="$HOME/projects/aos_pintos/src/utils/:$PATH"
+# Project 2
+export PATH="$HOME/projects/aos_pintos_project_2/aos_pintos/src/utils:$PATH"
+source $HOME/projects/dotfiles/ubuntu/helpers.sh
 
 # fzf
 # installed:
 # sudo apt install fzf
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
+
+# Scripts
+export PATH="/home/ben/projects/dotfiles/ubuntu/:$PATH"

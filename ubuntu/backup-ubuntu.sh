@@ -5,9 +5,6 @@ set +x
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 echo "Script Directory: $SCRIPT_DIR"
 
-echo "Copying .zshrc"
-cp ~/.zshrc $SCRIPT_DIR/
-
 echo "Copying .gitconfig"
 cp ~/.gitconfig $SCRIPT_DIR/
 
