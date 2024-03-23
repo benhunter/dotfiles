@@ -90,6 +90,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y neovim python3-pip fonts-
 
 ## Python prerequisites - docs may be outdated
 #sudo apt-get install python2-dev python-pip python3-dev python3-pip
+sudo apt install python3.10-venv
 
 ## NvChad
 ## https://nvchad.com/docs/quickstart/install
