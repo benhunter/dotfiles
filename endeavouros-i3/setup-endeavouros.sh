@@ -24,19 +24,18 @@ echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
 # Rust
 echo "Installing Rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-# TODO Rust install prompts for options.
-
-exit # TODO remove
 
 # bottom
 echo "Installing bottom..."
-# TODO cargo install bottom --locked
+cargo install bottom --locked
 
 ## NvChad
 ## https://nvchad.com/docs/quickstart/install
 echo "Installing NvChad..."
-# TODO git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
-echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
+git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+echo -e "!!\n!!\n!!  To finish NvChad config, run MasonInstallAll\n!!\n!!\n!!"
+
+exit # TODO remove
 
 ## Neovim config for VSCode Remote
 echo "Copying Neovim config..."
@@ -65,5 +64,5 @@ sudo pacman -S ttf-hack-nerd
 
 
 echo "Reminders:"
-echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
+echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll\n!!\n!!\n!!"
 echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
