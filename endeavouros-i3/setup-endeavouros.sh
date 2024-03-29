@@ -21,12 +21,12 @@ git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 $HOME/.tmux/plugins/tpm/bin/update_plugins all
 echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
 
-exit # TODO remove
-
 # Rust
 echo "Installing Rust..."
-# TODO curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 # TODO Rust install prompts for options.
+
+exit # TODO remove
 
 # bottom
 echo "Installing bottom..."
