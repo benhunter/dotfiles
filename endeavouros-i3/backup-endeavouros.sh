@@ -10,4 +10,3 @@ cp -r ~/.config/fontconfig "$SCRIPT_DIR/.config/"
 cp -r ~/.config/i3/ "$SCRIPT_DIR/.config/"
 
 git_commit
-# test
