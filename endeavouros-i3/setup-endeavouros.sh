@@ -32,6 +32,9 @@ cargo install bottom --locked
 echo "Installing cargo-nextest..."
 cargo install cargo-nextest --locked
 
+echo "Installing cargo-watch..."
+cargo install cargo-watch
+
 ## NvChad
 ## https://nvchad.com/docs/quickstart/install
 echo "Installing NvChad..."
