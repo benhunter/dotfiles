@@ -8,6 +8,7 @@ echo "Script Directory: $SCRIPT_DIR"
 echo "Copying .gitconfig"
 cp ~/.gitconfig $SCRIPT_DIR/
 
+# Update git repo
 git -C $SCRIPT_DIR switch main
 
 # if pull fails, exit

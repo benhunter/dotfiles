@@ -13,6 +13,7 @@ cp "$HOME/.config/nvim/init.lua" "$SCRIPT_DIR/.config/nvim/init.lua"
 # cp -r ~/.config/nvim/lua/custom/ $SCRIPT_DIR/.config/nvim/lua/custom/
 rsync -av --exclude='.git' ~/.config/nvim/lua/custom/ $SCRIPT_DIR/.config/nvim/lua/custom/
 
+# Update git repo
 git -C $SCRIPT_DIR switch main
 
 # if pull fails, exit

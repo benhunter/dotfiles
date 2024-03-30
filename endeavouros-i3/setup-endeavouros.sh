@@ -54,6 +54,8 @@ sudo pacman -S acpilight
 # Hack Nerd Font
 sudo pacman -S ttf-hack-nerd
 
+sudo pacman -S ripgrep
+
 # Catppuccin
 # xfce4-terminal theme https://github.com/catppuccin/xfce4-terminal/blob/main/src/catppuccin-mocha.theme
 
@@ -61,7 +63,6 @@ sudo pacman -S ttf-hack-nerd
 # https://lecorbeausvault.wordpress.com/2021/09/25/using-xrandr-for-multi-monitor-setups-plus-some-useful-scripts/
 #
 # xrandr --output eDP1 --primary --mode 2560x1440 --output DP2-3 --mode 3440x1440 --right-of eDP1
-
 
 echo "Reminders:"
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll\n!!\n!!\n!!"
