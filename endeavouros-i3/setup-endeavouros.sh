@@ -29,6 +29,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 echo "Installing bottom..."
 cargo install bottom --locked
 
+echo "Installing cargo-nextest..."
+cargo install cargo-nextest --locked
+
 ## NvChad
 ## https://nvchad.com/docs/quickstart/install
 echo "Installing NvChad..."
