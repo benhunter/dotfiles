@@ -62,6 +62,7 @@ sudo pacman -S ttf-hack-nerd
 
 sudo pacman -S ripgrep
 sudo pacman -S just
+sudo pacman -S noto-fonts-emoji
 
 # Catppuccin
 # xfce4-terminal theme https://github.com/catppuccin/xfce4-terminal/blob/main/src/catppuccin-mocha.theme
