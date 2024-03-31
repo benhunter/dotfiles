@@ -35,6 +35,9 @@ cargo install cargo-nextest --locked
 echo "Installing cargo-watch..."
 cargo install cargo-watch
 
+echo "Installing Fast Node Manager (fnm)"
+cargo install fnm
+
 ## NvChad
 ## https://nvchad.com/docs/quickstart/install
 echo "Installing NvChad..."
