@@ -15,6 +15,11 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 plugins=(
 	git 
+  rust
+  ripgrep
+  tmux
+  docker
+  docker-compose
 	)
 
 source /usr/share/oh-my-zsh/oh-my-zsh.sh
