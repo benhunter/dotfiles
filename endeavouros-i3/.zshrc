@@ -55,3 +55,6 @@ export PATH="$HOME/projects/dotfiles/endeavouros-i3:$PATH"
 
 # Rust
 . "$HOME/.cargo/env"
+
+# Fast Node Manager (fnm)
+eval "$(fnm env --use-on-cd)"
