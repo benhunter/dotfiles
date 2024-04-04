@@ -41,14 +41,10 @@ cargo install fnm
 ## NvChad
 ## https://nvchad.com/docs/quickstart/install
 echo "Installing NvChad..."
-git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+git clone https://github.com/benhunter/nvchad-config ~/.config/nvim && nvim
 echo -e "!!\n!!\n!!  To finish NvChad config, run MasonInstallAll\n!!\n!!\n!!"
 
 exit # TODO remove
-
-## Neovim config for VSCode Remote
-echo "Copying Neovim config..."
-# TODO cp .config/nvim/init.lua $HOME/.config/nvim
 
 # fd
 echo "Linking fdfind to fd..."
