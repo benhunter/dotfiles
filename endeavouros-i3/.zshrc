@@ -20,6 +20,7 @@ plugins=(
   tmux
   docker
   docker-compose
+  zsh-autosuggestions
 	)
 
 source /usr/share/oh-my-zsh/oh-my-zsh.sh
@@ -46,6 +47,8 @@ export PATH="/home/ben/.local/bin:$PATH"
 # sudo apt install fzf
 # TODO source /usr/share/doc/fzf/examples/key-bindings.zsh
 # TODO source /usr/share/doc/fzf/examples/completion.zsh
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
 
 alias l="ls -a"
 alias ll="ls -alh"
