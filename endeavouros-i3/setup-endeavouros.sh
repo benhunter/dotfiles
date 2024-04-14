@@ -63,6 +63,7 @@ sudo pacman -S ripgrep
 sudo pacman -S just
 sudo pacman -S noto-fonts-emoji
 sudo pacman -S xclip # allows Neovim to yank to system clipboard
+sudo pacman -S texlive-basic
 
 # Catppuccin
 # xfce4-terminal theme https://github.com/catppuccin/xfce4-terminal/blob/main/src/catppuccin-mocha.theme
