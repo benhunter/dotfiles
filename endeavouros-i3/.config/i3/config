@@ -29,6 +29,10 @@ bindsym $mod+o exec ~/.config/i3/scripts/blur-lock
 # Swap workspaces between displays
 bindsym $mod+Shift+s exec $HOME/projects/dotfiles/endeavouros-i3/i3-display-swap.sh
 
+# Move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less move workspace to output left
+
 # change focus - Vim
 bindsym $mod+h focus left
 bindsym $mod+j focus down
