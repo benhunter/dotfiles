@@ -50,3 +50,6 @@ source /usr/share/doc/fzf/examples/completion.zsh
 
 # Scripts
 export PATH="/home/ben/projects/dotfiles/ubuntu/:$PATH"
+
+# Disk usage
+alias dush='du -sh * 2> /dev/null | sort -rh'

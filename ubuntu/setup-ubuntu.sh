@@ -30,6 +30,7 @@ chsh -s $(which zsh)
 # mcso-aos
 echo "Installing mcso-aos dependencies..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y aqemu make git gcc valgrind inotify-tools
+sudo DEBIAN_FRONTEND=noninteractive apt install -y texlive texlive-formats-extra
 
 # Oh My Zsh
 echo "Installing Oh My Zsh..."
