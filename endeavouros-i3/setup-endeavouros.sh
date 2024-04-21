@@ -65,6 +65,7 @@ sudo pacman -S noto-fonts-emoji
 sudo pacman -S xclip # allows Neovim to yank to system clipboard
 sudo pacman -S texlive-basic texlive-latex # texlive-formatsextra
 sudo pacman -S protobuf # protoc Protocol Buffers Compiler
+sudo pacman -S signal-desktop # Signal messenger app. https://signal.org
 
 # Catppuccin
 # xfce4-terminal theme https://github.com/catppuccin/xfce4-terminal/blob/main/src/catppuccin-mocha.theme
