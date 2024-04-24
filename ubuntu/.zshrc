@@ -39,7 +39,12 @@ export PATH="/home/ben/.local/bin:$PATH"
 # Project 1
 #export PATH="$HOME/projects/aos_pintos/src/utils/:$PATH"
 # Project 2
-export PATH="$HOME/projects/aos_pintos_project_2/aos_pintos/src/utils:$PATH"
+# export PATH="$HOME/projects/aos_pintos_project_2/aos_pintos/src/utils:$PATH"
+# Project 3
+# export PATH="$HOME/projects/aos_pintos_project_3/src/utils:$PATH"
+# Project 4
+export PATH="$HOME/projects/aos_pintos_project_4/src/utils:$PATH"
+
 source $HOME/projects/dotfiles/ubuntu/helpers.sh
 
 # fzf
