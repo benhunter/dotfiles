@@ -1,47 +1,16 @@
-[credential]
-	helper = osxkeychain
 [user]
 	name = Ben Hunter
-	email = code@benhunter.me
-[alias]
-	c = commit -m
-	st = status --short --branch
-	ca = commit --amend --reuse-message=HEAD
-	co = checkout
-	br = branch
-	df = diff HEAD
-	ir = !sh -c 'git rebase --interactive ${1-master}' -
-	ll = log --graph --all --pretty=format:\"%Cred%h %>(11,trunc)%Cgreen%cr %<(10,trunc)%Cblue%cn%C(yellow)%d %Creset%s\"
-	la = log --patch --stat --pretty=format:\"%C(bold red)%h %Cgreen%cr %Cblue%cn%C(yellow)%d %Creset%s\"
-        lol = log --graph --decorate --pretty=oneline --abbrev-commit
-        lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	dfs = diff --staged
-	done = !sh -c 'git checkout ${2-master} && git merge @{-1} && git push ${1-origin} ${2-master}' -
-	sync = !sh -c 'git checkout ${2-master} && git pull ${1-origin} ${2-master} && git checkout @{-1} && git rebase ${2-master}' -
-	unadd = reset HEAD --
-[color]
-	branch = always
-        diff = auto
-        interactive = auto
-	status = always
-
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-	upstream = cyan
-[color "diff"]
-	frag = magenta bold
-	func = normal bold
-	meta = yellow bold
-	new = green bold
-	old = red bold
-[color "status"]
-	added = green bold
-	branch = yellow
-	changed = yellow bold
-	untracked = cyan bold
-[push]
-	default = simple
+	email = benjamin.a.hunter1.mil@army.mil
+	signingkey = 20f23a514f8f50ea4e136489942e65656c55b32e
+[gpg]
+	format = x509
+[gpg "x509"]
+	program = smimesign
+[commit]
+	gpgSign = true
+[tag]
+	gpgsign = true
+[core]
+	excludesfile = /Users/b2186555/.gitignore_global
 [init]
 	defaultBranch = main
