@@ -133,3 +133,6 @@ export ANDROID_HOME=$HOME/Library/Android/sdk && \
 
 # pack CLI
 . $(pack completion --shell zsh)
+
+# 2024-05-07 atuin
+eval "$(atuin init zsh)"
