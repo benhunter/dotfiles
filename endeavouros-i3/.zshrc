@@ -61,3 +61,5 @@ export PATH="$HOME/projects/dotfiles/endeavouros-i3:$PATH"
 
 # Fast Node Manager (fnm)
 eval "$(fnm env --use-on-cd)"
+
+eval "$(atuin init zsh)"

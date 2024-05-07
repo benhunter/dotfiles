@@ -4,6 +4,8 @@ SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 # TODO only chsh if needed
 # chsh -s $(which zsh)
+#
+# TODO install Atuin https://atuin.sh/
 
 # .zshrc
 echo "Backing up and linking .zshrc..."
