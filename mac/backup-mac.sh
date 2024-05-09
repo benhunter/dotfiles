@@ -8,10 +8,12 @@ echo "Script Directory: $SCRIPT_DIR"
 echo "Dumping brew..."
 brew bundle dump --file=$SCRIPT_DIR/Brewfile --force
 
-echo "Copying Neovim NvChad config..."
-cp "$HOME/.config/nvim/init.lua" "$SCRIPT_DIR/.config/nvim/init.lua"
+# Neovim and NvChad backup
+echo "TODO git commit changes to ~/.config/nvim repo"
+#echo "Copying Neovim NvChad config..."
+#cp "$HOME/.config/nvim/init.lua" "$SCRIPT_DIR/.config/nvim/init.lua"
 # cp -r ~/.config/nvim/lua/custom/ $SCRIPT_DIR/.config/nvim/lua/custom/
-rsync -av --exclude='.git' ~/.config/nvim/lua/custom/ $SCRIPT_DIR/.config/nvim/lua/custom/
+#rsync -av --exclude='.git' ~/.config/nvim/lua/custom/ $SCRIPT_DIR/.config/nvim/lua/custom/
 
 # Update git repo
 git -C $SCRIPT_DIR switch main
