@@ -37,6 +37,7 @@ ln -s $SCRIPT_DIR/bin/* $HOME/bin
 ln -s $HOME/projects/scripts/*.sh $HOME/bin
 # ln -s $SCRIPT_DIR/update-mac.sh $HOME/bin/update-mac.sh
 ln -s $SCRIPT_DIR/*.sh $HOME/bin/
+ln -s $HOME/scripts/*.sh $HOME/bin
 
 # Tmux
 echo "Configuring tmux..."
