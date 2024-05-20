@@ -109,6 +109,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Obsidian 1.4.16 needs an EOL version of Electron. This setting will allow Obsidian to use the latest version of Electron with Obsidian upgrades.
+  nixpkgs.config.permittedInsecurePackages =
+    pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -118,6 +122,7 @@
     curl
     wget
     kitty
+    hyprpaper
     waybar
     ripgrep
     wev
@@ -167,4 +172,8 @@
     opengl.enable = true;
     nvidia.modesetting.enable = true; #Most wayland compositors need this
   };
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "Hack" ]; })
+  ];
 }

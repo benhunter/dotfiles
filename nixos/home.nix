@@ -30,7 +30,7 @@
     # here is some command line tools I use frequently
     # feel free to add your own or remove some of them
 
-    neofetch
+    fastfetch
     # nnn # terminal file manager
 
     # archives
@@ -66,6 +66,7 @@
     gawk
     zstd
     gnupg
+    kubectl
 
     # nix related
     #
@@ -74,6 +75,8 @@
     nix-output-monitor
 
     # productivity
+    tmux
+    obsidian
     # hugo # static site generator
     glow # markdown previewer in terminal
 
@@ -194,5 +197,52 @@
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
+    shellAliases = {
+      k = "kubectl";
+      urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
+      urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
+    };
   };
+
+  programs.tmux = {
+    enable = true;
+    terminal = "screen-256color";
+    historyLimit = 250000;
+    plugins = [
+      pkgs.tmuxPlugins.sensible
+      pkgs.tmuxPlugins.catppuccin
+    ];
+    extraConfig = ''
+      set-window-option -g mode-keys vi
+      bind-key -T copy-mode-vi v send -X begin-selection
+      bind-key -T copy-mode-vi V send -X select-line
+      bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+
+      # New pane gets current path
+      # Set new panes to open in current directory
+      bind c new-window -c "#{pane_current_path}"
+      bind '"' split-window -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
+
+      # 2024-04-13 Navigate panes with Vim keybinds
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
+    '';
+  };
+
+  programs.kitty = {
+    enable = true;
+    font = {
+      name = "Hack Nerd Font";
+    };
+    theme = "Catppuccin-Mocha";
+    settings = { background_opacity = "0.8"; };
+  };
+
+  # TODO waybar config
+  programs.waybar.enable = true;
+
+  # TODO hyprpaper config
 }
