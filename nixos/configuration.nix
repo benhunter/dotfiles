@@ -122,7 +122,7 @@
     curl
     wget
     kitty
-    hyprpaper
+    swaybg
     waybar
     ripgrep
     wev

@@ -95,6 +95,7 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+    powertop
   ];
 
   # basic configuration of git, please change to your own
@@ -147,11 +148,15 @@
     };
   };
 
-  wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.settings = {
-    "$mod" = "SUPER";
-    bind =
-      [
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings = {
+      "$mod" = "SUPER";
+      general = {
+        gaps_in = 3;
+	gaps_out = 5;
+      };
+      bind = [
         "$mod, Q, killactive"
         "$mod, Return, exec, kitty"
         "$mod, F, exec, firefox"
@@ -179,6 +184,12 @@
           )
           10)
       );
+
+      misc = {
+        disable_hyprland_logo = true;
+      };
+      exec-once = "waybar";
+    };
   };
 
   # This value determines the home Manager release that your
@@ -239,6 +250,10 @@
     };
     theme = "Catppuccin-Mocha";
     settings = { background_opacity = "0.8"; };
+  };
+
+  programs.atuin = {
+    enable = true;
   };
 
   # TODO waybar config
