@@ -107,13 +107,13 @@
 
   # starship - an customizable prompt for any shell
   programs.starship = {
-    enable = true;
+    #enable = true;
     # custom settings
-    settings = {
-      add_newline = false;
-      aws.disabled = true;
-      gcloud.disabled = true;
-      line_break.disabled = true;
+    #settings = {
+      #add_newline = false;
+      #aws.disabled = true;
+      #gcloud.disabled = true;
+      #line_break.disabled = true;
     };
   };
 
@@ -133,7 +133,7 @@
   };
 
   programs.bash = {
-    enable = true;
+    #enable = true;
     enableCompletion = true;
     # TODO add your custom bashrc here
     bashrcExtra = ''
@@ -213,6 +213,14 @@
       urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
       urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
     };
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git"
+                  "thefuck"
+      ];
+      custom = "$HOME/projects/dotfiles/mac/.p10k.zsh";
+    };
   };
 
   programs.tmux = {
@@ -254,6 +262,12 @@
 
   programs.atuin = {
     enable = true;
+  };
+
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
   };
 
   # TODO waybar config
