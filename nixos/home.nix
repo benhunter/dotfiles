@@ -1,32 +1,16 @@
 { config, pkgs, lib, ... }:
 
   # NvChad from my GitHub
-  let myNvChad = pkgs.stdenv.mkDerivation {
-    name = "nvchad-config";
-
-    # Use the fetchFromGitHub function if the repository is on GitHub
-    src = pkgs.fetchFromGitHub {
-      owner = "benhunter";
-      repo = "nvchad-config";
-      rev = "9b9a2bd";
-      sha256 = "sha256-2DOBPHhN5VSQm4E63PsxMbt1XFc+zhWDrggEwUiuIj4=";
-    };
-
-    # Specify the installation directory
-    installPhase = ''
-      mkdir -p $out/nvchad
-      cp -r * $out/nvchad
-    '';
-  };
+let 
+  nvChad = import ./nvchad.nix { inherit pkgs; };
 in
-
 {
   home.username = "ben";
   home.homeDirectory = "/home/ben";
 
   # Place the nvchad configuration in the right directory
   home.file.".config/nvim" = {
-    source = "${myNvChad}/nvchad";
+    source = "${nvChad}/nvchad";
     recursive = true;  # copy files recursively
   };
 
@@ -308,5 +292,4 @@ in
   programs.thefuck.enable = true;
 
   # TODO hyprpaper config
-
 }
