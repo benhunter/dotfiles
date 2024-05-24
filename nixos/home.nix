@@ -107,6 +107,10 @@ in
     pciutils # lspci
     usbutils # lsusb
     powertop
+
+    # Dev
+    gcc
+    vscode-with-extensions
   ];
 
   # basic configuration of git, please change to your own
