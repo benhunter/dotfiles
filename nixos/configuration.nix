@@ -126,6 +126,7 @@
     waybar
     ripgrep
     wev
+    wl-clipboard
   ];
 
   environment.variables.EDITOR = "nvim";

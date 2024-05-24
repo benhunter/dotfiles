@@ -1,8 +1,34 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+
+  # NvChad from my GitHub
+  let myNvChad = pkgs.stdenv.mkDerivation {
+    name = "nvchad-config";
+
+    # Use the fetchFromGitHub function if the repository is on GitHub
+    src = pkgs.fetchFromGitHub {
+      owner = "benhunter";
+      repo = "nvchad-config";
+      rev = "9b9a2bd";
+      sha256 = "sha256-2DOBPHhN5VSQm4E63PsxMbt1XFc+zhWDrggEwUiuIj4=";
+    };
+
+    # Specify the installation directory
+    installPhase = ''
+      mkdir -p $out/nvchad
+      cp -r * $out/nvchad
+    '';
+  };
+in
 
 {
   home.username = "ben";
   home.homeDirectory = "/home/ben";
+
+  # Place the nvchad configuration in the right directory
+  home.file.".config/nvim" = {
+    source = "${myNvChad}/nvchad";
+    recursive = true;  # copy files recursively
+  };
 
   # link the configuration file in current directory to the specified location in home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
@@ -24,6 +50,7 @@
     "Xcursor.size" = 16;
     "Xft.dpi" = 172;
   };
+
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -114,7 +141,7 @@
       #aws.disabled = true;
       #gcloud.disabled = true;
       #line_break.disabled = true;
-    };
+    #};
   };
 
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
@@ -208,8 +235,10 @@
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
+    autocd = true;
     shellAliases = {
       k = "kubectl";
+      gs = "git status";
       urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
       urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
     };
@@ -221,6 +250,10 @@
       ];
       custom = "$HOME/projects/dotfiles/mac/.p10k.zsh";
     };
+
+    initExtra = ''
+      eval $(thefuck --alias "f")
+    '';
   };
 
   programs.tmux = {
@@ -272,6 +305,8 @@
 
   # TODO waybar config
   programs.waybar.enable = true;
+  programs.thefuck.enable = true;
 
   # TODO hyprpaper config
+
 }
