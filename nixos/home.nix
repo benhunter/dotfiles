@@ -67,8 +67,6 @@ in
     # nmap # A utility for network discovery and security auditing
     # ipcalc  # it is a calculator for the IPv4/v6 addresses
 
-    # misc
-    # cowsay
     file
     which
     tree
@@ -90,6 +88,8 @@ in
     obsidian
     # hugo # static site generator
     glow # markdown previewer in terminal
+
+    signal-desktop
 
     btop  # replacement of htop/nmon
     iotop # io monitoring
