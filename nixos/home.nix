@@ -110,7 +110,7 @@ in
 
     # Dev
     gcc
-    vscode-with-extensions
+    # TODO vscode-fhs
   ];
 
   # basic configuration of git, please change to your own
@@ -169,17 +169,17 @@ in
       "$mod" = "SUPER";
       general = {
         gaps_in = 3;
-	gaps_out = 5;
+        gaps_out = 5;
       };
       bind = [
         "$mod, Q, killactive"
         "$mod, Return, exec, kitty"
         "$mod, F, exec, firefox"
 
-	"$mod, H, movefocus, l"
-	"$mod, J, movefocus, d"
-	"$mod, K, movefocus, u"
-	"$mod, L, movefocus, r"
+        "$mod, H, movefocus, l"
+        "$mod, J, movefocus, d"
+        "$mod, K, movefocus, u"
+        "$mod, L, movefocus, r"
 
         ", Print, exec, grimblast copy area"
       ]
@@ -290,6 +290,8 @@ in
     viAlias = true;
     vimAlias = true;
   };
+
+  programs.vscode.enable = true;
 
   # TODO waybar config
   programs.waybar.enable = true;
