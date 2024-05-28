@@ -14,9 +14,11 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, catppuccin, ... }@inputs: {
     # Please replace my-nixos with your hostname
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -31,11 +33,16 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-
-          home-manager.users.ben = import ./home.nix;
-
+          home-manager.users.ben = {
+            imports = [
+              ./home.nix
+              catppuccin.homeManagerModules.catppuccin
+            ];
+          };
           # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
         }
+
+        catppuccin.nixosModules.catppuccin
       ];
     };
   };

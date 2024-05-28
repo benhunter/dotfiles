@@ -129,6 +129,7 @@
     wl-clipboard
     cargo
     rustc
+    catppuccin-gtk
   ];
 
   environment.variables.EDITOR = "nvim";

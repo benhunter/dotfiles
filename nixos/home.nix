@@ -6,10 +6,14 @@ let
   nvChad = import ./nvchad.nix { inherit pkgs; };
 in
 {
-  wayland.windowManager = hyprland;
+  catppuccin.enable = true;
+  gtk.catppuccin.enable = true;
 
   home.username = "ben";
   home.homeDirectory = "/home/ben";
+
+  wayland.windowManager = hyprland;
+  gtk.enable = true;
 
   # Place the nvchad configuration in the right directory
   home.file.".config/nvim" = {
@@ -41,12 +45,6 @@ in
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    # here is some command line tools I use frequently
-    # feel free to add your own or remove some of them
-
-    fastfetch
-    # nnn # terminal file manager
-
     # archives
     zip
     xz
@@ -54,6 +52,16 @@ in
     # p7zip
 
     # utils
+    file
+    which
+    tree
+    gnused
+    gnutar
+    gawk
+    zstd
+    gnupg
+    fastfetch
+    # nnn # terminal file manager
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
     # yq-go # yaml processor https://github.com/mikefarah/yq
@@ -70,14 +78,6 @@ in
     # nmap # A utility for network discovery and security auditing
     # ipcalc  # it is a calculator for the IPv4/v6 addresses
 
-    file
-    which
-    tree
-    gnused
-    gnutar
-    gawk
-    zstd
-    gnupg
     kubectl
 
     # nix related
@@ -228,6 +228,9 @@ in
       bind j select-pane -D
       bind k select-pane -U
       bind l select-pane -R
+
+      # 2024-05-27 Use clipboard in Wayland
+      set-option -g update-environment "DISPLAY WAYLAND_DISPLAY SSH_AUTH_SOCK"
     '';
   };
 

@@ -1,6 +1,8 @@
+# Configure Hyprland with HomeManager by setting:
+# wayland.windowManager.hyprland
+
 { pkgs, lib }:
 
-#wayland.windowManager.hyprland = let 
 let
   hyprlandConfig = {
     enable = true;
@@ -40,6 +42,7 @@ let
         disable_hyprland_logo = true;
       };
       exec-once = "waybar";
+      # TODO env = "GTK_THEME,Orchis-Dark-Compact";
     };
   }; # end hyprlandConfig
 
@@ -68,7 +71,5 @@ let
 
 in
 {
-  # wayland.windowManager.hyprland = lib.recursiveUpdate hyprlandConfig hyprlandThemeDracula;
   hyprland = lib.recursiveUpdate hyprlandConfig hyprlandThemeDracula;
-  # hyprlandConfig;
 }
