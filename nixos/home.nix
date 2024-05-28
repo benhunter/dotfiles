@@ -6,35 +6,20 @@ let
   nvChad = import ./nvchad.nix { inherit pkgs; };
 in
 {
-  catppuccin.enable = true;
-  gtk.catppuccin.enable = true;
-
   home.username = "ben";
   home.homeDirectory = "/home/ben";
 
   wayland.windowManager = hyprland;
   gtk.enable = true;
+  gtk.catppuccin.enable = true;
+
+  catppuccin.enable = true;
 
   # Place the nvchad configuration in the right directory
   home.file.".config/nvim" = {
     source = "${nvChad}/nvchad";
     recursive = true;  # copy files recursively
   };
-
-  # link the configuration file in current directory to the specified location in home directory
-  # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
-
-  # link all files in `./scripts` to `~/.config/i3/scripts`
-  # home.file.".config/i3/scripts" = {
-  #   source = ./scripts;
-  #   recursive = true;   # link recursively
-  #   executable = true;  # make all files executable
-  # };
-
-  # encode the file content in nix configuration file directly
-  # home.file.".xxx".text = ''
-  #     xxx
-  # '';
 
   # set cursor size and dpi for 4k monitor
   xresources.properties = {
@@ -123,18 +108,6 @@ in
     userEmail = "code@benhunter.me";
   };
 
-  # starship - an customizable prompt for any shell
-  programs.starship = {
-    #enable = true;
-    # custom settings
-    #settings = {
-      #add_newline = false;
-      #aws.disabled = true;
-      #gcloud.disabled = true;
-      #line_break.disabled = true;
-    #};
-  };
-
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
   programs.alacritty = {
     enable = true;
@@ -178,6 +151,9 @@ in
 
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
+  programs.atuin.enable = true;
+  programs.vscode.enable = true;
+  programs.thefuck.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -243,21 +219,40 @@ in
     settings = { background_opacity = "0.8"; };
   };
 
-  programs.atuin = {
-    enable = true;
-  };
-
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
   };
 
-  programs.vscode.enable = true;
-
   # TODO waybar config
   programs.waybar.enable = true;
-  programs.thefuck.enable = true;
-
   # TODO hyprpaper config
+
+  # starship - an customizable prompt for any shell
+  programs.starship = {
+    #enable = true;
+    # custom settings
+    #settings = {
+      #add_newline = false;
+      #aws.disabled = true;
+      #gcloud.disabled = true;
+      #line_break.disabled = true;
+    #};
+  };
+
+  # link the configuration file in current directory to the specified location in home directory
+  # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
+
+  # link all files in `./scripts` to `~/.config/i3/scripts`
+  # home.file.".config/i3/scripts" = {
+  #   source = ./scripts;
+  #   recursive = true;   # link recursively
+  #   executable = true;  # make all files executable
+  # };
+
+  # encode the file content in nix configuration file directly
+  # home.file.".xxx".text = ''
+  #     xxx
+  # '';
 }
