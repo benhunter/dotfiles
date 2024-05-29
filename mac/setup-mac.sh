@@ -66,6 +66,9 @@ echo "Installing NvChad..."
 git clone https://github.com/benhunter/nvchad-config ~/.config/nvim && nvim
 echo -e "!!\n!!\n!!  To finish NvChad config, run MasonInstallAll\n!!\n!!\n!!"
 
+# SDKMAN https://sdkman.io/
+curl -s "https://get.sdkman.io" | bash
+
 # Misc
 ln -s $SCRIPT_DIR/.ideavimrc $HOME/.ideavimrc
 # xcode-select --install # Needed for TAP Iterate Cluster access
