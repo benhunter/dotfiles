@@ -23,6 +23,7 @@ let
         "$mod, L, movefocus, r"
 
         ", Print, exec, grimblast copy area"
+        "$mod, D, exec, wofi --show run --normal-window"
       ] ++ (
       # workspaces
       # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}

@@ -13,7 +13,7 @@ in
   gtk.enable = true;
   gtk.catppuccin.enable = true;
 
-  catppuccin.enable = true;
+  #catppuccin.enable = true; # Modifies the default waybar, not sure why
 
   # Place the nvchad configuration in the right directory
   home.file.".config/nvim" = {
@@ -23,13 +23,14 @@ in
 
   # set cursor size and dpi for 4k monitor
   xresources.properties = {
-    "Xcursor.size" = 16;
-    "Xft.dpi" = 172;
+    "Xcursor.size" = 36;
+    "Xft.dpi" = 120;
   };
-
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+    wofi # wofi crashes on mouseover https://github.com/hyprwm/Hyprland/issues/3729
+
     # archives
     zip
     xz
@@ -79,14 +80,9 @@ in
 
     signal-desktop
 
-    btop  # replacement of htop/nmon
+    bottom # btop  # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
-
-    # system call monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
-    lsof # list open files
 
     # system tools
     sysstat
@@ -96,8 +92,14 @@ in
     usbutils # lsusb
     powertop
 
+    # system call monitoring
+    strace # system call monitoring
+    ltrace # library call monitoring
+    lsof # list open files
+
     # Dev
     gcc
+    httpie
     # TODO vscode-fhs
   ];
 
@@ -214,6 +216,7 @@ in
     enable = true;
     font = {
       name = "Hack Nerd Font";
+      size = 10;
     };
     theme = "Catppuccin-Mocha";
     settings = { background_opacity = "0.8"; };
