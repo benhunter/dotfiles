@@ -68,6 +68,8 @@ echo -e "!!\n!!\n!!  To finish NvChad config, run MasonInstallAll\n!!\n!!\n!!"
 
 # SDKMAN https://sdkman.io/
 curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+cp $SCRIPT_DIR/.sdkman/etc/config $HOME/.sdkman/etc/config
 
 # Misc
 ln -s $SCRIPT_DIR/.ideavimrc $HOME/.ideavimrc

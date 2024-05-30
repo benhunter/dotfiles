@@ -106,7 +106,6 @@ export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 # Commands
 #j17  # set Java 17 as default
-source "$HOME/.sdkman/bin/sdkman-init.sh" # Java SDK manager
 # brew outdated  # list brews that need updates. This slows down opening zsh...
 eval "$(direnv hook zsh)" # direnv hook
 eval "$(fnm env --use-on-cd)" # fnm - Fast node manager
