@@ -6,6 +6,9 @@ SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# Atuin config
+cp "$SCRIPT_DIR/.config/atuin/config.toml" "$HOME/.config/atuin/"
+
 echo "Done"; exit 0 # TODO remove
 
 # TODO only chsh if needed
