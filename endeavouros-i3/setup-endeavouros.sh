@@ -2,14 +2,40 @@
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
+# SDKMAN
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+echo "Done"; exit 0 # TODO remove
+
 # TODO only chsh if needed
 # chsh -s $(which zsh)
 #
 # TODO install Atuin https://atuin.sh/
 
+# Install pacman packages.
+echo "Installing: pacman packages..."
+yay --noconfirm --answerdiff=None --answeredit=None
+# Alternative to yay:
+#   sudo pacman -Syu # Always run before installing packages.
+for x in $(cat "$SCRIPT_DIR/pacman/pacman-packages.txt"); do 
+  echo "  Installing: $x"
+  yay -S --needed $x
+done
+
 # .zshrc
 echo "Backing up and linking .zshrc..."
-mv $HOME/.zshrc $HOME/.zshrc.bak
+# TODO does .bak exist?
+if [ ! -f "$HOME/.zshrc.bak"]; then
+  echo "Backing up .zshrc"
+  mv $HOME/.zshrc $HOME/.zshrc.bak
+else
+  echo "Could not back up .zshrc, found a .zshrc.bak"
+  echo "Error: stopping setup"
+  exit 1
+fi
+
+echo "Linking ~/.zshrc"
 ln -s $SCRIPT_DIR/.zshrc $HOME/.zshrc
 
 echo "Linking .gitconfig..."
@@ -24,29 +50,53 @@ $HOME/.tmux/plugins/tpm/bin/update_plugins all
 echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
 
 # Rust
-echo "Installing Rust..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+if ! type "cargo" &> /dev/null; then
+  echo "Installing: Rust, cargo"
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+else
+  echo "Skipping install: Rust, cargo"
+fi
 
 # bottom
-echo "Installing bottom..."
-cargo install bottom --locked
+if ! type "btm" &> /dev/null; then
+  echo "Installing: bottom"
+  cargo install bottom --locked
+else
+  echo "Skipping install: bottom"
+fi
 
-echo "Installing cargo-nextest..."
-cargo install cargo-nextest --locked
+COMMAND='cargo nextest'
+if ! type "$COMMAND" &> /dev/null; then
+  echo "Installing: cargo-nextest"
+  cargo install cargo-nextest --locked
+else
+  echo "Skipping install: cargo-nextest"
+fi
 
-echo "Installing cargo-watch..."
-cargo install cargo-watch
+COMMAND='cargo watch'
+if ! type "$COMMAND" &> /dev/null; then
+  echo "Installing: cargo-watch"
+  cargo install cargo-watch
+else
+  echo "Skipping install: cargo-watch"
+fi
 
-echo "Installing Fast Node Manager (fnm)"
-cargo install fnm
+COMMAND='fnm'
+if ! type "$COMMAND" &> /dev/null; then
+  echo "Installing: Fast Node Manager, fnm"
+  cargo install fnm
+else
+  echo "Skipping install: Fast Node Manager, fnm"
+fi
 
 ## NvChad
 ## https://nvchad.com/docs/quickstart/install
-echo "Installing NvChad..."
-git clone https://github.com/benhunter/nvchad-config ~/.config/nvim && nvim
-echo -e "!!\n!!\n!!  To finish NvChad config, run MasonInstallAll\n!!\n!!\n!!"
-
-exit # TODO remove
+if [ ! -f ~/.config/nvim/init.lua ]; then
+  echo "Installing NvChad..."
+  git clone https://github.com/benhunter/nvchad-config ~/.config/nvim && nvim
+  echo -e "!!\n!!\n!!  To finish NvChad config, run MasonInstallAll\n!!\n!!\n!!"
+else
+  echo "Skipping install: NvChad"
 
 # fd
 echo "Linking fdfind to fd..."

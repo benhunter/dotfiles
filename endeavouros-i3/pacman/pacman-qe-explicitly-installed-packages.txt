@@ -270,4 +270,4 @@ zsh 5.9-5
 zsh-autosuggestions 0.7.0-2
 zsh-completions 0.35.0-1
 zsh-syntax-highlighting 0.8.0-1
-zsh-theme-powerlevel10k-git r4258.0cc19ac2-1
+zsh-theme-powerlevel10k-git r4281.bde5ca4c-1

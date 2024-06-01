@@ -63,3 +63,7 @@ export PATH="$HOME/projects/dotfiles/endeavouros-i3:$PATH"
 eval "$(fnm env --use-on-cd)"
 
 eval "$(atuin init zsh)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
