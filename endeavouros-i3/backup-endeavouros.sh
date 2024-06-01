@@ -9,5 +9,6 @@ cp ~/.xinitrc "$SCRIPT_DIR"
 cp -r ~/.config/fontconfig "$SCRIPT_DIR/.config/"
 cp -r ~/.config/i3/ "$SCRIPT_DIR/.config/"
 cp ~/.ssh/config "$SCRIPT_DIR/.ssh/config"
+cp -r ~/.screenlayout/ "$SCRIPT_DIR/.screenlayout/"
 
 git_commit
