@@ -101,6 +101,9 @@ in
     gcc
     httpie
     # TODO vscode-fhs
+
+    # Hardware related
+    brightnessctl
   ];
 
   # basic configuration of git, please change to your own
