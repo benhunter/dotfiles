@@ -11,8 +11,8 @@ cp -r ~/.config/i3/ "$SCRIPT_DIR/.config/"
 cp ~/.ssh/config "$SCRIPT_DIR/.ssh/config"
 cp -r ~/.screenlayout/ "$SCRIPT_DIR/"
 
-pacman -Qe > "$SCRIPT_DIR/pacman-packages.txt" # Used for reinstall
-pacman -Qe > "$SCRIPT_DIR/pacman-qe-explicitly-installed-packages.txt"
-pacman -Q > "$SCRIPT_DIR/pacman-q-all-installed-packages.txt"
+pacman -Qe > "$SCRIPT_DIR/pacman/pacman-packages.txt" # Used for reinstall
+pacman -Qe > "$SCRIPT_DIR/pacman/pacman-qe-explicitly-installed-packages.txt"
+pacman -Q > "$SCRIPT_DIR/pacman/pacman-q-all-installed-packages.txt"
 
 git_commit
