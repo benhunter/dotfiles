@@ -74,7 +74,7 @@ flex 2.6.4-5
 fsarchiver 0.8.7-1
 galculator 2.1.4-8
 gcc 14.1.1+r58+gfc9fb69ad62-1
-git 2.45.1-1
+git 2.45.2-1
 glances 4.0.7-1
 gnu-netcat 0.7.1-10
 gparted 1.6.0-1
@@ -142,13 +142,13 @@ mkinitcpio-nfs-utils 0.3-8
 mkinitcpio-openswap 0.1.0-3
 mlocate 0.26.git.20170220-7
 modemmanager 1.22.0-1
-mtools 1:4.0.43-1
+mtools 1:4.0.44-1
 mupdf 1.24.2-2
 nano 8.0-1
 nbd 3.26.1-1
 ndisc6 1.0.8-1
 neofetch 7.1.0-2
-neovim 0.10.0-3
+neovim 0.10.0-4
 net-tools 2.10-2
 netctl 1.29-1
 network-manager-applet 1.36.0-1
@@ -158,7 +158,7 @@ nfs-utils 2.6.4-1
 nilfs-utils 2.2.11-1
 nitrogen 1.6.1-5
 nmap 7.95-1
-noto-fonts 1:24.5.1-1
+noto-fonts 1:24.6.1-1
 noto-fonts-emoji 1:2.042-1
 nss-mdns 0.15.1-1
 ntfs-3g 2022.10.3-1
