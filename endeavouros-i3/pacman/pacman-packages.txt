@@ -125,6 +125,7 @@ linux
 linux-atm
 linux-firmware
 linux-headers
+llpp
 logrotate
 lsb-release
 lsscsi
