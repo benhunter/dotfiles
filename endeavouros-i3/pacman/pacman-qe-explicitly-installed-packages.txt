@@ -38,6 +38,7 @@ dex 0.9.0-1
 dhclient 4.4.3.P1-3
 dialog 1:1.3_20240307-2
 diffutils 3.10-1
+direnv 2.34.0-1
 dmenu 5.3-3
 dmidecode 3.5-1
 dmraid 1.0.0.rc16.3-14
@@ -112,6 +113,7 @@ jfsutils 1.1.15-9
 jq 1.7.1-2
 just 1.28.0-1
 keyserver-rank 1.2.4-2
+kubectl 1.30.1-1
 less 1:643-2
 libdvdcss 1.4.3-1
 libgsf 1.14.52-1

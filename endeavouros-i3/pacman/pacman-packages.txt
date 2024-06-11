@@ -38,6 +38,7 @@ dex
 dhclient
 dialog
 diffutils
+direnv
 dmenu
 dmidecode
 dmraid
@@ -112,6 +113,7 @@ jfsutils
 jq
 just
 keyserver-rank
+kubectl
 less
 libdvdcss
 libgsf

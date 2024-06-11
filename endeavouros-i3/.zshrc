@@ -60,10 +60,9 @@ export PATH="$HOME/projects/dotfiles/endeavouros-i3:$PATH"
 # Rust
 . "$HOME/.cargo/env"
 
-# Fast Node Manager (fnm)
-eval "$(fnm env --use-on-cd)"
-
-eval "$(atuin init zsh)"
+eval "$(fnm env --use-on-cd)" # Fast Node Manager (fnm)
+eval "$(atuin init zsh)" # Atuin shell history
+eval "$(direnv hook zsh)" # direnv hook
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
