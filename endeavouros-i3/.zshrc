@@ -52,6 +52,7 @@ eval "$(fzf --zsh)"
 
 alias l="ls -a"
 alias ll="ls -alh"
+alias cat="bat"
 
 # Dotfiles Scripts
 export PATH="$HOME/projects/dotfiles/endeavouros-i3:$PATH"
