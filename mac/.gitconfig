@@ -2,15 +2,38 @@
 	name = Hunter, Benjamin A (Ben) MAJ USARMY HQ AFC (USA)
 	email = benjamin.a.hunter1.mil@army.mil
 	signingkey = 20f23a514f8f50ea4e136489942e65656c55b32e
+
 [gpg]
 	format = x509
+
 [gpg "x509"]
 	program = smimesign
+
 [commit]
 	gpgSign = true
+
 [tag]
 	gpgsign = true
+
 [core]
 	excludesfile = /Users/b2186555/.gitignore_global
+  pager = delta
+
 [init]
 	defaultBranch = main
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+
+    # delta detects terminal colors automatically; set one of these to disable auto-detection
+    # dark = true
+    # light = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
