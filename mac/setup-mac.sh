@@ -48,7 +48,7 @@ $HOME/.tmux/plugins/tpm/bin/update_plugins all
 # Git
 echo "Configuring git..."
 cp $SCRIPT_DIR/.gitignore_global ~/.gitignore_global
-cp $SCRIPT_DIR/.gitconfig ~/
+ln -s $SCRIPT_DIR/.gitconfig $HOME/
 git config --global core.excludesfile ~/.gitignore_global
 
 # Pandoc Templates
