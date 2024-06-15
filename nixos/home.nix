@@ -47,6 +47,7 @@ in
     zstd
     gnupg
     fastfetch
+    moar
     # nnn # terminal file manager
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
@@ -103,7 +104,8 @@ in
     # TODO vscode-fhs
 
     # Hardware related
-    brightnessctl
+    brightnessctl # backlight
+    arandr
   ];
 
   # basic configuration of git, please change to your own

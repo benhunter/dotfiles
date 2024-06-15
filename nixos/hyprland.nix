@@ -22,6 +22,16 @@ let
         "$mod, K, movefocus, u"
         "$mod, L, movefocus, r"
 
+        "$mod SHIFT, H, movewindow, l"
+        "$mod SHIFT, J, movewindow, d"
+        "$mod SHIFT, K, movewindow, u"
+        "$mod SHIFT, L, movewindow, r"
+
+        "$mod SHIFT, left, resizeactive, -10 0"
+        "$mod SHIFT, down, resizeactive, 0 10"
+        "$mod SHIFT, up, resizeactive, 0 -10"
+        "$mod SHIFT, right, resizeactive, 10 0"
+
         ", Print, exec, grimblast copy area"
         "$mod, D, exec, wofi --show run --normal-window"
       ] ++ (
