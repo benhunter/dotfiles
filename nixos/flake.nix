@@ -3,11 +3,11 @@
 
   inputs = {
     # NixOS official package source, using the nixos-23.11 branch here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # home-manager, used for managing user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
@@ -36,13 +36,13 @@
           home-manager.users.ben = {
             imports = [
               ./home.nix
-              catppuccin.homeManagerModules.catppuccin
+              # catppuccin.homeManagerModules.catppuccin # TODO had to disable after 23.11 was deprecated
             ];
           };
           # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
         }
 
-        catppuccin.nixosModules.catppuccin
+        # catppuccin.nixosModules.catppuccin # TODO had to disable after 23.11 was deprecated
       ];
     };
   };

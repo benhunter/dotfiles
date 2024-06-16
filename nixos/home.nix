@@ -11,7 +11,7 @@ in
 
   wayland.windowManager = hyprland;
   gtk.enable = true;
-  gtk.catppuccin.enable = true;
+  # gtk.catppuccin.enable = true; # TODO had to disable after 23.11 was deprecated
 
   #catppuccin.enable = true; # Modifies the default waybar, not sure why
 
@@ -101,6 +101,7 @@ in
     # Dev
     gcc
     httpie
+    python3
     # TODO vscode-fhs
 
     # Hardware related
@@ -165,6 +166,7 @@ in
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
+    # autosuggestions.enable = true;
     autocd = true;
     shellAliases = {
       k = "kubectl";
