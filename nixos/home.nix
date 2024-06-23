@@ -102,6 +102,7 @@ in
     gcc
     httpie
     python3
+    just
     # TODO vscode-fhs
 
     # Hardware related
