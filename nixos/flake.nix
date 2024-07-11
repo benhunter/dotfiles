@@ -36,13 +36,13 @@
           home-manager.users.ben = {
             imports = [
               ./home.nix
-              # catppuccin.homeManagerModules.catppuccin # TODO had to disable after 23.11 was deprecated
+              catppuccin.homeManagerModules.catppuccin # TODO had to disable after 23.11 was deprecated
             ];
           };
           # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
         }
 
-        # catppuccin.nixosModules.catppuccin # TODO had to disable after 23.11 was deprecated
+        catppuccin.nixosModules.catppuccin # TODO had to disable after 23.11 was deprecated
       ];
     };
   };

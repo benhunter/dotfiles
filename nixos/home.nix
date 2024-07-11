@@ -11,9 +11,9 @@ in
 
   wayland.windowManager = hyprland;
   gtk.enable = true;
-  # gtk.catppuccin.enable = true; # TODO had to disable after 23.11 was deprecated
+  gtk.catppuccin.enable = true; # TODO had to disable after 23.11 was deprecated - 2024-07-10 project archived https://github.com/catppuccin/gtk/issues/262
 
-  #catppuccin.enable = true; # Modifies the default waybar, not sure why
+  # catppuccin.enable = true; # TODO Modifies the default waybar, not sure why
 
   # Place the nvchad configuration in the right directory
   home.file.".config/nvim" = {
