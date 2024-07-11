@@ -15,6 +15,14 @@ in
 
   # catppuccin.enable = true; # TODO Modifies the default waybar, not sure why
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  home.sessionVariables.GTK_THEME = "Tokyonight-Dark-B"; # TODO
+
   # Place the nvchad configuration in the right directory
   home.file.".config/nvim" = {
     source = "${nvChad}/nvchad";

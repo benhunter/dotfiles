@@ -53,7 +53,8 @@ let
         disable_hyprland_logo = true;
       };
       exec-once = "waybar";
-      env = "GTK_THEME,Orchis-Dark-Compact"; # TODO
+      # env = "GTK_THEME,Orchis-Dark-Compact"; # TODO
+     # env = "GTK_THEME,Tokyonight-Dark-B";
     };
   }; # end hyprlandConfig
 
