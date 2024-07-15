@@ -62,6 +62,7 @@ in
     # yq-go # yaml processor https://github.com/mikefarah/yq
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
+    fd
 
     # networking tools
     # mtr # A network diagnostic tool
@@ -257,6 +258,14 @@ in
       #gcloud.disabled = true;
       #line_break.disabled = true;
     #};
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    defaultCommand = "fd -L 2>/dev/null";
+    changeDirWidgetCommand = "fd -L -t d 2>/dev/null";
+    fileWidgetCommand = "fd -L -t f -t l 2>/dev/null";
   };
 
   # link the configuration file in current directory to the specified location in home directory
