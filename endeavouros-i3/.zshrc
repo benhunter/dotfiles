@@ -53,6 +53,8 @@ eval "$(fzf --zsh)"
 alias l="ls -a"
 alias ll="ls -alh"
 alias cat="bat"
+alias k="kubectl "
+alias watch1='watch -n 1 '
 
 # Dotfiles Scripts
 export PATH="$HOME/projects/dotfiles/endeavouros-i3:$PATH"

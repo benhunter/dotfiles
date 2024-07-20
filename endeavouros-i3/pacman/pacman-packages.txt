@@ -96,6 +96,7 @@ gvfs-nfs
 gvfs-smb
 haveged
 hdparm
+helm
 httpie
 hwdetect
 hwinfo
@@ -112,6 +113,7 @@ iwd
 jfsutils
 jq
 just
+k9s
 keyserver-rank
 kubectl
 less
@@ -144,6 +146,7 @@ mkinitcpio-busybox
 mkinitcpio-nfs-utils
 mkinitcpio-openswap
 mlocate
+moar
 modemmanager
 mtools
 mupdf
