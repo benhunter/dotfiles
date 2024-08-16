@@ -1,4 +1,8 @@
 #git clone https://github.com/benhunter/dotfiles ~/projects/
+
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 ln -s ~/projects/dotfiles/.tmux.conf ~/.tmux.conf
 
 # ClamAV package failure
