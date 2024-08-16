@@ -35,3 +35,11 @@ echo '\n# Neovim\nPATH="$PATH:/opt/nvim-linux64/bin"' >> ~/.zshrc
 echo "Installing NvChad..."
 git clone https://github.com/benhunter/nvchad-config ~/.config/nvim && nvim
 echo -e "!!\n!!\n!!  To finish NvChad config, run MasonInstallAll\n!!\n!!\n!!"
+
+# Hack NerdFont
+HACK_NF_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip"
+wget -P ~/.local/share/fonts $HACK_NF_URL \
+  && cd ~/.local/share/fonts \
+  && unzip Hack.zip \
+  && rm Hack.zip \
+  && fc-cache -fv
