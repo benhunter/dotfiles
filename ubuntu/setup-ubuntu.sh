@@ -93,9 +93,10 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y neovim python3-pip fonts-
 #sudo apt-get install python2-dev python-pip python3-dev python3-pip
 sudo apt install python3.10-venv
 
-## NvChad
+## NvChad for Neovim
+## TODO update to use my config repo
 ## https://nvchad.com/docs/quickstart/install
-echo "Installing NvChad..."
+echo "Installing NvChad for Neovim..."
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
 
