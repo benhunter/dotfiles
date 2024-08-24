@@ -159,8 +159,7 @@ in
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
-    # autosuggestions.enable = true;
+    autosuggestion.enable = true;
     autocd = true;
     shellAliases = {
       k = "kubectl";
