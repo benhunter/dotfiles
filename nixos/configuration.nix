@@ -178,9 +178,15 @@
   hardware = {
     opengl.enable = true;
     nvidia.modesetting.enable = true; #Most wayland compositors need this
+
   };
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
   ];
+
+  # Bluetooth Support
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 }
