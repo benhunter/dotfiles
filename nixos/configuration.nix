@@ -132,6 +132,7 @@
     cargo
     rustc
     catppuccin-gtk
+    zsh-powerlevel10k
   ];
 
   environment.variables.EDITOR = "nvim";

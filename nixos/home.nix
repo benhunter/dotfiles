@@ -177,10 +177,11 @@ in
       plugins = [ "git"
                   "thefuck"
       ];
-      custom = "$HOME/projects/dotfiles/mac/.p10k.zsh";
     };
 
     initExtra = ''
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      test -f "$HOME/projects/dotfiles/mac/.p10k.zsh" && source "$HOME/projects/dotfiles/mac/.p10k.zsh"
       eval $(thefuck --alias "f")
     '';
   };
