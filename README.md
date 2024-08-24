@@ -6,6 +6,7 @@ My dotfiles, config, preference, settings, etc
 - WSL Ubuntu in Windows Terminal
 - Windows 11
 - Ubuntu (Server 22.04) in `ubuntu/`
+- Browser plugin config in `browser-plugins`
 
 ## Neovim (old)
 
