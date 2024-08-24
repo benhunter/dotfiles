@@ -141,20 +141,6 @@ in
     };
   };
 
-  programs.bash = {
-    #enable = true;
-    enableCompletion = true;
-    # Add custom bashrc here
-    bashrcExtra = ''
-      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
-    '';
-
-    # set some aliases, feel free to add more or remove some
-    shellAliases = {
-      # k = "kubectl";
-    };
-  };
-
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new home Manager release introduces backwards
@@ -183,7 +169,8 @@ in
       urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
       obsidian = "obsidian --ozone-platform-hint=auto"; # Fix for resolution issue in Wayland. https://forum.obsidian.md/t/extremely-low-resolution-in-obsidian-1-4-x-on-linux-with-wayland/66441
       ls = "exa";
-      l = "exa -lAh";
+      l = "exa -la";
+      ll = "l";
     };
 
     oh-my-zsh = {
