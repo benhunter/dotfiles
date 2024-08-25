@@ -1,5 +1,11 @@
 # EndeavourOS
 
+## Wifi
+
+```
+nmcli device wifi connect SSID_name "password"
+```
+
 ## Displays
 
 Tools
@@ -10,6 +16,12 @@ Commands
 ```shell
 xrandr --output eDP1 --primary --mode 2560x1440 --output DP2-3 --mode 3440x1440 --right-of eDP1 --auto
 xrandr --auto
+```
+
+## Screen brightness backlight
+
+```shell
+sudo xbacklight -set 100
 ```
 
 ## JetBrains Toolbox - IntelliJ IDEA, RustRover, PyCharm

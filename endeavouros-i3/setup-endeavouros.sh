@@ -106,7 +106,7 @@ echo "Linking fdfind to fd..."
 # mkdir -p ~/.local/bin
 # TODO ln -s $(which fdfind) ~/.local/bin/fd
 
-# Screen Backlight
+# Screen Backlight Brightness
 # https://gitlab.com/wavexx/acpilight
 # https://wiki.archlinux.org/title/backlight#Backlight_utilities
 sudo pacman -S acpilight
