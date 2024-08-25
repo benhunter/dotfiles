@@ -117,6 +117,9 @@ in
     # Hardware related
     brightnessctl # backlight
     arandr
+
+    # Security
+    nmap
   ];
 
   # basic configuration of git, please change to your own
