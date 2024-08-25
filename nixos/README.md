@@ -30,6 +30,12 @@ pair XX:XX...
 discoverable off
 ```
 
+# Monitors
+
+```shell
+hyprctl monitors
+```
+
 # zsh Powerlevel10k
 
 - https://www.reddit.com/r/NixOS/comments/ty9jop/comment/k4rtvs3/

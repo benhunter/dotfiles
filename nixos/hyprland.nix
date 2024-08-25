@@ -7,6 +7,7 @@ let
   hyprlandConfig = {
     enable = true;
     settings = {
+      monitor = "eDP-1, 2560x1440@60, 0x0, 1.6";
       "$mod" = "SUPER";
       general = {
         gaps_in = 3;
@@ -55,7 +56,7 @@ let
       exec-once = "waybar";
       # env = "GTK_THEME,Orchis-Dark-Compact"; # TODO
      # env = "GTK_THEME,Tokyonight-Dark-B";
-    };
+    }; # end settings
   }; # end hyprlandConfig
 
   hyprlandThemeDracula = {
