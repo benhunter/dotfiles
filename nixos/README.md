@@ -56,3 +56,10 @@ alsamixer
 # References
 
 - [ZaneyOs](https://gitlab.com/Zaney/zaneyos)
+
+## Waybar config
+
+- [Waybar config](https://www.youtube.com/watch?v=rW3JKs1_oVI)
+- https://gitlab.com/stephan-raabe/dotfiles/-/blob/main/dotfiles/waybar/themes/starter/config?ref_type=heads
+- [Default Waybar config](https://github.com/Alexays/Waybar/blob/master/resources/config.jsonc)
+- [Nix example](https://github.com/maximbaz/dotfiles/blob/nix/modules/linux/waybar.nix)
