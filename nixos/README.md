@@ -36,6 +36,12 @@ discoverable off
 hyprctl monitors
 ```
 
+# Audio & Speakers
+
+```
+alsamixer
+```
+
 # zsh Powerlevel10k
 
 - https://www.reddit.com/r/NixOS/comments/ty9jop/comment/k4rtvs3/
