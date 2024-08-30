@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }:
 
-  # NvChad from my GitHub
 let 
   hyprland = import ./hyprland.nix { inherit pkgs; inherit lib; };
   nvChad = import ./nvchad.nix { inherit pkgs; };
@@ -113,7 +112,6 @@ in
     httpie
     python3
     just
-    # TODO vscode-fhs
 
     # Hardware related
     brightnessctl # backlight

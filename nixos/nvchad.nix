@@ -3,7 +3,7 @@
 pkgs.stdenv.mkDerivation {
   name = "nvchad-config";
 
-  # Use the fetchFromGitHub function if the repository is on GitHub
+  # Use the fetchFromGitHub function to install NvChad from my GitHub.
   src = pkgs.fetchFromGitHub {
     owner = "benhunter";
     repo = "nvchad-config";
