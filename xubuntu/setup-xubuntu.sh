@@ -13,7 +13,7 @@
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
-# update sudoers
+echo "Updating sudoers..."
 LINE="$USER ALL=(ALL) NOPASSWD:ALL"
 if [ ! -f /etc/sudoers/sudoers.d/user ];
 then 
@@ -24,10 +24,16 @@ then
     fi;
 fi;
 
-# apt packages
 echo "Updating apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt update
 echo "Upgrading apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
 echo "Full-upgrading apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -y
+
+echo "Installing nice things from apt ..."
+sudo DEBIAN_FRONTEND=noninteractive apt install -y git curl tree fd-find fzf unzip
+
+echo "Cloning dotfiles..."
+mkdir -p $HOME/projects/dotfiles
+git clone https://www.github.com/benhunter/dotfiles.git $HOME/projects/dotfiles
