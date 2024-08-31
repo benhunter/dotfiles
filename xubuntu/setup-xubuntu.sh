@@ -1,6 +1,7 @@
 #!/bin/sh
 #
 # curl -fsSL https://raw.githubusercontent.com/benhunter/dotfiles/main/xubuntu/setup-xubuntu.sh | bash
+# wget -qO- https://raw.githubusercontent.com/benhunter/dotfiles/main/xubuntu/setup-xubuntu.sh | bash
 # 
 # Assumptions:
 # - Xubuntu is installed
@@ -17,7 +18,7 @@ LINE="$USER ALL=(ALL) NOPASSWD:ALL"
 if [ ! -f /etc/sudoers/sudoers.d/user ];
 then 
     # if $LINE is not in /etc/sudoers.d/user
-    if ! grep -qF "$LINE" /etc/sudoers.d/user;
+    if ! sudo grep -qF "$LINE" /etc/sudoers.d/user;
     then
         echo $LINE | (sudo su -c 'EDITOR="tee" visudo -f /etc/sudoers.d/user')
     fi;
