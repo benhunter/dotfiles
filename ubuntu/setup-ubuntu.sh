@@ -17,6 +17,8 @@ echo "Updating apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt update
 echo "Upgrading apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
+# TODO echo "Full-upgrading apt..."
+# TODO sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -y
 
 echo "Installing nice things from apt ..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip
