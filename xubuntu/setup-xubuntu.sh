@@ -1,7 +1,8 @@
 #!/bin/sh
 #
 # Setup Xubuntu
-# Run bootstrap-xubuntu.sh which uses this script.
+#
+# First, run bootstrap-xubuntu.sh which uses this script.
 # This script is basically a copy of ubuntu/setup-ubuntu.sh.
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
@@ -31,9 +32,9 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 # .zshrc
 echo "Backing up and linking .zshrc..."
 mv $HOME/.zshrc $HOME/.zshrc.bak
-ln -s $SCRIPT_DIR/.zshrc $HOME/.zshrc
+ln -s $SCRIPT_DIR/../ubuntu/.zshrc $HOME/.zshrc
 echo "Linking .p10k.zsh..."
-ln -s $SCRIPT_DIR/.p10k.zsh $HOME/.p10k.zsh
+ln -s $SCRIPT_DIR/../ubuntu/.p10k.zsh $HOME/.p10k.zsh
 
 # zsh-autosuggestions
 echo "Installing zsh-autosuggestions..."
@@ -41,7 +42,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions pull
 
 echo "Linking .gitconfig..."
-ln -s $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
+ln -s $SCRIPT_DIR/../ubuntu/.gitconfig $HOME/.gitconfig
 
 # Tmux
 echo "Linking .tmux.conf..."
