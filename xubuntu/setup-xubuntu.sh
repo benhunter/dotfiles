@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 #
 # Setup Xubuntu
 #
@@ -8,7 +8,7 @@
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 echo "Installing nice things from apt ..."
-sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip tmux
+sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip tmux golang-go
 
 echo "Installing zsh..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh
@@ -86,14 +86,15 @@ echo "Installing NvChad..."
 git clone https://github.com/benhunter/nvchad-config ~/.config/nvim --depth 1 && nvim
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
 
-## Neovim config for VSCode Remote
-echo "Copying Neovim config..."
-cp .config/nvim/init.lua $HOME/.config/nvim
-
 # fd
 echo "Linking fdfind to fd..."
 mkdir -p ~/.local/bin
 ln -s $(which fdfind) ~/.local/bin/fd
+
+$SCRIPT_DIR/install-hack-nerdfonts.sh
+
+# moar - the pager that's better than less
+go install github.com/walles/moar@latest
 
 echo "Reminders:"
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"

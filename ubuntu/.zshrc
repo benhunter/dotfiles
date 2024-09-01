@@ -29,8 +29,11 @@ export VISUAL=$EDITOR
 alias gs=gst
 
 # fnm
-export PATH="/home/ben/.local/share/fnm:$PATH"
-eval "`fnm env`"
+FNM_PATH="/home/ben/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/ben/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
 
 # fd
 export PATH="/home/ben/.local/bin:$PATH"
@@ -58,3 +61,6 @@ export PATH="/home/ben/projects/dotfiles/ubuntu/:$PATH"
 
 # Disk usage
 alias dush='du -sh * 2> /dev/null | sort -rh'
+
+# go - installed binaries
+export PATH="$HOME/go/bin:$PATH"
