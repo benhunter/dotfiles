@@ -39,3 +39,6 @@ sudo DEBIAN_FRONTEND=noninteractive apt install -y git curl
 echo "Cloning dotfiles..."
 mkdir -p $HOME/projects/dotfiles
 git clone https://www.github.com/benhunter/dotfiles.git $HOME/projects/dotfiles
+
+echo "Running setup-xubuntu.sh..."
+$HOME/projects/dotfiles/xubuntu/setup-xubuntu.sh

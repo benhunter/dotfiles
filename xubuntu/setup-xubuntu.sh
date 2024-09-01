@@ -8,13 +8,13 @@
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 echo "Installing nice things from apt ..."
-sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip
+sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip tmux
 
 echo "Installing zsh..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh
 echo "Changing shell to zsh..."
-chsh -s $(which zsh)
-# TODO have to enter password for sudo. Can we chsh last?
+echo "!! EXIT ZSH IMMEDIATELY TO CONTINUE THIS SETUP SCRIPT !!"
+sudo chsh -s $(which zsh)
 
 echo "Installing LaTeX..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y texlive texlive-formats-extra
