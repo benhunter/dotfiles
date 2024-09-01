@@ -103,7 +103,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   programs.zsh.enable = true;
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -120,7 +120,7 @@
     tmux
     curl
     wget
-    kitty
+    # kitty
     swaybg
     waybar
     ripgrep

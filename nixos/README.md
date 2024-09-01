@@ -52,6 +52,7 @@ alsamixer
 - [ ] trace: warning: ben profile: `gtk.catppuccin.enable` and `gtk.catppuccin.gnomeShellTheme` are deprecated and will be removed in a future release.
 - [ ] The upstream port has been archived and support will no longer be provided. Please see https://github.com/catppuccin/gtk/issues/262
 - [x] trace: warning: ben profile: The option `programs.zsh.enableAutosuggestions' defined in `/nix/store/hx5wfngpvw6d5aww0yv81fmd8r2gvknv-source/home.nix' has been renamed to `programs.zsh.autosuggestion.enable'.
+- [ ] Firefox back to light mode after removing xserver/lightdm. Check https://wiki.hyprland.org/Nix/Hyprland-on-NixOS/#fixing-problems-with-themes for the GTK theme config.
 
 # References
 

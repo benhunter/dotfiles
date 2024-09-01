@@ -10,9 +10,9 @@ in
 
   wayland.windowManager = hyprland;
   gtk.enable = true;
-  gtk.catppuccin.enable = true; # TODO had to disable after 23.11 was deprecated - 2024-07-10 project archived https://github.com/catppuccin/gtk/issues/262
+  # gtk.catppuccin.enable = true; # TODO had to disable after 23.11 was deprecated - 2024-07-10 project archived https://github.com/catppuccin/gtk/issues/262
 
-  # catppuccin.enable = true; # TODO Modifies the default waybar, not sure why
+  catppuccin.enable = true; # TODO Modifies the default waybar, not sure why
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
@@ -263,6 +263,16 @@ in
       # };
     # };
   # }; # end programs.waybar.settings
+
+  programs.firefox = {
+      enable = true;
+      profiles.default = {
+         # name = "Default";
+         settings = {
+            "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org"; # TODO not setting dark theme correctly!
+         };
+      };
+   };
 
   # TODO hyprpaper config
 
