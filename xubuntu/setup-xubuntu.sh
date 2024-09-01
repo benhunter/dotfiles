@@ -12,9 +12,17 @@ sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip tmux
 
 echo "Installing zsh..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh
-echo "Changing shell to zsh..."
-echo "!! EXIT ZSH IMMEDIATELY TO CONTINUE THIS SETUP SCRIPT !!"
-sudo chsh -s $(which zsh)
+
+# TODO check if zsh is already default shell
+DEFAULT_SHELL=$(getent passwd $USER | cut -d: -f7)
+IS_DEFAULT_SHELL=$(echo $DEFAULT_SHELL | grep zsh)
+if [ -n "$IS_DEFAULT_SHELL" ]; then
+    echo "Default shell is already zsh."
+else
+    echo "Changing shell to zsh..."
+    echo "!! EXIT ZSH IMMEDIATELY TO CONTINUE THIS SETUP SCRIPT !!"
+    sudo chsh -s $(which zsh)
+fi
 
 echo "Installing LaTeX..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y texlive texlive-formats-extra
