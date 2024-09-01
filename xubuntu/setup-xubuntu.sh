@@ -1,4 +1,4 @@
-#!/bin/sh
+#!bin/sh
 #
 # Setup Xubuntu
 #
@@ -74,25 +74,16 @@ curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts t
 source $HOME/.zshrc # TODO source not found?
 fnm install 20 # TODO fnm not found?
 
-# Neovim
-# https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu
-# Use unstable repo for PPA
-echo "Installing Neovim..."
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python-software-properties
-sudo DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:neovim-ppa/unstable # TODO prompts for Enter to continue.
-sudo DEBIAN_FRONTEND=noninteractive apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y neovim python3-pip fonts-powerline ripgrep fd-find
+$SCRIPT_DIR/install-neovim.sh
 
 ## Python prerequisites - docs may be outdated
 #sudo apt-get install python2-dev python-pip python3-dev python3-pip
 sudo apt install python3.10-venv
 
 ## NvChad for Neovim
-## TODO update to use my config repo
 ## https://nvchad.com/docs/quickstart/install
-echo "Installing NvChad for Neovim..."
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+echo "Installing NvChad..."
+git clone https://github.com/benhunter/nvchad-config ~/.config/nvim --depth 1 && nvim
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
 
 ## Neovim config for VSCode Remote
