@@ -62,7 +62,7 @@ let
     extraConfig = lib.concatStrings [
       ''
         monitor=,preferred,auto,1
-        monitor=eDP-1, 2560x1440@60, 0x0, 1.6;
+        monitor=eDP-1, 2560x1440@60, 0x0, 1.6
       ''
     ];
   }; # end hyprlandConfig

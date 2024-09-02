@@ -109,6 +109,7 @@ in
 
     # Dev
     gcc
+    gnumake
     httpie
     python3
     just
