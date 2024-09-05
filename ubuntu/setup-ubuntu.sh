@@ -85,13 +85,13 @@ cargo install bottom --locked
 curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts to modify .bashrc but fails.
 source $HOME/.zshrc # TODO source not found?
 fnm install 20 # TODO fnm not found?
+#fnm install 20 --corepack-enabled # for yarn
 
 # Neovim
 # https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu
 # Use unstable repo for PPA
 echo "Installing Neovim..."
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python-software-properties
 sudo DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:neovim-ppa/unstable # TODO prompts for Enter to continue.
 sudo DEBIAN_FRONTEND=noninteractive apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y neovim python3-pip fonts-powerline ripgrep fd-find
