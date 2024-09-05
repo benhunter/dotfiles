@@ -29,14 +29,14 @@ export VISUAL=$EDITOR
 alias gs=gst
 
 # fnm
-FNM_PATH="/home/ben/.local/share/fnm"
+FNM_PATH="/home/$USER/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/ben/.local/share/fnm:$PATH"
+  export PATH="/home/$USER/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
 
 # fd
-export PATH="/home/ben/.local/bin:$PATH"
+export PATH="/home/$USER/.local/bin:$PATH"
 
 # 2024-02 AOS MCSO
 # Project 1
@@ -57,7 +57,7 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
 # Scripts
-export PATH="/home/ben/projects/dotfiles/ubuntu/:$PATH"
+export PATH="/home/$USER/projects/dotfiles/ubuntu/:$PATH"
 
 # Disk usage
 alias dush='du -sh * 2> /dev/null | sort -rh'
