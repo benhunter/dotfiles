@@ -101,10 +101,9 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y neovim python3-pip fonts-
 sudo apt install python3.10-venv
 
 ## NvChad for Neovim
-## TODO update to use my config repo
 ## https://nvchad.com/docs/quickstart/install
 echo "Installing NvChad for Neovim..."
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+git clone https://github.com/benhunter/nvchad-config ~/.config/nvim --depth 1 && nvim
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
 
 ## Neovim config for VSCode Remote
