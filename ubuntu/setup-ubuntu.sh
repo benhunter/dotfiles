@@ -26,7 +26,7 @@ echo "Full-upgrading apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -y
 
 echo "Installing nice things from apt ..."
-sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip
+sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip direnv
 
 echo "Installing zsh..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh
