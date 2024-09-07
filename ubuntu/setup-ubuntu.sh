@@ -26,7 +26,7 @@ echo "Full-upgrading apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -y
 
 echo "Installing nice things from apt ..."
-sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip direnv
+sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip tmux
 
 echo "Installing zsh..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh
@@ -114,6 +114,14 @@ cp .config/nvim/init.lua $HOME/.config/nvim
 echo "Linking fdfind to fd..."
 mkdir -p ~/.local/bin
 ln -s $(which fdfind) ~/.local/bin/fd
+
+# golang
+# TODO https://go.dev/doc/install
+curl https://dl.google.com/go/go1.23.1.linux-amd64.tar.gz -o go1.23.1.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.23.1.linux-amd64.tar.gz
+
+# moar - the pager that's better than less
+go install github.com/walles/moar@latest
 
 echo "Reminders:"
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"

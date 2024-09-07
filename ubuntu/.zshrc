@@ -65,5 +65,11 @@ alias dush='du -sh * 2> /dev/null | sort -rh'
 # go - installed binaries
 export PATH="$HOME/go/bin:$PATH"
 
+# Golang
+export PATH=$PATH:/usr/local/go/bin
+
 # direnv hook
 eval "$(direnv hook zsh)"
+
+# moar as pager
+export PAGER=/usr/local/bin/moar
