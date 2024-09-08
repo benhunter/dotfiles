@@ -78,7 +78,7 @@ $SCRIPT_DIR/install-neovim.sh
 
 ## Python prerequisites - docs may be outdated
 #sudo apt-get install python2-dev python-pip python3-dev python3-pip
-sudo apt install python3.10-venv
+sudo apt install python3.12-venv
 
 ## NvChad for Neovim
 ## https://nvchad.com/docs/quickstart/install
