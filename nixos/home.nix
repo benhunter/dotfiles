@@ -21,6 +21,7 @@ in
   };
 
   home.sessionVariables.GTK_THEME = "Tokyonight-Dark-B"; # TODO
+  home.sessionVariables.NIX_SHELL_PRESERVE_PROMPT = 1;
 
   # Place the nvchad configuration in the right directory
   home.file.".config/nvim" = {
@@ -127,6 +128,9 @@ in
     enable = true;
     userName = "Ben Hunter";
     userEmail = "code@benhunter.me";
+    extraConfig = {
+      credential = {helper="store";};
+    };
   };
 
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
