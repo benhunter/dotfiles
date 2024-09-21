@@ -1,3 +1,3 @@
 #!/usr/bin/env zsh
 nix flake update
-sudo cp ~/projects/dotfiles/nixos/* /etc/nixos/ && sudo nixos-rebuild switch
+sudo cp -r ~/projects/dotfiles/nixos/* /etc/nixos/ && sudo nixos-rebuild switch

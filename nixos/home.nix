@@ -8,6 +8,20 @@ in
   home.username = "ben";
   home.homeDirectory = "/home/ben";
 
+  # This value determines the home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new home Manager release introduces backwards
+  # incompatible changes.
+  #
+  # You can update home Manager without changing this value. See
+  # the home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "23.11";
+
+  imports = [
+    config/waybar.nix
+  ];
+
   wayland.windowManager = hyprland;
   gtk.enable = true;
   # gtk.catppuccin.enable = true; # TODO had to disable after 23.11 was deprecated - 2024-07-10 project archived https://github.com/catppuccin/gtk/issues/262
@@ -148,15 +162,6 @@ in
     };
   };
 
-  # This value determines the home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update home Manager without changing this value. See
-  # the home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "23.11";
 
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -239,35 +244,6 @@ in
     viAlias = true;
     vimAlias = true;
   };
-
-  # TODO waybar config
-  programs.waybar.enable = true;
-  # programs.waybar.settings = {
-  #   mainBar = {
-  #     layer = "top";
-  #     position = "top";
-  #     output = [
-  #       "eDP-1"
-  #       "HDMI-A-1"
-  #     ];
-      # modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
-      # modules-center = [ "sway/window" "custom/hello-from-waybar" ];
-      # modules-right = [ "mpd" "custom/mymodule#with-css-id" "temperature" ];
-
-      # "sway/workspaces" = {
-        # disable-scroll = true;
-        # all-outputs = true;
-      # };
-      # "custom/hello-from-waybar" = {
-      #   format = "hello {}";
-      #   max-length = 40;
-      #   interval = "once";
-      #   exec = pkgs.writeShellScript "hello-from-waybar" ''
-      #     echo "from within waybar"
-      #   '';
-      # };
-    # };
-  # }; # end programs.waybar.settings
 
   programs.firefox = {
       enable = true;
