@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# Bootstrap Xubuntu dotfiles directly from wget or curl without git clone first.
+#
 # wget -qO- https://raw.githubusercontent.com/benhunter/dotfiles/main/xubuntu/bootstrap-xubuntu.sh | bash
 # 
 # or, if curl is installed
