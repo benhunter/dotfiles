@@ -20,8 +20,6 @@ plugins=(
   kubectl
   helm
   zsh-autosuggestions
-  ripgrep
-  fd
   fzf
 )
 
