@@ -52,6 +52,12 @@ alsamixer
 hyperlock
 ```
 
+# Rust Derivations
+
+- https://nixos.wiki/wiki/Rust#Building_Rust_crates_that_require_external_system_libraries
+- https://dev.to/misterio/how-to-package-a-rust-app-using-nix-3lh3
+- https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/rust.section.md
+
 # Issues
 
 - [x] 2024-06-16 - catppuccin SDDM theme broken. Firefox is back to light mode (using system theme). PR pending: https://github.com/catppuccin/nix/issues/229

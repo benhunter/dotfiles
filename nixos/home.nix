@@ -3,9 +3,7 @@
 let 
   hyprland = import ./hyprland.nix { inherit pkgs; inherit lib; };
   nvChad = import ./nvchad.nix { inherit pkgs; };
-
-  # TODO
-  # leetup = import ./leetup.nix { inherit pkgs; };
+  leetup = import ./leetup.nix { inherit pkgs; };
 in
 {
   home.username = "ben";
@@ -131,6 +129,7 @@ in
     httpie
     python3
     just
+    leetup
 
     # Hardware related
     brightnessctl # backlight
@@ -139,8 +138,6 @@ in
     # Security
     nmap
 
-    # TODO
-    # leetup
   ];
 
   # basic configuration of git, please change to your own
