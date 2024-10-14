@@ -26,11 +26,11 @@ pkgs.rustPlatform.buildRustPackage rec {
   buildInputs = [ pkgs.openssl ];
 
   # Environment variables to help the build process find OpenSSL
-  PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
-  OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
-  OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
-  DEP_OPENSSL_INCLUDE = "${pkgs.openssl.dev}/include";
-  OPENSSL_STATIC = 1;
+  # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+  # OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
+  # OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
+  # DEP_OPENSSL_INCLUDE = "${pkgs.openssl.dev}/include";
+  # OPENSSL_STATIC = 1;
 
   # Set the `RUSTFLAGS` environment variable to point to the correct OpenSSL paths
   RUSTFLAGS = "--cfg openssl_vendored";

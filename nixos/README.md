@@ -58,6 +58,20 @@ hyperlock
 - https://dev.to/misterio/how-to-package-a-rust-app-using-nix-3lh3
 - https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/rust.section.md
 
+# Troubleshooting Home Manager
+
+```
+systemctl status home-manager-ben.service
+journalctl -u home-manager-ben.service
+```
+
+# Neovim
+
+Nightly
+```
+nix run "github:nix-community/neovim-nightly-overlay"
+```
+
 # Issues
 
 - [x] 2024-06-16 - catppuccin SDDM theme broken. Firefox is back to light mode (using system theme). PR pending: https://github.com/catppuccin/nix/issues/229

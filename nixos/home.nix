@@ -246,7 +246,15 @@ in
     enable = true;
     viAlias = true;
     vimAlias = true;
+    extraPackages = [ pkgs.rust-analyzer ];
+    # package = neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
+
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+    }))
+  ];
 
   programs.firefox = {
       enable = true;
