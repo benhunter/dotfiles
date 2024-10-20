@@ -80,13 +80,21 @@ nix run "github:nix-community/neovim-nightly-overlay"
 - [x] trace: warning: ben profile: The option `programs.zsh.enableAutosuggestions' defined in `/nix/store/hx5wfngpvw6d5aww0yv81fmd8r2gvknv-source/home.nix' has been renamed to `programs.zsh.autosuggestion.enable'.
 - [ ] Firefox back to light mode after removing xserver/lightdm. Check https://wiki.hyprland.org/Nix/Hyprland-on-NixOS/#fixing-problems-with-themes for the GTK theme config.
 
-# References
-
-- [ZaneyOs](https://gitlab.com/Zaney/zaneyos)
-
-## Waybar config
+# Waybar config
 
 - [Waybar config](https://www.youtube.com/watch?v=rW3JKs1_oVI)
 - https://gitlab.com/stephan-raabe/dotfiles/-/blob/main/dotfiles/waybar/themes/starter/config?ref_type=heads
 - [Default Waybar config](https://github.com/Alexays/Waybar/blob/master/resources/config.jsonc)
 - [Nix example](https://github.com/maximbaz/dotfiles/blob/nix/modules/linux/waybar.nix)
+
+# Cleanup and free space
+
+```
+nix-collect-garbage # removes unused GC-roots
+nix-collect-garbage -d # removes previous revisions
+```
+
+# References
+
+- [ZaneyOs](https://gitlab.com/Zaney/zaneyos)
+
