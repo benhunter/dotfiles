@@ -130,6 +130,7 @@ in
     python3
     just
     leetup
+    go
 
     # Hardware related
     brightnessctl # backlight
