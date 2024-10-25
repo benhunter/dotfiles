@@ -13,6 +13,13 @@
   # Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Garbage Collection
+  nix.gc = {
+    automatic = true;
+    randomizedDelaySec = "14m";
+    options = "--delete-older-than 10d";
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
