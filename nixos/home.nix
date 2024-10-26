@@ -183,7 +183,7 @@ in
       gs = "git status";
       urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
       urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
-      obsidian = "obsidian --ozone-platform-hint=auto"; # Fix for resolution issue in Wayland. https://forum.obsidian.md/t/extremely-low-resolution-in-obsidian-1-4-x-on-linux-with-wayland/66441
+      obsidian = "OBSIDIAN_USE_WAYLAND=1 obsidian --ozone-platform-hint=auto"; # Fix for resolution issue in Wayland. https://forum.obsidian.md/t/extremely-low-resolution-in-obsidian-1-4-x-on-linux-with-wayland/66441
       ls = "exa";
       l = "exa -la";
       ll = "l";
