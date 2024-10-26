@@ -7,13 +7,10 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchFromGitHub {
     owner = "benhunter";
     repo = "nvchad-config";
-    rev = "main";
-    # rev = "nixos"; # nixos branch
+    rev = "nixos"; # branch, commit hash, or tag 
 
     # sha256 = "";
-    sha256 = "sha256-2DOBPHhN5VSQm4E63PsxMbt1XFc+zhWDrggEwUiuIj4=";
-    # sha256 = "sha256-Ue4OZM8PBNabNJTG3HC8w0oz4EkNjiufs8jFUxau2nI=";
-    # sha256 = "sha256-A66CWMXFV6HEbfxFPHBirjPHxvLZ2eOmlB+B/veRRKA=";
+    sha256 = "sha256-itsIXXHsmVrWGNFSarxvux3XbZooIlIljhYRUuzgYqM=";
   };
 
   # Specify the installation directory

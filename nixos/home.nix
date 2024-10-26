@@ -131,6 +131,7 @@ in
     just
     leetup
     go
+    nodejs_22
 
     # Hardware related
     brightnessctl # backlight
@@ -247,7 +248,10 @@ in
     enable = true;
     viAlias = true;
     vimAlias = true;
-    extraPackages = [ pkgs.rust-analyzer ];
+    extraPackages = [
+      pkgs.rust-analyzer
+      pkgs.vimPlugins.copilot-lua
+      ];
     # package = neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
 
