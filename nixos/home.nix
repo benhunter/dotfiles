@@ -78,6 +78,7 @@ in
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
     fd
+    bc
 
     # networking tools
     # mtr # A network diagnostic tool
