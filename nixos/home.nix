@@ -52,6 +52,7 @@ in
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+    bash
     wofi # wofi crashes on mouseover https://github.com/hyprwm/Hyprland/issues/3729
 
     # archives
