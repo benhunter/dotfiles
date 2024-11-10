@@ -21,6 +21,7 @@ if [ -n "$IS_DEFAULT_SHELL" ]; then
 else
     echo "Changing shell to zsh..."
     echo "!! EXIT ZSH IMMEDIATELY TO CONTINUE THIS SETUP SCRIPT !!"
+    chsh -s $(which zsh) # change for $USER, not root
     sudo chsh -s $(which zsh)
 fi
 
