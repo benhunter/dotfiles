@@ -70,6 +70,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 echo "Installing bottom..."
 cargo install bottom --locked
 
+# delta - https://github.com/dandavison/delta
+cargo install git-delta
+
 # fnm and Node
 curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts to modify .bashrc but fails.
 source $HOME/.zshrc # TODO source not found?
