@@ -106,6 +106,7 @@ in
     glow # markdown previewer in terminal
 
     signal-desktop
+    bitwarden-desktop
 
     bottom # btop  # replacement of htop/nmon
     iotop # io monitoring
@@ -141,7 +142,6 @@ in
 
     # Security
     nmap
-
   ];
 
   # basic configuration of git, please change to your own

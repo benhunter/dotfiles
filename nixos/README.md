@@ -94,6 +94,12 @@ nix-collect-garbage # removes unused GC-roots
 nix-collect-garbage -d # removes previous revisions
 ```
 
+# SSH
+
+SSH from Kitty terminal gives "terminal unknown" error. [Kitty FAQ](https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer).
+
+`kitten ssh user@server`
+
 # References
 
 - [ZaneyOs](https://gitlab.com/Zaney/zaneyos)
