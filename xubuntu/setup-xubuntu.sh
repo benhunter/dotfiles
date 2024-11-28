@@ -96,11 +96,7 @@ $SCRIPT_DIR/install-hack-nerdfonts.sh
 # moar - the pager that's better than less
 go install github.com/walles/moar@latest
 
-# Obsidian
-OBSIDIAN_VERSION="1.7.5"
-mkdir $HOME/bin
-curl https://github.com/obsidianmd/obsidian-releases/releases/download/v${OBSIDIAN_VERSION}/Obsidian-${OBSIDIAN_VERSION}.AppImage -o $HOME/bin/Obsidian-${OBSIDIAN_VERSION}.AppImage
-chmod u+x $HOME/bin/Obsidian-${OBSIDIAN_VERSION}.AppImage
+$SCRIPT_DIR/install-obsidian.sh
 
 echo "Reminders:"
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
