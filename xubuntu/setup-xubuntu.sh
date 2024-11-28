@@ -8,7 +8,7 @@
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 echo "Installing nice things from apt ..."
-sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip tmux golang-go
+sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip tmux golang-go direnv
 
 echo "Installing zsh..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh

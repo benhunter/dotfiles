@@ -74,3 +74,6 @@ eval "$(direnv hook zsh)"
 
 # moar as pager
 export PAGER=$(which moar)
+
+# 2024-11-28 MCSO PS Lab 5
+alias mr="make && make run"
