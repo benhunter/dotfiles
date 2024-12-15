@@ -177,7 +177,7 @@
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1"; # If your cursor becomes invisible
-    # NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland. Breaks vscode.
+    NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland. Fix vscode..
   };
 
   hardware = {

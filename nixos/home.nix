@@ -169,12 +169,16 @@ in
     };
   };
 
-
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
+
   programs.atuin.enable = true;
-  programs.vscode.enable = true;
   programs.thefuck.enable = true;
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhs;
+  };
 
   programs.zsh = {
     enable = true;
