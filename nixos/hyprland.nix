@@ -68,7 +68,7 @@ let
   }; # end hyprlandConfig
 
   hyprlandThemeDracula = {
-  # https://github.com/dracula/hyprland/blob/main/hyprland.conf
+    # https://github.com/dracula/hyprland/blob/main/hyprland.conf
     settings = {
       general = {
         "col.active_border" = "rgb(44475a) rgb(bd93f9) 90deg";
@@ -78,9 +78,18 @@ let
         no_border_on_floating = false;
         border_size = 2;
       };
-      decoration = {
-        "col.shadow" = "rgba(1E202966)";
+
+      # 2025-01-06 shadow config changes: https://github.com/dracula/hyprland/pull/7/files
+      decoration.shadow = {
+        color = "rgba(1E202966)";
+        # suggested shadow setting
+        # enabled = true
+        # range = 60
+        # offset = 1 2
+        # render_power = 3
+        # scale = 0.97
       };
+
       group = {
         groupbar = {
           "col.active" = "rgb(bd93f9) rgb(44475a) 90deg";

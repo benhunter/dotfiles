@@ -27,7 +27,7 @@ in
   gtk.enable = true;
   # gtk.catppuccin.enable = true; # TODO had to disable after 23.11 was deprecated - 2024-07-10 project archived https://github.com/catppuccin/gtk/issues/262
 
-  # catppuccin.enable = true; # TODO Modifies the default waybar, not sure why
+  catppuccin.enable = true; # TODO Modifies the default waybar, not sure why
   # catppuccin.starship.enable = true; # Example from catppuccin/nix docs
   # catppuccin.flavor = "mocha";
 
@@ -248,7 +248,7 @@ in
       name = "Hack Nerd Font";
       size = 10;
     };
-    # theme = "Catppuccin-Mocha";
+    theme = "Catppuccin-Mocha";
     settings = { background_opacity = "0.8"; };
   };
 

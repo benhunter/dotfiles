@@ -8,7 +8,8 @@
     # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # home-manager, used for managing user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      # url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
@@ -36,13 +37,13 @@
           home-manager.users.ben = {
             imports = [
               ./home.nix
-              # catppuccin.homeManagerModules.catppuccin # TODO had to disable after 23.11 was deprecated
+              catppuccin.homeManagerModules.catppuccin
             ];
           };
           # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
         }
 
-        catppuccin.nixosModules.catppuccin # TODO had to disable after 23.11 was deprecated
+        catppuccin.nixosModules.catppuccin
       ];
     };
   };
