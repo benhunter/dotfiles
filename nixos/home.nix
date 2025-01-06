@@ -248,7 +248,6 @@ in
       name = "Hack Nerd Font";
       size = 10;
     };
-    theme = "Catppuccin-Mocha";
     settings = { background_opacity = "0.8"; };
   };
 
