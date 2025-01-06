@@ -1,5 +1,9 @@
 # NixOs Config
 
+## TODO
+
+- [ ] delta pager in gitconfig.
+
 ## Install
 
 Run `update-nixos.sh`
@@ -99,6 +103,29 @@ nix-collect-garbage -d # removes previous revisions
 SSH from Kitty terminal gives "terminal unknown" error. [Kitty FAQ](https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer).
 
 `kitten ssh user@server`
+
+# 2025-01-05 Catppuccin broke
+
+Error: `error: attribute 'importApply' missing`
+
+Upgrading to unstable nixpks as in the Catppuccin nix docs.
+
+```
+       error: nerdfonts has been separated into individual font packages under the namespace nerd-fonts.
+       For example change:
+         fonts.packages = [
+           ...
+           (pkgs.nerdfonts.override { fonts = [ "0xproto" "DroidSansMono" ]; })
+         ]
+       to
+         fonts.packages = [
+           ...
+           pkgs.nerd-fonts._0xproto
+           pkgs.nerd-fonts.droid-sans-mono
+         ]
+       or for all fonts
+         fonts.packages = [ ... ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)
+```
 
 # References
 

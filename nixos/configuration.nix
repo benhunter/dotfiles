@@ -68,7 +68,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true; # Removed in nixos unstable.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -187,7 +187,8 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Hack" ]; })
+    # (nerdfonts.override { fonts = [ "Hack" ]; }) # change for unstable
+    (nerd-fonts.hack)
   ];
 
   # Bluetooth Support

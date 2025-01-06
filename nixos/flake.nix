@@ -3,7 +3,8 @@
 
   inputs = {
     # NixOS official package source, using the nixos-23.11 branch here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # home-manager, used for managing user configuration
     home-manager = {
@@ -19,8 +20,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, catppuccin, ... }@inputs: {
-    # Please replace my-nixos with your hostname
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem { # nixos is hostname
       system = "x86_64-linux";
       modules = [
         # Import the previous configuration.nix we used,
@@ -36,7 +36,7 @@
           home-manager.users.ben = {
             imports = [
               ./home.nix
-              catppuccin.homeManagerModules.catppuccin # TODO had to disable after 23.11 was deprecated
+              # catppuccin.homeManagerModules.catppuccin # TODO had to disable after 23.11 was deprecated
             ];
           };
           # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix

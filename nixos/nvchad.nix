@@ -10,7 +10,7 @@ pkgs.stdenv.mkDerivation {
     rev = "nixos"; # branch, commit hash, or tag 
 
     # sha256 = "";
-    sha256 = "sha256-itsIXXHsmVrWGNFSarxvux3XbZooIlIljhYRUuzgYqM=";
+    sha256 = "sha256-RVe8whhAC+QPRAoDzgbwSZ8rWgnZArpnyhOmLz6H8zY=";
   };
 
   # Specify the installation directory
