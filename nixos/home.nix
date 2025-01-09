@@ -20,7 +20,7 @@ in
   home.stateVersion = "23.11";
 
   imports = [
-    config/waybar.nix
+    # config/waybar.nix
   ];
 
   wayland.windowManager = hyprland;
