@@ -1,5 +1,5 @@
 {
-  description = "NixOS flake";
+  description = "Ben Hunter's NixOS flake";
 
   inputs = {
     # NixOS official package source, using the nixos-23.11 branch here
@@ -18,9 +18,14 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, catppuccin, rust-overlay, ... }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem { # nixos is hostname
       system = "x86_64-linux";
       modules = [
@@ -44,6 +49,33 @@
         }
 
         catppuccin.nixosModules.catppuccin
+
+        # ({ pkgs, ... }: let
+        #   # Ensure the rust-overlay is applied
+        #   pkgsWithRust = pkgs // {
+        #     # overlays = [ rust-overlay.overlays.default ];
+        #     overlays = rust-overlay.overlays;
+        #   };
+        #
+        #   # Select the latest nightly toolchain
+        #   # latestNightly = pkgsWithRust.rust-bin.selectLatestNightly;
+        #   latestNightly = pkgsWithRust.rustChannels.nightly.rust-bin.selectLatestNightly;
+        # in {
+        #   environment.systemPackages = [
+        #     latestNightly.default
+        #   ];
+        # })
+
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [ rust-overlay.overlays.default ];
+
+          # These two work:
+          # environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ]; # Works, 1.83
+          # environment.systemPackages = [ pkgs.rust-bin.nightly."2025-01-05".default ]; # Works
+
+          # Does not work:
+          environment.systemPackages = [ pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default) ]; # Does not work. `toolchain.default` or `toolchain.minimal`
+        })
       ];
     };
   };
