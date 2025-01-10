@@ -1,0 +1,2 @@
+.tmux.conf text eol=lf
+ubuntu/* text eol=lf
