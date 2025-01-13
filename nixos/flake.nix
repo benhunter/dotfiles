@@ -71,10 +71,11 @@
 
           # These two work:
           # environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ]; # Works, 1.83
-          # environment.systemPackages = [ pkgs.rust-bin.nightly."2025-01-05".default ]; # Works
+          # environment.systemPackages = [ pkgs.rust-bin.nightly."2025-01-09".default ]; # Works
+          environment.systemPackages = [ pkgs.rust-bin.nightly.latest.default ]; # Risk being incomplete if the nightly doesn't include all tools.
 
           # Does not work:
-          environment.systemPackages = [ pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default) ]; # Does not work. `toolchain.default` or `toolchain.minimal`
+          # environment.systemPackages = [ pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default) ]; # Does not work. `toolchain.default` or `toolchain.minimal`
         })
       ];
     };
