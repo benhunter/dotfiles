@@ -131,8 +131,6 @@
     ripgrep
     wev
     wl-clipboard
-    cargo
-    rustc
     catppuccin-gtk
     zsh-powerlevel10k
   ];

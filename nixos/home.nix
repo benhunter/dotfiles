@@ -137,6 +137,10 @@ in
     leetup
     go
     nodejs_22
+    rustup
+    cargo-watch
+    cargo-nextest
+    cargo-generate
 
     # Hardware related
     brightnessctl # backlight
@@ -298,6 +302,12 @@ in
     defaultCommand = "fd -L 2>/dev/null";
     changeDirWidgetCommand = "fd -L -t d 2>/dev/null";
     fileWidgetCommand = "fd -L -t f -t l 2>/dev/null";
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
   };
 
   # link the configuration file in current directory to the specified location in home directory
