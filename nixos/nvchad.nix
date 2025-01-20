@@ -9,8 +9,8 @@ pkgs.stdenv.mkDerivation {
     repo = "nvchad-config";
     rev = "nixos"; # branch, commit hash, or tag 
 
-    # sha256 = "";
-    sha256 = "sha256-I9eyuFMMlHJoXazjNLEF1sdtIIi+msmtefOC5SuZkAw=";
+    # sha256 = ""; # Use to get the new hash.
+    sha256 = "sha256-9VZMugKg6jPpdliKjSRSFR3XAXsdpchgx4EED/u5BQk=";
   };
 
   # Specify the installation directory
