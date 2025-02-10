@@ -84,6 +84,9 @@ cargo install bottom --locked
 # delta - https://github.com/dandavison/delta
 cargo install git-delta
 
+# btm - https://github.com/ClementTsang/bottom
+cargo +stable install bottom --locked
+
 # fnm and Node
 curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts to modify .bashrc but fails.
 source $HOME/.zshrc # TODO source not found?
