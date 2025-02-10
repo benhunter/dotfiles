@@ -26,7 +26,7 @@ echo "Full-upgrading apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -y
 
 echo "Installing nice things from apt ..."
-sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip tmux
+sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip tmux direnv
 
 echo "Installing zsh..."
 sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh
@@ -81,6 +81,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 echo "Installing bottom..."
 cargo install bottom --locked
 
+# delta - https://github.com/dandavison/delta
+cargo install git-delta
+
 # fnm and Node
 curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts to modify .bashrc but fails.
 source $HOME/.zshrc # TODO source not found?
@@ -116,6 +119,7 @@ mkdir -p ~/.local/bin
 ln -s $(which fdfind) ~/.local/bin/fd
 
 # golang
+echo "Installing golang..."
 # TODO https://go.dev/doc/install
 curl https://dl.google.com/go/go1.23.1.linux-amd64.tar.gz -o go1.23.1.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.23.1.linux-amd64.tar.gz
