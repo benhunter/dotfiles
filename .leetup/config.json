@@ -1,0 +1,23 @@
+{
+    "lang": "java",
+    "inject_code": {
+        "rust": {
+            "before_code": ["use std::rc::Rc;", "use std::collections::{HashMap, VecDeque};", "use std::cell::RefCell;"],
+            "before_code_exclude": ["// Test comment", "// Test code"],
+            "after_code": "\nstruct Solution; \n\nfn main() {\n    let solution = Solution::$func();\n\n}\n",
+            "before_function_definition": null
+        },
+        "java": {
+            "before_code": "import java.util.*;",
+            "before_code_exclude": ["// Test comment", "// Test code"],
+            "after_code": null,
+            "before_function_definition": null
+        },
+        "python3": {
+            "before_code": "import math",
+            "before_code_exclude": ["# Test comment", "# Test code"],
+            "after_code": ["if __name__ = \"__main__\":", "    solution = Solution()"],
+            "before_function_definition": null
+        }
+    }
+}

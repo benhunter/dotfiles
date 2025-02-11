@@ -87,6 +87,10 @@ cargo install git-delta
 # btm - https://github.com/ClementTsang/bottom
 cargo +stable install bottom --locked
 
+# leetup - https://crates.io/crates/leetup
+cargo install leetup
+ln -s $SCRIPT_DIR/../.leetup $HOME/
+
 # fnm and Node
 curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts to modify .bashrc but fails.
 source $HOME/.zshrc # TODO source not found?
