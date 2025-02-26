@@ -77,6 +77,9 @@ echo "Installing Rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 # TODO Rust install prompts for options.
 
+# rust-analyzer
+rustup component add rust-analyzer
+
 # bottom
 echo "Installing bottom..."
 cargo install bottom --locked
