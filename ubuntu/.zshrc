@@ -77,3 +77,7 @@ export PAGER=$(which moar)
 
 # 2024-11-28 MCSO PS Lab 5
 alias mr="make && make run"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
