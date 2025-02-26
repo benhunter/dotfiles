@@ -80,6 +80,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 # rust-analyzer
 rustup component add rust-analyzer
 
+$SCRIPT_DIR/install-cargo-watch.sh
+
 # bottom
 echo "Installing bottom..."
 cargo install bottom --locked
