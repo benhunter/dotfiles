@@ -14,3 +14,11 @@
 
 - $PATH gets mangled/replaced unexpectedly
 - related? https://github.com/direnv/direnv/issues/253
+
+# Install delta diff tool
+
+Used for git diff pager. Provides merge.conflictsyle = zdiff3.
+
+```
+cargo install git-delta
+```

@@ -139,6 +139,9 @@ sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.23.1.linux-amd64.ta
 # moar - the pager that's better than less
 go install github.com/walles/moar@latest
 
+# pnpm - https://pnpm.io/ - used in Loco development
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+
 echo "Reminders:"
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
 echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
