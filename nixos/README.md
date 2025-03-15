@@ -6,6 +6,8 @@
 
 ## Install
 
+Requires `git`.
+
 Run `update-nixos.sh`
 
 Manually:

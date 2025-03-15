@@ -12,7 +12,7 @@
 # - User is logged in
 # - User has sudo privileges
 # - User has internet access
-# - User has curl installed
+# - User has wget (or curl) installed
 # - setup-xubuntu.sh can be run from anywhere, multiple times
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
