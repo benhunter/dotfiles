@@ -1,5 +1,7 @@
 # Ubuntu
 
+Custom config for each host lives in `.zshrc.hostname`.
+
 ```shell
 visudo
 # %sudo   ALL=(ALL:ALL) NOPASSWD:ALL

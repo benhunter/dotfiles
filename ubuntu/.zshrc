@@ -83,10 +83,13 @@ eval "$(atuin init zsh)"
 
 . "$HOME/.cargo/env"
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+alias k=kubectl
+source <(kubectl completion zsh)
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+ZSHRC_HOSTNAME="$HOME/.zshrc.$(hostname)"
+if [[ -f "$ZSHRC_HOSTNAME" ]]; then
+  source "$ZSHRC_HOSTNAME"
+fi
+

@@ -53,6 +53,13 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 echo "Backing up and linking .zshrc..."
 mv $HOME/.zshrc $HOME/.zshrc.bak
 ln -s $SCRIPT_DIR/.zshrc $HOME/.zshrc
+
+echo "Backing up and linking .zshrc.hostname..."
+if [[ -f $HOME/.zshrc.$(hostname) ]]; then
+    mv $HOME/.zshrc.$(hostname) $HOME/.zshrc.$(hostname).break
+    ln -s $SCRIPT_DIR/.zshrc.$(hostname) $HOME/.zshrc.$(hostname)
+fi
+
 echo "Linking .p10k.zsh..."
 ln -s $SCRIPT_DIR/.p10k.zsh $HOME/.p10k.zsh
 
@@ -95,6 +102,12 @@ cargo +stable install bottom --locked
 # leetup - https://crates.io/crates/leetup
 cargo install leetup
 ln -s $SCRIPT_DIR/../.leetup $HOME/
+
+# just - https://github.com/casey/just
+cargo install just
+
+# nextest
+cargo install cargo-nextest
 
 # fnm and Node
 curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts to modify .bashrc but fails.
