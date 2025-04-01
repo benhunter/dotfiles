@@ -196,9 +196,9 @@ if [ ! -d "$HOME/.config/nvim" ]; then
 fi
 
 ## Neovim config for VSCode Remote
-echo "Copying Neovim config..."
-cp "$SCRIPT_DIR/.config/nvim/init.lua" "$HOME/.config/nvim/init.lua"
 # TODO should just be in the nvim config repo
+# echo "Copying Neovim config..."
+# cp "$SCRIPT_DIR/.config/nvim/init.lua" "$HOME/.config/nvim/init.lua"
 
 # fd
 echo "Linking fdfind to fd..."

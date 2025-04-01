@@ -11,6 +11,11 @@ if ! has brew; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+# k9s
+if ! has k9s; then
+  brew install derailed/k9s/k9s
+fi
+
 # Docker permissions
 sudo usermod -aG docker $USER
 newgrp docker
