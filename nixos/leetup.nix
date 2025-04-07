@@ -13,8 +13,9 @@ pkgs.rustPlatform.buildRustPackage rec {
     sha256 = "sha256-iivyOATeEKMTVxrmd/qvN6mBxgPDZns3LHXhXYhd2xM=";
   };
 
-  cargoHash = "sha256-doQkRqRMM1Nf/h+65rzklkwlrzI8RpYrhAGMX6JM4GU=";
-
+  # cargoHash = "sha256-doQkRqRMM1Nf/h+65rzklkwlrzI8RpYrhAGMX6JM4GU=";
+  # cargoHash = "sha256-OBvacQJB2F18WIqJa8JrcPAmIV8sBvZa2lOrG2JT0z0=";
+  cargoHash = "sha256-34wEWrvslBvwZjir+FTXUmJ0F3rZhwe8XwYZWGeVyVE=";
   # Additional build inputs to provide OpenSSL and pkg-config
   nativeBuildInputs = [
     pkgs.openssl

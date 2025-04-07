@@ -42,7 +42,7 @@
           home-manager.users.ben = {
             imports = [
               ./home.nix
-              catppuccin.homeManagerModules.catppuccin
+              catppuccin.homeModules.catppuccin
             ];
           };
           # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
