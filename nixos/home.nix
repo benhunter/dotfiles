@@ -179,7 +179,7 @@ in
   programs.home-manager.enable = true;
 
   programs.atuin.enable = true;
-  programs.thefuck.enable = true;
+  # programs.thefuck.enable = true;
 
   programs.vscode = {
     enable = true;
@@ -204,15 +204,15 @@ in
     oh-my-zsh = {
       enable = true;
       plugins = [ "git"
-                  "thefuck"
       ];
+                  # "thefuck"
     };
 
-    initExtra = ''
+    initContent = ''
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       test -f "$HOME/projects/dotfiles/mac/.p10k.zsh" && source "$HOME/projects/dotfiles/mac/.p10k.zsh"
-      eval $(thefuck --alias "f")
     '';
+      # eval $(thefuck --alias "f")
   };
 
   programs.tmux = {
