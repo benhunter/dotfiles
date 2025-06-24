@@ -138,3 +138,11 @@ eval "$(atuin init zsh)"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export KUBECONFIG=~/kubeconfig
+
+# flux
+#   brew install fluxcd/tap/flux
+#   flux completions:
+#command -v flux >/dev/null && . <(flux completion zsh)
+source /opt/homebrew/share/zsh/site-functions/_flux
