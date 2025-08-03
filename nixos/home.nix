@@ -274,12 +274,12 @@ in
 
   programs.firefox = {
       enable = true;
-      profiles.default = {
-         # name = "Default";
-         settings = {
-            "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org"; # TODO not setting dark theme correctly!
-         };
-      };
+      # profiles.default = {
+      #    # name = "Default";
+      #    settings = {
+      #       "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org"; # TODO not setting dark theme correctly!
+      #    };
+      # };
    };
 
   # TODO hyprpaper config
