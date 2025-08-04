@@ -100,6 +100,9 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# Load secrets
+source $HOME/.secrets.zshrc
+
 # Load the .zshrc unique to this host
 ZSHRC_HOSTNAME="$HOME/.zshrc.$(hostname)"
 if [[ -f "$ZSHRC_HOSTNAME" ]]; then
