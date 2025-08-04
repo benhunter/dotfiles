@@ -26,7 +26,6 @@ export VISUAL=$EDITOR
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-alias gs=gst
 
 # fnm
 FNM_PATH="/home/$USER/.local/share/fnm"
@@ -78,6 +77,7 @@ export PAGER=$(which moar)
 # 2024-11-28 MCSO PS Lab 5
 alias mr="make && make run"
 
+# atuin Shell History
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
@@ -89,16 +89,20 @@ source <(kubectl completion zsh)
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-ZSHRC_HOSTNAME="$HOME/.zshrc.$(hostname)"
-if [[ -f "$ZSHRC_HOSTNAME" ]]; then
-  source "$ZSHRC_HOSTNAME"
-fi
-
+alias gs=gst
+alias nv=nvim
 
 # pnpm
-export PNPM_HOME="/home/ben/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# Load the .zshrc unique to this host
+ZSHRC_HOSTNAME="$HOME/.zshrc.$(hostname)"
+if [[ -f "$ZSHRC_HOSTNAME" ]]; then
+  source "$ZSHRC_HOSTNAME"
+fi
+
