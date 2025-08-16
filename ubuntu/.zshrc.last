@@ -1,0 +1,8 @@
+# For ubuntu WSL on last
+
+alias k=kubectl
+alias kns=kubens
+source <(kubectl completion zsh)
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+

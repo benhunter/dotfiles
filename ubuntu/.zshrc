@@ -83,12 +83,6 @@ eval "$(atuin init zsh)"
 
 . "$HOME/.cargo/env"
 
-alias k=kubectl
-alias kns=kubens
-source <(kubectl completion zsh)
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 alias gs=gst
 alias nv=nvim
 
