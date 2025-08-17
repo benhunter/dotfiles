@@ -1,0 +1,2 @@
+# opencode
+export PATH=/home/ben/.opencode/bin:$PATH

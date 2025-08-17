@@ -102,4 +102,3 @@ ZSHRC_HOSTNAME="$HOME/.zshrc.$(hostname)"
 if [[ -f "$ZSHRC_HOSTNAME" ]]; then
   source "$ZSHRC_HOSTNAME"
 fi
-
