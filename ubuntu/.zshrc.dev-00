@@ -1,2 +1,4 @@
 # opencode
 export PATH=/home/ben/.opencode/bin:$PATH
+
+export PATH=/home/ben/projects/scripts/:$PATH

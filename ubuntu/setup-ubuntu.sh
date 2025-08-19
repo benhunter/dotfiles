@@ -215,9 +215,10 @@ if ! has go || ! go version | grep -q "go1.23.1"; then
     sudo tar -C /usr/local -xzf go1.23.1.linux-amd64.tar.gz
 fi
 
-# moar - the pager that's better than less
-if ! has moar; then
-    go install github.com/walles/moar@latest
+# moor - the pager that's better than less
+if ! has moor; then
+    go install github.com/walles/moor/v2/cmd/moor@latest
+    # go install github.com/walles/moar@latest # old package
 fi
 
 # pnpm - https://pnpm.io/ - used in Loco development
