@@ -72,7 +72,7 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 eval "$(direnv hook zsh)"
 
 # moar as pager
-export PAGER=$(which moar)
+export PAGER=$(which moor)
 
 # 2024-11-28 MCSO PS Lab 5
 alias mr="make && make run"

@@ -1,5 +1,6 @@
 [credential]
 	helper = store
+
 [user]
 	email = code@benhunter.me
 	name = Ben Hunter
@@ -19,5 +20,6 @@
 
 [merge]
     conflictstyle = zdiff3
+
 [init]
 	defaultBranch = main
