@@ -10,10 +10,16 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="robbyrussell"
 #source ~/powerlevel10k/powerlevel10k.zsh-theme
 
+# Load the .zshrc unique to this host
+ZSHRC_HOSTNAME="$HOME/.zshrc.$(hostname)"
+if [[ -f "$ZSHRC_HOSTNAME" ]]; then
+  source "$ZSHRC_HOSTNAME"
+fi
 
 plugins=(
-	git 
-	zsh-autosuggestions
+  git
+  zsh-autosuggestions
+  $ZSH_PLUGINS_EXTRA
 	)
 
 source $ZSH/oh-my-zsh.sh
@@ -97,8 +103,3 @@ esac
 # Load secrets
 source $HOME/.secrets.zshrc
 
-# Load the .zshrc unique to this host
-ZSHRC_HOSTNAME="$HOME/.zshrc.$(hostname)"
-if [[ -f "$ZSHRC_HOSTNAME" ]]; then
-  source "$ZSHRC_HOSTNAME"
-fi
