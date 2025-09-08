@@ -119,8 +119,9 @@ rustup component add rust-analyzer
 $SCRIPT_DIR/install-cargo-watch.sh
 
 # rust crates
+CRATES="just cargo-update topgrade"
 echo "Installing rust cargo crates"
-for crate in just ; do
+for crate in $CRATES; do
     if ! has "$crate"; then
         cargo install "$crate"
     fi
