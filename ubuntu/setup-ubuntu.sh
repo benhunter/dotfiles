@@ -118,6 +118,13 @@ rustup component add rust-analyzer
 
 $SCRIPT_DIR/install-cargo-watch.sh
 
+echo "Installing prereqs for cargo-update..."
+for pkg in pkg-config libssl-dev; do
+    if ! has "$pkg"; then
+        sudo DEBIAN_FRONTEND=noninteractive apt install -y "$pkg"
+    fi
+done
+
 # rust crates
 CRATES="just cargo-update topgrade"
 echo "Installing rust cargo crates"
