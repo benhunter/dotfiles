@@ -103,3 +103,5 @@ esac
 # Load secrets
 source $HOME/.secrets.zshrc
 
+# Homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
