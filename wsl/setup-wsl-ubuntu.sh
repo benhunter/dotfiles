@@ -5,11 +5,7 @@ has() { command -v "$1" >/dev/null 2>&1; }
 # TODO setup-ubuntu.sh not found when this script is run from another folder.
 ./../ubuntu/setup-ubuntu.sh
 
-# Homebrew
-# https://brew.sh/
-if ! has brew; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
+../linux/install-homebrew.sh
 
 # k9s
 if ! has k9s; then
