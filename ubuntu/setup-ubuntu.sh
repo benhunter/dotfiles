@@ -92,6 +92,9 @@ else
     git -C "$ZSH_PLUGIN_DIR" pull
 fi
 
+# Homebrew
+"$SCRIPT_DIR/../linux/install-homebrew.sh"
+
 echo "Linking .gitconfig..."
 ln -sf $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
 
