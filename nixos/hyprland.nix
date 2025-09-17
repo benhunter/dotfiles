@@ -63,6 +63,7 @@ let
       ''
         monitor=,preferred,auto,1
         monitor=eDP-1, 2560x1440@60, 0x0, 1.6
+        ecosystem:no_update_news=true
       ''
     ];
   }; # end hyprlandConfig
