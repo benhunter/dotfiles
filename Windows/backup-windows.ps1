@@ -18,3 +18,9 @@ Copy-Item "$env:LOCALAPPDATA\nvim" "$backupDir\nvim" -Recurse
 
 # Backup NPM global packages
 npm list -g --depth=0 > "$backupDir\npm-packages.txt"
+
+# Terminal settings (Windows Terminal)
+$terminalSettingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+if (Test-Path $terminalSettingsPath) {
+    Copy-Item $terminalSettingsPath "$backupDir\terminal-settings.json"
+}
