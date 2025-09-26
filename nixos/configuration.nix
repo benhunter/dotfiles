@@ -191,4 +191,7 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
+
+  # Tailscale
+  services.tailscale.enable = true;
 }

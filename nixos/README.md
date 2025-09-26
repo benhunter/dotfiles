@@ -130,6 +130,11 @@ Upgrading to unstable nixpks as in the Catppuccin nix docs.
          fonts.packages = [ ... ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)
 ```
 
+# Tailscale
+
+- https://nixos.wiki/wiki/Tailscale
+- run `sudo tailscale up --auth-key=KEY"` with the key generated at https://login.tailscale.com/admin/machines/new-linux
+
 # References
 
 - [ZaneyOs](https://gitlab.com/Zaney/zaneyos)

@@ -178,7 +178,7 @@ in
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.atuin.enable = true;
+  programs.atuin.enable = true; # Shell history and sync
   # programs.thefuck.enable = true;
 
   programs.vscode = {
