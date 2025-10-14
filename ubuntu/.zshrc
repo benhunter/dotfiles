@@ -62,7 +62,8 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
 # Scripts
-export PATH="/home/$USER/projects/dotfiles/ubuntu/:$PATH"
+export PATH="$HOME/projects/dotfiles/ubuntu/:$PATH"
+export PATH="$HOME/projects/scripts/:$PATH"
 
 # Disk usage
 alias dush='du -sh * 2> /dev/null | sort -rh'
