@@ -95,3 +95,10 @@ cp Microsoft.PowerShell_profile.ps1 $PROFILE
 https://www.nerdfonts.com/
 
 Download, right-click, install.
+
+# Java
+
+```
+winget search java
+winget install "Java(TM) SE Development Kit 25"
+```
