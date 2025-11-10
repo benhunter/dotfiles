@@ -106,4 +106,15 @@ source $HOME/.secrets.zshrc
 
 # Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 alias dcp='docker compose'
+
+# bun
+[ -s "/home/ben/.bun/_bun" ] && source "/home/ben/.bun/_bun" # bun completions
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/ben/.zsh/completions:"* ]]; then export FPATH="/home/ben/.zsh/completions:$FPATH"; fi
+
+. "/home/ben/.deno/env"

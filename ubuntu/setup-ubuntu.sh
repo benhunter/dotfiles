@@ -218,12 +218,15 @@ mkdir -p "$HOME/.local/bin"
 ln -sf "$(which fdfind)" "$HOME/.local/bin/fd"
 
 # golang
-# TODO https://go.dev/doc/install
-if ! has go || ! go version | grep -q "go1.23.1"; then
+# TODO use latest
+# https://go.dev/doc/install
+GO_VERSION="go1.23.1"
+if ! has go || ! go version | grep -q "$GO_VERSION"; then
     echo "Installing golang..."
-    curl -LO https://dl.google.com/go/go1.23.1.linux-amd64.tar.gz
+    GO_FILE="$GO_VERSION.linux.amd-64.tar.gz"
+    curl -LO https://dl.google.com/go/$GO_FILE --output "/tmp/$GO_FILE"
     sudo rm -rf /usr/local/go
-    sudo tar -C /usr/local -xzf go1.23.1.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xzf "/tmp/$GO_FILE"
 fi
 
 # moor - the pager that's better than less
