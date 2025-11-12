@@ -102,3 +102,11 @@ Download, right-click, install.
 winget search java
 winget install "Java(TM) SE Development Kit 25"
 ```
+
+# Python
+
+Install uv
+
+```
+winget install --id=astral-sh.uv  -e
+```
