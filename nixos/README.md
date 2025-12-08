@@ -24,6 +24,11 @@ nmtui
 nmcli
 ```
 
+Connect to wifi and prompt for password:
+```shell
+nmcli device wifi connect 'SSID Name' --ask
+```
+
 # Bluetooth
 
 ```shell
