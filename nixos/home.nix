@@ -73,7 +73,7 @@ in
     zstd
     gnupg
     fastfetch
-    moar
+    moor
     # nnn # terminal file manager
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
@@ -153,9 +153,9 @@ in
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
-    userName = "Ben Hunter";
-    userEmail = "code@benhunter.me";
-    extraConfig = {
+    settings = {
+      user.Name = "Ben Hunter";
+      user.email = "code@benhunter.me";
       credential = {helper="store";};
     };
   };
@@ -199,6 +199,7 @@ in
       ls = "exa";
       l = "exa -la";
       ll = "l";
+      nv = "nvim";
     };
 
     oh-my-zsh = {
