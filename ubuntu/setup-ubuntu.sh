@@ -28,7 +28,7 @@ echo "Full-upgrading apt..."
 sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -y
 
 echo "Installing nice things from apt ..."
-for pkg in tree fd-find fzf unzip tmux direnv; do
+for pkg in tree fd-find fzf unzip tmux direnv kubectx; do
     if ! has "$pkg"; then
         sudo DEBIAN_FRONTEND=noninteractive apt install -y "$pkg"
     fi
