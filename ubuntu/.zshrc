@@ -118,3 +118,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 if [[ ":$FPATH:" != *":/home/ben/.zsh/completions:"* ]]; then export FPATH="/home/ben/.zsh/completions:$FPATH"; fi
 
 . "/home/ben/.deno/env"
+
+export PAI_DIR="$HOME/.codex/"
