@@ -120,3 +120,11 @@ if [[ ":$FPATH:" != *":/home/ben/.zsh/completions:"* ]]; then export FPATH="/hom
 . "/home/ben/.deno/env"
 
 export PAI_DIR="$HOME/.codex/"
+
+# 2026-01 PAI Configuration (added by Kai Bundle installer) 
+# https://github.com/benhunter/Personal_AI_Infrastructure
+export DA="Dash"
+export TIME_ZONE="CST"
+export PAI_SOURCE_APP="$DA"
+
+alias watch1='watch -n 1 -d -c '
