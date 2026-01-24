@@ -12,6 +12,11 @@ if ! has k9s; then
   brew install derailed/k9s/k9s
 fi
 
+# github cli
+if ! has gh; then
+  brew install gh
+fi
+
 # Docker permissions
 sudo usermod -aG docker $USER
 newgrp docker
