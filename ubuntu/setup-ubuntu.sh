@@ -81,6 +81,9 @@ if [ -f "$HOME/$HOST_ZSHRC" ]; then
 fi
 ln -sf "$SCRIPT_DIR/$HOST_ZSHRC" "$HOME/$HOST_ZSHRC"
 
+echo "Linking .secrets.zshrc"
+ln -s $HOME/projects/secrets/.secrets.zshrc $HOME/.secrets.zshrc
+
 echo "Linking .p10k.zsh..."
 ln -sf $SCRIPT_DIR/.p10k.zsh $HOME/.p10k.zsh
 
