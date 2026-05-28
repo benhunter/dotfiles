@@ -52,9 +52,19 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Login Manager SDDM
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = false;
+  # Login Manager SDDM # TODO why does this fail when enabled?
+  services.displayManager.sddm.enable = false; # false: greetd
+  # services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.defaultSession = "hyprland";
+
+  # Login Manager greetd
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time -- cmd Hyprland";
+      user = "greeter";
+    };
+  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -133,6 +143,9 @@
     wev
     wl-clipboard
     zsh-powerlevel10k
+    hyprland
+    # xdg-desktop-portal-hyprland # TODO use with SDDM login manager
+    # xdg-desktop-portal-gtk # TODO use with SDDM login manager
   ];
 
   environment.variables.EDITOR = "nvim";
