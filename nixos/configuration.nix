@@ -54,10 +54,12 @@
 
   # Login Manager SDDM
   services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  # Keep SDDM on X11 path for Hyprland startup stability.
+  services.displayManager.sddm.wayland.enable = false;
 
   # Configure keymap in X11
   services.xserver = {
+    enable = true;
     xkb = {
       layout = "us";
       variant = "";
@@ -173,12 +175,13 @@
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1"; # If your cursor becomes invisible
     NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland. Fix vscode..
+    LIBVA_DRIVER_NAME = "iHD";
   };
+
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   hardware = {
     graphics.enable = true;
-    nvidia.modesetting.enable = true; #Most wayland compositors need this
-
   };
 
   fonts.packages = with pkgs; [
