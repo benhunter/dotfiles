@@ -70,6 +70,26 @@
         # })
 
         ({ pkgs, ... }: {
+          config = {
+            xdg.portal = {
+              enable = true;
+              xdgOpenUsePortal = true;
+
+              extraPortals = with pkgs; [
+                xdg-desktop-portal-hyprland
+                xdg-desktop-portal-gtk
+              ];
+            };
+
+            # config = {
+            #   common = {
+            #     default = [ "hyprland" "gtk" ];
+            #   };
+            # };
+          };
+        })
+
+        ({ pkgs, ... }: {
           nixpkgs.overlays = [ rust-overlay.overlays.default ];
 
           # These two work:
