@@ -4,7 +4,7 @@
   inputs = {
     # NixOS official package source, using the nixos-23.11 branch here
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-26.05";
     # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # home-manager, used for managing user configuration
     home-manager = {
@@ -17,7 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin.url = "github:catppuccin/nix";
+    # catppuccin.url = "github:catppuccin/nix";
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -25,7 +25,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, rust-overlay, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, rust-overlay, ... }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem { # nixos is hostname
       system = "x86_64-linux";
       modules = [
@@ -42,13 +42,16 @@
           home-manager.users.ben = {
             imports = [
               ./home.nix
-              catppuccin.homeModules.catppuccin
+              # catppuccin.homeModules.catppuccin
             ];
+            # xdg.configFile."hypr/hyprland.conf".force = true; # TODO fix hyprland
           };
+
           # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+          # home-manager.backupFileExtension = "bak"; # TODO
         }
 
-        catppuccin.nixosModules.catppuccin
+        # catppuccin.nixosModules.catppuccin
 
         # ({ pkgs, ... }: let
         #   # Ensure the rust-overlay is applied

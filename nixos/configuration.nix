@@ -17,7 +17,7 @@
   nix.gc = {
     automatic = true;
     randomizedDelaySec = "14m";
-    options = "--delete-older-than 10d";
+    options = "--delete-older-than +10";
   };
 
   # Bootloader.
@@ -131,7 +131,6 @@
     ripgrep
     wev
     wl-clipboard
-    catppuccin-gtk
     zsh-powerlevel10k
   ];
 
