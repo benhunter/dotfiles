@@ -264,6 +264,8 @@ in
       pkgs.rust-analyzer
       pkgs.vimPlugins.copilot-lua
       ];
+    withRuby = true; # TODO legacy default pre-home manager 26.05
+    withPython3 = true; # TODO legacy default pre-home manager 26.05
     # package = neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
 
@@ -275,6 +277,7 @@ in
 
   programs.firefox = {
       enable = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox"; # TODO new default with home-manager 26.05
       # profiles.default = {
       #    # name = "Default";
       #    settings = {
