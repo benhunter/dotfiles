@@ -138,7 +138,7 @@ in
     leetup
     go
     nodejs_22
-    rustup
+    rustup # TODO fix rustup doc
     cargo-watch
     cargo-nextest
     cargo-generate
