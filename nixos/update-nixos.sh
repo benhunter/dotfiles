@@ -2,16 +2,15 @@
 
 set -euo pipefail
 
-cd ~/projects/dotfiles/nixos/
+script_dir=${0:a:h}
+cd "$script_dir"
 
 nix flake update
 nix flake check
 
-# Old build command
-# sudo cp -r ~/projects/dotfiles/nixos/* /etc/nixos/ &&
-# sudo nixos-rebuild switch
-#sudo nixos-rebuild switch --upgrade &&
-# nix-collect-garbage -d
+# nix flake show --json | jq -e --arg host "$host" '.nixosConfigurations[$host]' >/dev/null
 
-# New build command
-sudo nixos-rebuild switch --flake .#$(hostname)
+host=$(hostname)
+sudo nixos-rebuild switch --flake ".#$host"
+
+# nix-collect-garbage -d
