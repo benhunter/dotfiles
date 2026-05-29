@@ -125,9 +125,14 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Obsidian 1.4.16 needs an EOL version of Electron. This setting will allow Obsidian to use the latest version of Electron with Obsidian upgrades.
+  # Check what version of Obsidian is available:
+  # nix why-depends .#nixosConfigurations.nixos.config.system.build.toplevel nixpkgs#obsidian 
+  # Obsidian 1.12.7 needs an EOL version of Electron. This setting will allow Obsidian to use the latest version of Electron with Obsidian upgrades.
   nixpkgs.config.permittedInsecurePackages =
-    pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
+    pkgs.lib.optional (pkgs.obsidian.version == "1.12.7") "electron-39.8.10";
+    # [
+    #   "electron-39.8.10"
+    # ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
