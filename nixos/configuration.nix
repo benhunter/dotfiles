@@ -66,15 +66,6 @@
     };
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
-  };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
