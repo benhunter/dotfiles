@@ -101,8 +101,14 @@
   security.sudo.extraRules = [
     { users = [ "ben" ];
       commands = [
-        { command = "ALL" ;
-          options= [ "NOPASSWD" ]; # "SETENV" # Adding the following could be a good idea
+        { command = "${pkgs.systemd}/bin/systemctl reboot";
+          options = [ "NOPASSWD" ];
+        }
+        { command = "${pkgs.systemd}/bin/systemctl poweroff";
+          options = [ "NOPASSWD" ];
+        }
+        { command = "${pkgs.systemd}/bin/systemctl suspend";
+          options = [ "NOPASSWD" ];
         }
       ];
     }

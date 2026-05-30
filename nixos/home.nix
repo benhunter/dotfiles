@@ -101,6 +101,7 @@ in
     # it provides the command `nom` works just like `nix`
     # with more details log output
     nix-output-monitor
+    hydra-check
 
     # productivity
     tmux
@@ -123,6 +124,7 @@ in
     usbutils # lsusb
     powertop
     hyprlock
+    grimblast
 
     # system call monitoring
     strace # system call monitoring
@@ -137,11 +139,12 @@ in
     just
     leetup
     go
-    nodejs_22
+    nodejs_24
     rustup # TODO fix rustup doc
     cargo-watch
     cargo-nextest
     cargo-generate
+    codex
 
     # Hardware related
     brightnessctl # backlight

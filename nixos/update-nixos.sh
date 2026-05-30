@@ -7,6 +7,8 @@ cd "$script_dir"
 
 nix flake update
 nix flake check
+hydra-check --channel 26.05
+hydra-check bottles --channel 26.05
 
 # nix flake show --json | jq -e --arg host "$host" '.nixosConfigurations[$host]' >/dev/null
 
