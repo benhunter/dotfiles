@@ -146,3 +146,32 @@ export KUBECONFIG=~/kubeconfig
 #   flux completions:
 #command -v flux >/dev/null && . <(flux completion zsh)
 source /opt/homebrew/share/zsh/site-functions/_flux
+
+# uv python binaries
+export PATH="$HOME/.local/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/b2186555/.codeium/windsurf/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/b2186555/.codeium/windsurf/bin:$PATH"
+
+# bun completions
+[ -s "/Users/b2186555/.bun/_bun" ] && source "/Users/b2186555/.bun/_bun"
+
+# AWS Account Switcher
+actx() {
+  local profile
+  profile=$(
+    awk '
+      /^\[profile / { gsub(/^\[profile |\]$/, "", $0); print $0 }
+      /^\[/ && !/profile / { gsub(/^\[|\]$/, "", $0); print $0 }
+    ' ~/.aws/config ~/.aws/credentials 2>/dev/null \
+    | sort -u \
+    | fzf --prompt="AWS Profile > "
+  )
+  if [ -n "$profile" ]; then
+    export AWS_PROFILE="$profile"
+    echo "☁️  AWS_PROFILE set to: $AWS_PROFILE"
+  fi
+}
