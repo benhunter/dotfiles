@@ -11,7 +11,12 @@ choco export $backupDir\"$env:COMPUTERNAME.packages.config"
 # choco list --local-only > "$backupDir\choco-packages.txt"
 
 # Backup PowerShell profile
-Copy-Item $PROFILE $backupDir
+# Test if the profile exists before copying
+if (Test-Path $PROFILE) {
+    Copy-Item $PROFILE $backupDir
+} else {
+    Write-Host "PowerShell profile not found at $PROFILE"
+}
 
 # Backup Neovim configuration
 Copy-Item "$env:LOCALAPPDATA\nvim" "$backupDir\nvim" -Recurse
