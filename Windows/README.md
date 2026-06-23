@@ -85,7 +85,7 @@ Backup Profile
 cp $PROFILE .
 ```
 
-Restore Profile
+Restore Profile. [Powershell Profile docs](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.6#the-profile-variable)
 ```powershell
 cp Microsoft.PowerShell_profile.ps1 $PROFILE
 ```
