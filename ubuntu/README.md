@@ -24,6 +24,27 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 sudo apt install aqemu make git gcc
 ```
 
+## Default Terminal
+
+```
+sudo update-alternatives --config x-terminal-emulator
+```
+
 # Hack Nerd Font
 
 https://www.nerdfonts.com/
+
+1. Download zip file.
+2. Install font:
+
+```
+mkdir -p ~/.local/share/fonts
+unzip ~/Downloads/Hack.zip -d ~/.local/share/fonts/Hack
+fc-cache -fv
+fc-list | grep Hack
+```
+
+3. For GNOME Desktop, configure the system fonts with GNOME Tweaks.
+```
+sudo apt install gnome-tweaks
+```
