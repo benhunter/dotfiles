@@ -57,7 +57,12 @@ $neovimBackupPath = Join-Path $backupDir "nvim"
 Write-Host "[STEP ] Backing up Neovim configuration..."
 Write-Host "[INFO ] Source: $neovimSourcePath"
 Write-Host "[INFO ] Target: $neovimBackupPath"
-Copy-Item $neovimSourcePath $neovimBackupPath -Recurse
+if (!(Test-Path $neovimBackupPath)) {
+    New-Item -ItemType Directory -Path $neovimBackupPath | Out-Null
+    Write-Host "[DONE ] Created directory: $neovimBackupPath"
+}
+
+Copy-Item (Join-Path $neovimSourcePath "*") $neovimBackupPath -Recurse -Force
 Write-Host "[DONE ] Neovim backup complete"
 
 # Backup NPM global packages

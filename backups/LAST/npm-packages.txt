@@ -1,4 +1,4 @@
-C:\nvm4w\nodejs -> .\
-Γö£ΓöÇΓöÇ corepack@0.34.6
-ΓööΓöÇΓöÇ npm@11.12.1
+C:\Users\benja\AppData\Local\fnm_multishells\3288_1787502196055 -> .\
+Γö£ΓöÇΓöÇ corepack@0.32.0
+ΓööΓöÇΓöÇ npm@11.3.0
 
