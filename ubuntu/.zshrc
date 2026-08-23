@@ -67,6 +67,7 @@ export PATH="$HOME/projects/scripts/:$PATH"
 
 # Disk usage
 alias dush='du -sh * 2> /dev/null | sort -rh'
+alias dusha='du -sh *(D) 2>/dev/null | sort -rh'
 
 # go - installed binaries
 export PATH="/usr/local/go/bin:$PATH"
