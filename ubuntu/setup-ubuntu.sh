@@ -98,6 +98,8 @@ fi
 # Homebrew
 "$SCRIPT_DIR/../linux/install-homebrew.sh"
 
+brew install hub
+
 echo "Linking .gitconfig..."
 ln -sf $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
 
