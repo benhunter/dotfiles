@@ -34,6 +34,7 @@ Write-Host "[DONE ] Backup run logged in $backupReadmePath"
 $chocoExportPath = Join-Path $backupDir "$env:COMPUTERNAME.packages.config"
 Write-Host "[STEP ] Backing up Chocolatey packages..."
 Write-Host "[INFO ] Target: $chocoExportPath"
+# TODO: Remove or ignore *.backup files during backup runs to prevent committing duplicate .backup files
 choco export $chocoExportPath
 Write-Host "[DONE ] Chocolatey package export complete"
 # choco list --local-only > "$backupDir\choco-packages.txt"
