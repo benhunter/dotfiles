@@ -52,17 +52,24 @@ dotfiles/
 │
 ├── hosts/                           # Layer 3: Host-specific overrides & extra packages
 │   │
-│   ├── CONAN/                       # Host: CONAN (Windows workstation)
+│   ├── CONAN/                       # Host: CONAN (Windows workstation / WSL)
 │   │   ├── packages.config          # CONAN-specific packages (Visual Studio, CUDA, gradle)
-│   │   ├── host-profile.ps1         # CONAN environment variables (SDK paths, local aliases)
+│   │   ├── host-profile.ps1         # CONAN Windows PowerShell environment
+│   │   ├── zshrc.zsh                # CONAN WSL/Linux Zsh environment (Ruby paths, etc.)
 │   │   └── terminal-settings.json   # CONAN-specific theme override (Catppuccin Mocha)
 │   │
 │   ├── LAST/                        # Host: LAST (Windows portable / dev machine)
 │   │   ├── packages.config          # LAST-specific packages (fnm, tinytex, zeal)
-│   │   └── host-profile.ps1         # LAST-specific environment (node, fnm hooks)
+│   │   ├── host-profile.ps1         # LAST Windows PowerShell environment
+│   │   └── zshrc.zsh                # LAST WSL/Linux Zsh environment (fnm, local paths)
+│   │
+│   ├── dev-00/                      # Host: dev-00 (Linux development server)
+│   │   ├── zshrc.zsh                # dev-00 Zsh overrides (kubectl plugin, opencode PATH)
+│   │   └── packages.txt             # dev-00 supplemental packages
 │   │
 │   ├── spidey-raspi5/               # Host: Raspberry Pi 5
 │   │   ├── setup.sh                 # Headless server provisioning
+│   │   ├── zshrc.zsh                # Pi Zsh overrides
 │   │   └── podman/                  # Podman container configs
 │   │
 │   └── nixos/                       # Host: NixOS machine
@@ -84,7 +91,7 @@ dotfiles/
 
 ## 🧩 How Multi-Host Composition Works
 
-### 1. PowerShell Profile Composition
+### 1. PowerShell Profile Composition (Windows)
 The base profile (`os/windows/Microsoft.PowerShell_profile.ps1`) establishes common utilities, then dynamically sources the host-specific file if present:
 
 ```powershell
@@ -103,11 +110,37 @@ if (Test-Path $hostProfile) {
 }
 ```
 
-### 2. Package Management Composition
-* **Base Layer:** `os/windows/packages-base.config` installs core essentials (`git`, `neovim`, `microsoft-windows-terminal`, `hack-nerd-font`).
-* **Host Layer:** The installation script automatically checks `hosts/$env:COMPUTERNAME/packages.config` and installs supplemental tools (e.g. `visualstudio2022buildtools` on CONAN, `tinytex` on LAST).
+### 2. Zsh Shell Composition (macOS & Linux / WSL)
+The base Zsh configuration (`os/linux/.zshrc` and `os/macos/.zshrc`) loads shared aliases, base plugins, and prompt themes, then dynamically sources host-specific additions and extra plugins:
 
-### 3. Git Identity & Platform Includes
+```zsh
+# 1. Universal aliases & themes
+[[ -f "$DOTFILES_DIR/common/shell/aliases.sh" ]] && source "$DOTFILES_DIR/common/shell/aliases.sh"
+[[ -f "$DOTFILES_DIR/common/shell/p10k.zsh" ]] && source "$DOTFILES_DIR/common/shell/p10k.zsh"
+
+# 2. Base plugins (git, zsh-autosuggestions, fzf)
+plugins=(git zsh-autosuggestions fzf $ZSH_PLUGINS_EXTRA)
+
+# 3. Host-specific Zsh overrides & additions (e.g. hosts/CONAN/zshrc.zsh, hosts/dev-00/zshrc.zsh)
+HOST_ZSH="$DOTFILES_DIR/hosts/$(hostname)/zshrc.zsh"
+if [[ -f "$HOST_ZSH" ]]; then
+    source "$HOST_ZSH"
+fi
+
+# 4. Optional uncommitted local machine overrides
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+```
+
+**What can `hosts/<hostname>/zshrc.zsh` provide?**
+* **Host-specific plugins:** e.g. `ZSH_PLUGINS_EXTRA=(kubectl helm docker)` on development servers.
+* **Host-specific paths & env vars:** e.g. CUDA paths, Ruby gem directories, Opencode paths (`$HOME/.opencode/bin`), or AI infra variables (`PAI_DIR`, `DA`, `TIME_ZONE`).
+* **Hardware/Network commands:** Specific display outputs (`xrandr`), proxy exports, or AWS profiles (`actx`).
+
+### 3. Package Management Composition
+* **Base Layer:** `os/windows/packages-base.config` installs core essentials (`git`, `neovim`, `microsoft-windows-terminal`, `hack-nerd-font`).
+* **Host Layer:** The installation script automatically checks `hosts/$env:COMPUTERNAME/packages.config` (Windows) or `hosts/$(hostname)/packages.txt` (Linux/macOS) and installs supplemental tools (e.g. `visualstudio2022buildtools` on CONAN, `tinytex` on LAST).
+
+### 4. Git Identity & Platform Includes
 `common/.gitconfig` defines shared aliases, colors, and delta pager settings, finishing with an include directive:
 
 ```ini
