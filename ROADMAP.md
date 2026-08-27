@@ -210,11 +210,11 @@ Machine-specific emails, GPG signing keys, or work identities live in `~/.gitcon
 
 ### Phase 4: Performance & Path Standardization ⚡
 
-- [ ] **Eliminate Shell Startup Lag in `mac/.zshrc`**
+- [x] **Eliminate Shell Startup Lag in `mac/.zshrc`**
   - Replace synchronous subshell `$(brew --prefix)` for Google Cloud SDK with static path check or precomputed `HOMEBREW_PREFIX`.
   - Replace `. $(pack completion --shell zsh)` with pre-generated completions in `fpath`.
   - Reduce `HISTSIZE=1000000000` to a reasonable in-memory size (e.g. `50000`).
-- [ ] **Remove Hardcoded Usernames & Machine Paths**
+- [x] **Remove Hardcoded Usernames & Machine Paths**
   - Replace `/Users/b2186555/...` in `mac/.zshrc` with `$HOME` variables.
   - Replace `/home/ben/...` in `ubuntu/.zshrc` with `$HOME` / `~`.
   - Replace hardcoded Kubo path (`C:\Program Files\kubo_v0.24.0\kubo`) with dynamic PATH in CONAN host profile or package manager shim.
@@ -226,13 +226,13 @@ Machine-specific emails, GPG signing keys, or work identities live in `~/.gitcon
 - [x] **Establish `common/`, `os/`, and `hosts/` Directories**
   - Populate `common/` with canonical `.gitconfig`, `.ideavimrc`, `.tmux.conf`, and `nvim/`.
   - Populate `hosts/CONAN/` and `hosts/LAST/` with their respective packages and profile overrides.
-- [ ] **Unify Neovim Configurations**
-  - Standardize on a single canonical NvChad v2.5 configuration under `common/nvim/`.
-  - Configure conditional handling for VSCode Neovim vs standalone terminal Neovim in a single config.
+- [x] **Manage VSCode Neovim & Standalone NvChad**
+  - Standalone Neovim: Tracked in separate `benhunter/nvchad-config` repository.
+  - VSCode Neovim: Tracked in `common/nvim/vscode.lua` and linked to `~/.config/nvim/vscode.lua` (loaded via `"vscode-neovim.neovimInitPath": "~/.config/nvim/vscode.lua"`).
 - [x] **Modularize Git Configuration with `[include]`**
   - Place shared aliases, colors, delta pager settings, and default branch in `common/.gitconfig`.
   - Use `[include]` / `[includeIf]` for platform-specific and work-specific overrides.
 - [ ] **Consolidate Distro Setup Scripts**
   - Merge overlapping setup scripts (`setup-ubuntu.sh`, `bootstrap-ubuntu.sh`, `setup-xubuntu.sh`, `setup-wsl-ubuntu.sh`) into a streamlined `os/linux/setup-linux.sh`.
-- [ ] **Implement Symlink Automation**
+- [x] **Implement Symlink Automation**
   - Create `scripts/Install-Symlinks.ps1` (Windows) and `scripts/install-symlinks.sh` (POSIX) to manage symlinks automatically.

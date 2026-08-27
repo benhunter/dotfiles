@@ -34,14 +34,14 @@ export VISUAL=$EDITOR
 
 
 # fnm
-FNM_PATH="/home/$USER/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/$USER/.local/share/fnm:$PATH"
+  export PATH="$HOME/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
 
 # fd
-export PATH="/home/$USER/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # 2024-02 AOS MCSO
 # Project 1
@@ -111,14 +111,14 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 alias dcp='docker compose'
 
 # bun
-[ -s "/home/ben/.bun/_bun" ] && source "/home/ben/.bun/_bun" # bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun" # bun completions
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/ben/.zsh/completions:"* ]]; then export FPATH="/home/ben/.zsh/completions:$FPATH"; fi
+if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
 
-. "/home/ben/.deno/env"
+[ -f "$HOME/.deno/env" ] && . "$HOME/.deno/env"
 
 export PAI_DIR="$HOME/.codex/"
 

@@ -25,7 +25,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.secrets.zshrc
+[[ -f "$HOME/.secrets.zshrc" ]] && source "$HOME/.secrets.zshrc"
 
 # Open DBeaver installed by Homebrew without admin permissions
 alias dbeaver="open /usr/local/Caskroom/dbeaver-community/21.2.1/DBeaver.app"
@@ -116,8 +116,9 @@ eval "$(fnm env --use-on-cd)" # fnm - Fast node manager
 # CTRL-r	Fuzzy find through your shell history, and output the selection to STDOUT.
 
 # gcloud
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-/opt/homebrew}"
+[[ -f "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.zsh.inc" ]] && source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.zsh.inc"
+[[ -f "$HOMEBREW_PREFIX/share/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOMEBREW_PREFIX/share/google-cloud-sdk/completion.zsh.inc"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -130,7 +131,9 @@ export ANDROID_HOME=$HOME/Library/Android/sdk && \
   export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # pack CLI
-. $(pack completion --shell zsh)
+if command -v pack >/dev/null 2>&1; then
+  eval "$(pack completion --shell zsh 2>/dev/null)"
+fi
 
 # 2024-05-07 atuin
 eval "$(atuin init zsh)"
@@ -145,19 +148,16 @@ export KUBECONFIG=~/kubeconfig
 #   brew install fluxcd/tap/flux
 #   flux completions:
 #command -v flux >/dev/null && . <(flux completion zsh)
-source /opt/homebrew/share/zsh/site-functions/_flux
+[[ -f /opt/homebrew/share/zsh/site-functions/_flux ]] && source /opt/homebrew/share/zsh/site-functions/_flux
 
 # uv python binaries
 export PATH="$HOME/.local/bin:$PATH"
 
-# Added by Windsurf
-export PATH="/Users/b2186555/.codeium/windsurf/bin:$PATH"
-
-# Added by Windsurf
-export PATH="/Users/b2186555/.codeium/windsurf/bin:$PATH"
+# Windsurf CLI
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 
 # bun completions
-[ -s "/Users/b2186555/.bun/_bun" ] && source "/Users/b2186555/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # AWS Account Switcher
 actx() {
