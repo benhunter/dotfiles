@@ -1,12 +1,15 @@
 # Dotfiles Cleanup & Modernization Roadmap
 
-This document outlines the target architecture, modular structure, and phase-by-phase cleanup tasks to improve the **organization**, **simplicity**, **security**, and **maintainability** of this dotfiles repository.
+This document outlines the target architecture, 3-layer modular structure, and phase-by-phase cleanup tasks to improve the **organization**, **simplicity**, **security**, and **maintainability** of this dotfiles repository across multiple operating systems and specific host machines.
 
 ---
 
-## 🎯 Target Directory Structure
+## 🎯 Target Directory Structure (Layered Architecture)
 
-The goal is to transition from fragmented, distro-specific directories into a clean, modular structure where shared configurations are centralized in `common/` and OS-specific setup scripts live in `os/`:
+The repository uses a **3-Layer Inheritance Pattern (Common $\rightarrow$ OS $\rightarrow$ Host)**:
+1. **`common/`**: Universal dotfiles shared across all operating systems and machines.
+2. **`os/`**: Platform-specific defaults, package bases, and bootstrap scripts (Windows, macOS, Linux).
+3. **`hosts/`**: Machine-specific configurations, environment paths, hardware overrides, and supplemental package lists (e.g., `CONAN`, `LAST`, `spidey-raspi5`).
 
 ```text
 dotfiles/
@@ -15,50 +18,104 @@ dotfiles/
 ├── README.md
 ├── ROADMAP.md
 │
-├── common/                          # Cross-platform, shared configurations
+├── common/                          # Layer 1: Universal configs (All OS & Hosts)
 │   ├── .gitconfig                  # Base gitconfig (aliases, colors, delta, defaults)
-│   ├── .ideavimrc                  # Canonical IdeaVim config
-│   ├── .tmux.conf                  # Canonical tmux configuration (TPM + theme)
-│   ├── nvim/                       # Unified modern Neovim setup (NvChad v2.5)
+│   ├── .ideavimrc                  # Shared IdeaVim keymaps
+│   ├── .tmux.conf                  # Shared Tmux configuration (TPM + theme)
+│   ├── nvim/                       # Unified Neovim configuration (NvChad v2.5)
 │   │   ├── init.lua
 │   │   └── lua/
-│   ├── shell/                      # Shared shell configurations
-│   │   ├── aliases.sh              # Cross-platform aliases (gs, dcp, nv, lsd, etc.)
-│   │   └── p10k.zsh                # Powerlevel10k theme configuration
+│   ├── shell/                      # Shared shell definitions
+│   │   ├── aliases.sh              # Cross-platform aliases (gs, nv, dcp, lsd, etc.)
+│   │   └── p10k.zsh                # Powerlevel10k prompt theme
 │   └── browser-plugins/            # Browser extension settings & uBlock filters
 │       ├── ublock-filters.txt
 │       └── vimium-options.json
 │
-├── os/                              # Platform-specific configurations & bootstraps
-│   ├── macos/                      # macOS (Darwin) configs & scripts
-│   │   ├── .zshrc
-│   │   ├── Brewfile
+├── os/                              # Layer 2: OS-level defaults & tooling
+│   ├── windows/
+│   │   ├── Microsoft.PowerShell_profile.ps1 # Base Windows profile (loads common + host)
+│   │   ├── terminal-settings.json           # Default terminal settings (Nord + Catppuccin)
+│   │   ├── packages-base.config             # Core Windows packages (Git, Neovim, Terminal, 7zip)
+│   │   ├── backup-windows.ps1               # Automated backup utility
+│   │   └── scripts/                         # Windows debloat / utility scripts
+│   ├── macos/
+│   │   ├── .zshrc                           # Base macOS zshrc (loads common + host)
+│   │   ├── Brewfile.base                    # Core macOS CLI tools & casks
 │   │   ├── backup-mac.sh
 │   │   ├── setup-mac.sh
-│   │   └── iterm/
-│   ├── linux/                      # Generic Linux & Ubuntu/Debian configs
-│   │   ├── .zshrc
-│   │   ├── backup-ubuntu.sh
-│   │   ├── setup-ubuntu.sh
-│   │   └── packages/
-│   ├── windows/                    # Windows 10/11 configs & scripts
-│   │   ├── Microsoft.PowerShell_profile.ps1
-│   │   ├── terminal-settings.json  # Windows Terminal (Nord + Catppuccin)
-│   │   ├── backup-windows.ps1
-│   │   └── install-packages.ps1    # Scoop / Winget / Choco installs
-│   └── nixos/                      # Declarative NixOS configuration
+│   │   └── iterm/                           # iTerm2 themes & settings
+│   └── linux/
+│       ├── .zshrc                           # Base Linux zshrc
+│       ├── backup-linux.sh
+│       └── setup-linux.sh                   # Unified Linux bootstrap script
+│
+├── hosts/                           # Layer 3: Host-specific overrides & extra packages
+│   │
+│   ├── CONAN/                       # Host: CONAN (Windows workstation)
+│   │   ├── packages.config          # CONAN-specific packages (Visual Studio, CUDA, gradle)
+│   │   ├── host-profile.ps1         # CONAN environment variables (SDK paths, local aliases)
+│   │   └── terminal-settings.json   # CONAN-specific theme override (Catppuccin Mocha)
+│   │
+│   ├── LAST/                        # Host: LAST (Windows portable / dev machine)
+│   │   ├── packages.config          # LAST-specific packages (fnm, tinytex, zeal)
+│   │   └── host-profile.ps1         # LAST-specific environment (node, fnm hooks)
+│   │
+│   ├── spidey-raspi5/               # Host: Raspberry Pi 5
+│   │   ├── setup.sh                 # Headless server provisioning
+│   │   └── podman/                  # Podman container configs
+│   │
+│   └── nixos/                       # Host: NixOS machine
 │       ├── flake.nix
-│       ├── home.nix
-│       └── configuration.nix
+│       ├── configuration.nix
+│       └── home.nix
 │
 ├── backups/                         # Historical host backups (temporary reference)
 │   ├── CONAN/
 │   └── LAST/
 │
 └── scripts/                         # Repository maintenance & installation utilities
-    ├── install-symlinks.sh         # Symlinking script (or GNU Stow / chezmoi wrapper)
+    ├── install-symlinks.sh          # Linux/macOS symlinker (or GNU Stow wrapper)
+    ├── Install-Symlinks.ps1         # Windows symlinker
     └── functions.sh
 ```
+
+---
+
+## 🧩 How Multi-Host Composition Works
+
+### 1. PowerShell Profile Composition
+The base profile (`os/windows/Microsoft.PowerShell_profile.ps1`) establishes common utilities, then dynamically sources the host-specific file if present:
+
+```powershell
+# 1. Load universal aliases
+$commonAliases = "$PSScriptRoot\..\..\common\shell\aliases.ps1"
+if (Test-Path $commonAliases) { . $commonAliases }
+
+# 2. Base functions & tab completion (Watch-Command, git-aliases, choco completion)
+# ...
+
+# 3. Dynamically source host profile
+$hostProfile = "$PSScriptRoot\..\..\hosts\$env:COMPUTERNAME\host-profile.ps1"
+if (Test-Path $hostProfile) {
+    Write-Host "[INFO] Sourcing host profile: $hostProfile" -ForegroundColor Cyan
+    . $hostProfile
+}
+```
+
+### 2. Package Management Composition
+* **Base Layer:** `os/windows/packages-base.config` installs core essentials (`git`, `neovim`, `microsoft-windows-terminal`, `hack-nerd-font`).
+* **Host Layer:** The installation script automatically checks `hosts/$env:COMPUTERNAME/packages.config` and installs supplemental tools (e.g. `visualstudio2022buildtools` on CONAN, `tinytex` on LAST).
+
+### 3. Git Identity & Platform Includes
+`common/.gitconfig` defines shared aliases, colors, and delta pager settings, finishing with an include directive:
+
+```ini
+[include]
+    path = ~/.gitconfig.local
+```
+
+Machine-specific emails, GPG signing keys, or work identities live in `~/.gitconfig.local` without modifying tracked repository files.
 
 ---
 
@@ -99,9 +156,9 @@ dotfiles/
   - [ ] Remove `mac/.ideavimrc` (10-byte placeholder; root `.ideavimrc` is canonical).
 - [ ] **Consolidate Package Lists & Remove Bloated Package Dumps**
   - [ ] Remove `endeavouros-i3/pacman/pacman-q-all-installed-packages.txt` (keep explicit list `pacman-packages.txt`).
-  - [ ] Remove duplicate `Windows/choco/` directory once reconciled with `backups/` and `Windows/install-choco-packages.ps1`.
+  - [ ] Remove duplicate `Windows/choco/` directory once reconciled with `hosts/` and `Windows/install-choco-packages.ps1`.
 - [ ] **Evaluate Host-Specific & Reference Files**
-  - [ ] Review `ubuntu/.zshrc.conan`, `ubuntu/.zshrc.dev-00`, `ubuntu/.zshrc.last` and retire or fold into standard paths.
+  - [ ] Review `ubuntu/.zshrc.conan`, `ubuntu/.zshrc.dev-00`, `ubuntu/.zshrc.last` and migrate unique settings to `hosts/<hostname>/`.
   - [ ] Remove `kali-live/.zshrc.default` if stock reference is no longer needed.
   - [ ] Review `.tmux.conf.nested` (integrate F12 prefix toggle into main `.tmux.conf` or remove).
 
@@ -127,25 +184,22 @@ dotfiles/
 - [ ] **Remove Hardcoded Usernames & Machine Paths**
   - Replace `/Users/b2186555/...` in `mac/.zshrc` with `$HOME` variables.
   - Replace `/home/ben/...` in `ubuntu/.zshrc` with `$HOME` / `~`.
-  - Replace hardcoded Kubo path (`C:\Program Files\kubo_v0.24.0\kubo`) in Windows PowerShell profile with dynamic PATH or package manager shim.
+  - Replace hardcoded Kubo path (`C:\Program Files\kubo_v0.24.0\kubo`) with dynamic PATH in CONAN host profile or package manager shim.
 
 ---
 
 ### Phase 5: Modularization & Architecture Unification 🏗️
 
+- [ ] **Establish `common/`, `os/`, and `hosts/` Directories**
+  - Populate `common/` with canonical `.gitconfig`, `.ideavimrc`, `.tmux.conf`, and `nvim/`.
+  - Populate `hosts/CONAN/` and `hosts/LAST/` with their respective packages and profile overrides.
 - [ ] **Unify Neovim Configurations**
   - Standardize on a single canonical NvChad v2.5 configuration under `common/nvim/`.
   - Configure conditional handling for VSCode Neovim vs standalone terminal Neovim in a single config.
 - [ ] **Modularize Git Configuration with `[include]`**
   - Place shared aliases, colors, delta pager settings, and default branch in `common/.gitconfig`.
-  - Use `[include]` / `[includeIf]` for platform-specific and work-specific overrides:
-    ```ini
-    [include]
-        path = ~/.gitconfig.local
-    [includeIf "gitdir:~/work/"]
-        path = ~/.gitconfig-work
-    ```
+  - Use `[include]` / `[includeIf]` for platform-specific and work-specific overrides.
 - [ ] **Consolidate Distro Setup Scripts**
-  - Merge overlapping setup scripts (`setup-ubuntu.sh`, `bootstrap-ubuntu.sh`, `setup-xubuntu.sh`, `setup-wsl-ubuntu.sh`) into a streamlined `os/linux/setup.sh`.
-- [ ] **Adopt Modern Dotfile Symlink Management**
-  - Implement a central symlinking workflow (e.g. GNU Stow, chezmoi, or a lightweight `scripts/install-symlinks.sh`) to eliminate manual copying.
+  - Merge overlapping setup scripts (`setup-ubuntu.sh`, `bootstrap-ubuntu.sh`, `setup-xubuntu.sh`, `setup-wsl-ubuntu.sh`) into a streamlined `os/linux/setup-linux.sh`.
+- [ ] **Implement Symlink Automation**
+  - Create `scripts/Install-Symlinks.ps1` (Windows) and `scripts/install-symlinks.sh` (POSIX) to manage symlinks automatically.
