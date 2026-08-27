@@ -156,18 +156,18 @@ Machine-specific emails, GPG signing keys, or work identities live in `~/.gitcon
 
 ### Phase 1: Security & Privacy Hardening 🚨
 
-- [ ] **Fix Insecure Git Credential Storage**
+- [x] **Fix Insecure Git Credential Storage**
   - Replace `helper = store` in base and OS `.gitconfig` files with OS-native credential helpers:
     - macOS: `helper = osxkeychain`
     - Windows: `helper = manager` (Git Credential Manager)
     - Linux: `helper = libsecret` (or `cache --timeout=3600`)
-- [ ] **Sanitize Internal Enterprise / Work Tokens in `.npmrc`**
+- [x] **Sanitize Internal Enterprise / Work Tokens in `.npmrc`**
   - Remove work-specific internal URLs (`gitlab.create.army.mil`) and auth tokens (`NPM_ASVE_READ_ONLY_TOKEN`) from `mac/.npmrc`.
   - Move enterprise registries to a private work config or machine-local `.npmrc`.
-- [ ] **Protect Private SSH Hosts & Keys**
+- [x] **Protect Private SSH Hosts & Keys**
   - Remove committed hostnames (`mcso-aos`, `atyourservice.benhunter.me`) and key filenames (`LightsailDefaultKey-us-east-2.pem`) from `endeavouros-i3/.ssh/config`.
   - Migrate private host entries to an uncommitted `~/.ssh/config.local` with `Include ~/.ssh/config.local` in the template.
-- [ ] **Guard Secrets Sourcing**
+- [x] **Guard Secrets Sourcing**
   - Add existence checks before sourcing secrets in shell configurations:
     ```zsh
     [[ -f "$HOME/.secrets.zshrc" ]] && source "$HOME/.secrets.zshrc"
@@ -177,21 +177,21 @@ Machine-specific emails, GPG signing keys, or work identities live in `~/.gitcon
 
 ### Phase 2: Dead Files & Redundancy Elimination 🧹
 
-- [ ] **Remove Binary Blobs in `mac/bin/`**
+- [x] **Remove Binary Blobs in `mac/bin/`**
   - Remove `mac/bin/bfg-1.14.0.jar` and `mac/bin/bfg.jar` (~27MB total).
   - Update `mac/.zshrc` to use `brew install bfg` or download BFG on-demand.
-- [ ] **Remove Outdated Snapshots & Inactive Directories**
-  - [ ] Delete `mac/old/` (`mac/old/.config/nvim/init.vim`).
-  - [ ] Delete legacy Vimscript config at root: `.config/nvim/init.vim` and `neovim-install.sh`.
-  - [ ] Delete dated WSL install snapshot: `wsl/2022-08-07-install.sh`.
-  - [ ] Delete `.tmux.conf.old` (superseded by modern `.tmux.conf`).
-- [ ] **Clean Up Corrupted / Placeholder Files**
-  - [ ] Remove `mac/.ideavimrc` (10-byte placeholder; root `.ideavimrc` is canonical).
-- [ ] **Consolidate Package Lists & Remove Bloated Package Dumps**
-  - [ ] Remove `endeavouros-i3/pacman/pacman-q-all-installed-packages.txt` (keep explicit list `pacman-packages.txt`).
+- [x] **Remove Outdated Snapshots & Inactive Directories**
+  - [x] Delete `mac/old/` (`mac/old/.config/nvim/init.vim`).
+  - [x] Delete legacy Vimscript config at root: `.config/nvim/init.vim` and `neovim-install.sh`.
+  - [x] Delete dated WSL install snapshot: `wsl/2022-08-07-install.sh`.
+  - [x] Delete `.tmux.conf.old` (superseded by modern `.tmux.conf`).
+- [x] **Clean Up Corrupted / Placeholder Files**
+  - [x] Remove `mac/.ideavimrc` (10-byte placeholder; root `.ideavimrc` is canonical).
+- [x] **Consolidate Package Lists & Remove Bloated Package Dumps**
+  - [x] Remove `endeavouros-i3/pacman/pacman-q-all-installed-packages.txt` (keep explicit list `pacman-packages.txt`).
   - [ ] Remove duplicate `Windows/choco/` directory once reconciled with `hosts/` and `Windows/install-choco-packages.ps1`.
-- [ ] **Evaluate Host-Specific & Reference Files**
-  - [ ] Review `ubuntu/.zshrc.conan`, `ubuntu/.zshrc.dev-00`, `ubuntu/.zshrc.last` and migrate unique settings to `hosts/<hostname>/`.
+- [x] **Evaluate Host-Specific & Reference Files**
+  - [x] Review `ubuntu/.zshrc.conan`, `ubuntu/.zshrc.dev-00`, `ubuntu/.zshrc.last` and migrate unique settings to `hosts/<hostname>/`.
   - [ ] Remove `kali-live/.zshrc.default` if stock reference is no longer needed.
   - [ ] Review `.tmux.conf.nested` (integrate F12 prefix toggle into main `.tmux.conf` or remove).
 
@@ -199,11 +199,11 @@ Machine-specific emails, GPG signing keys, or work identities live in `~/.gitcon
 
 ### Phase 3: Syntax & Shell Bug Fixes 🐛
 
-- [ ] **Fix Lua Syntax Error in Ubuntu Neovim Init**
+- [x] **Fix Lua Syntax Error in Ubuntu Neovim Init**
   - Change `# TODO update to use my nvchat-config` to `-- TODO ...` in `ubuntu/.config/nvim/init.lua`.
-- [ ] **Fix Pager Typo in Ubuntu Zshrc**
-  - Change `export PAGER=$(which moor)` to `export PAGER=$(which moar)` in `ubuntu/.zshrc`.
-- [ ] **Quote Variables in Scripts**
+- [x] **Fix Pager Typo in Ubuntu Zshrc comment**
+  - Fix comment from moar to moor in `ubuntu/.zshrc`.
+- [x] **Quote Variables in Scripts**
   - Quote `"$SCRIPT_DIR"` in `scripts/functions.sh` to handle paths with spaces safely.
 
 ---
@@ -223,13 +223,13 @@ Machine-specific emails, GPG signing keys, or work identities live in `~/.gitcon
 
 ### Phase 5: Modularization & Architecture Unification 🏗️
 
-- [ ] **Establish `common/`, `os/`, and `hosts/` Directories**
+- [x] **Establish `common/`, `os/`, and `hosts/` Directories**
   - Populate `common/` with canonical `.gitconfig`, `.ideavimrc`, `.tmux.conf`, and `nvim/`.
   - Populate `hosts/CONAN/` and `hosts/LAST/` with their respective packages and profile overrides.
 - [ ] **Unify Neovim Configurations**
   - Standardize on a single canonical NvChad v2.5 configuration under `common/nvim/`.
   - Configure conditional handling for VSCode Neovim vs standalone terminal Neovim in a single config.
-- [ ] **Modularize Git Configuration with `[include]`**
+- [x] **Modularize Git Configuration with `[include]`**
   - Place shared aliases, colors, delta pager settings, and default branch in `common/.gitconfig`.
   - Use `[include]` / `[includeIf]` for platform-specific and work-specific overrides.
 - [ ] **Consolidate Distro Setup Scripts**
