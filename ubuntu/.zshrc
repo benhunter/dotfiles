@@ -79,7 +79,7 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 # direnv hook
 eval "$(direnv hook zsh)"
 
-# moar as pager
+# moor as pager
 export PAGER=$(which moor)
 
 # 2024-11-28 MCSO PS Lab 5
@@ -102,8 +102,8 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# Load secrets
-source $HOME/.secrets.zshrc
+# Load secrets if present
+[[ -f "$HOME/.secrets.zshrc" ]] && source "$HOME/.secrets.zshrc"
 
 # Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

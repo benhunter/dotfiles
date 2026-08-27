@@ -1,4 +1,4 @@
-# TODO update to use my nvchat-config
+-- TODO update to use my nvchad-config
 if vim.g.vscode then
     -- VSCode Neovim extension
   require "core"

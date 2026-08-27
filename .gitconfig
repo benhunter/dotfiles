@@ -1,5 +1,5 @@
 [credential]
-	helper = store
+	helper = manager
 [user]
 	name = Ben Hunter
 	email = code@benhunter.me

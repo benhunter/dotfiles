@@ -1,6 +1,0 @@
-# opencode
-export PATH=/home/ben/.opencode/bin:$PATH
-
-export PATH=/home/ben/projects/scripts/:$PATH
-
-export ZSH_PLUGINS_EXTRA="kubectl"

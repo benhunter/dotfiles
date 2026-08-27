@@ -1,0 +1,28 @@
+[credential]
+	helper = manager
+
+[user]
+	name = Ben Hunter
+	email = code@benhunter.me
+
+[init]
+	defaultBranch = main
+
+[alias]
+	st = status -sb
+	co = checkout
+	br = branch
+	c = commit -m
+	ca = commit --amend --reuse-message=HEAD
+	df = diff HEAD
+	dfs = diff --staged
+	unadd = reset HEAD --
+
+[color]
+	ui = auto
+
+[push]
+	default = simple
+
+[include]
+	path = ~/.gitconfig.local
