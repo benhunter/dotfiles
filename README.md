@@ -21,3 +21,17 @@ My dotfiles, config, preference, settings, etc
 ## Obsidian
 
 - [obsidian-pandoc](https://github.com/OliverBalfour/obsidian-pandoc)
+
+## Homebrew
+
+Repair broken packages:
+```
+brew list --formula | while read f; do brew reinstall "$f" || true; done
+```
+
+Full reinstall:
+```
+brew bundle dump --file=~/Brewfile
+# later, if needed:
+brew bundle install --file=~/Brewfile
+```
