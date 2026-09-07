@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
@@ -7,9 +7,8 @@ curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Atuin config
+mkdir -p "$HOME/.config/atuin"
 cp "$SCRIPT_DIR/.config/atuin/config.toml" "$HOME/.config/atuin/"
-
-echo "Done"; exit 0 # TODO remove
 
 # TODO only chsh if needed
 # chsh -s $(which zsh)
@@ -21,71 +20,70 @@ echo "Installing: pacman packages..."
 yay --noconfirm --answerdiff=None --answeredit=None
 # Alternative to yay:
 #   sudo pacman -Syu # Always run before installing packages.
-for x in $(cat "$SCRIPT_DIR/pacman/pacman-packages.txt"); do 
+while IFS= read -r x <&3 || [ -n "$x" ]; do
+  [ -z "$x" ] && continue
   echo "  Installing: $x"
-  yay -S --needed $x
-done
+  yay -S --needed "$x"
+done 3< "$SCRIPT_DIR/pacman/pacman-packages.txt"
 
 # .zshrc
 echo "Backing up and linking .zshrc..."
-# TODO does .bak exist?
-if [ ! -f "$HOME/.zshrc.bak"]; then
+if [ -e "$HOME/.zshrc" ] || [ -L "$HOME/.zshrc" ]; then
+  if [ -e "$HOME/.zshrc.bak" ] || [ -L "$HOME/.zshrc.bak" ]; then
+    echo "Could not back up .zshrc, found a .zshrc.bak"
+    echo "Error: stopping setup"
+    exit 1
+  fi
   echo "Backing up .zshrc"
-  mv $HOME/.zshrc $HOME/.zshrc.bak
-else
-  echo "Could not back up .zshrc, found a .zshrc.bak"
-  echo "Error: stopping setup"
-  exit 1
+  mv "$HOME/.zshrc" "$HOME/.zshrc.bak" || exit 1
 fi
 
 echo "Linking ~/.zshrc"
-ln -s $SCRIPT_DIR/.zshrc $HOME/.zshrc
+ln -s "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
 
 echo "Linking .gitconfig..."
-ln -s $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
+ln -s "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
 
 # Tmux
 echo "Linking .tmux.conf..."
-ln -s $SCRIPT_DIR/../.tmux.conf $HOME/.tmux.conf
+ln -s "$SCRIPT_DIR/../.tmux.conf" "$HOME/.tmux.conf"
 echo "Installing Tmux plugins..."
-git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-$HOME/.tmux/plugins/tpm/bin/update_plugins all
+git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+"$HOME/.tmux/plugins/tpm/bin/update_plugins" all
 echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
 
 # Rust
-if ! type "cargo" &> /dev/null; then
+if ! command -v cargo >/dev/null 2>&1; then
   echo "Installing: Rust, cargo"
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  source "$HOME/.cargo/env"
 else
   echo "Skipping install: Rust, cargo"
 fi
 
 # bottom
-if ! type "btm" &> /dev/null; then
+if ! command -v btm >/dev/null 2>&1; then
   echo "Installing: bottom"
   cargo install bottom --locked
 else
   echo "Skipping install: bottom"
 fi
 
-COMMAND='cargo nextest'
-if ! type "$COMMAND" &> /dev/null; then
+if ! cargo nextest --version >/dev/null 2>&1; then
   echo "Installing: cargo-nextest"
   cargo install cargo-nextest --locked
 else
   echo "Skipping install: cargo-nextest"
 fi
 
-COMMAND='cargo watch'
-if ! type "$COMMAND" &> /dev/null; then
+if ! cargo watch --version >/dev/null 2>&1; then
   echo "Installing: cargo-watch"
   cargo install cargo-watch
 else
   echo "Skipping install: cargo-watch"
 fi
 
-COMMAND='fnm'
-if ! type "$COMMAND" &> /dev/null; then
+if ! command -v fnm >/dev/null 2>&1; then
   echo "Installing: Fast Node Manager, fnm"
   cargo install fnm
 else
@@ -100,6 +98,7 @@ if [ ! -f ~/.config/nvim/init.lua ]; then
   echo -e "!!\n!!\n!!  To finish NvChad config, run MasonInstallAll\n!!\n!!\n!!"
 else
   echo "Skipping install: NvChad"
+fi
 
 # fd
 echo "Linking fdfind to fd..."
@@ -133,7 +132,7 @@ sudo pacman -S mupdf
 
 # Tailscale
 curl -fsSL https://tailscale.com/install.sh | sh
-echo "Tailscale installed. To finish setup, run \'sudo tailscale up\'"
+echo "Tailscale installed. To finish setup, run 'sudo tailscale up'"
 
 echo "Reminders:"
 echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll\n!!\n!!\n!!"
