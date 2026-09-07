@@ -1,5 +1,9 @@
+# Pi https://pi.dev/
+curl -fsSL https://pi.dev/install.sh | sh
+
 # Config for pi.dev harness
 
+# Extensions
 pi install npm:@amaster.ai/pi-attachments # https://pi.dev/packages/@amaster.ai/pi-attachments
 pi install npm:pi-cmd-expand
 pi install npm:@fgladisch/pi-zsh-shell # https://pi.dev/packages/@fgladisch/pi-zsh-shell
