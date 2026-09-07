@@ -84,6 +84,12 @@ Hub - [GitHub and git utility](https://hub.github.com/)
 
 [BFG Repo Cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
 
+```sh
+brew install bfg
+```
+
+Also included in `Brewfile`. Run it directly with `bfg`, rather than a local JAR.
+
 ## Update
 
 ### oh-my-zsh

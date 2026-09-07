@@ -63,7 +63,6 @@ alias n='nvim'
 alias gp='git push && git push --tags'
 alias gpt='git push --tags'
 alias gpot='git push origin --tags'
-alias bfg='java -jar ~/bin/bfg.jar'
 alias datestamp-local='date +%Y-%m-%d-%H%M%S'
 alias datestamp='date -u +%Y-%m-%dT%H:%M'
 
