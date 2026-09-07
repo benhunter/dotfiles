@@ -2,7 +2,8 @@
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
-source $SCRIPT_DIR/../scripts/functions.sh
+# shellcheck source-path=SCRIPTDIR
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
 
 cp ~/.Xresources "$SCRIPT_DIR"
 cp ~/.xinitrc "$SCRIPT_DIR"
@@ -16,4 +17,4 @@ pacman -Qe | awk '{print $1}' > "$SCRIPT_DIR/pacman/pacman-packages.txt" # Used 
 pacman -Qe > "$SCRIPT_DIR/pacman/pacman-qe-explicitly-installed-packages.txt"
 pacman -Q > "$SCRIPT_DIR/pacman/pacman-q-all-installed-packages.txt"
 
-git_commit
+git_commit "$SCRIPT_DIR"

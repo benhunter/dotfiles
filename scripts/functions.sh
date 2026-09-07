@@ -1,14 +1,24 @@
-git_commit() {
-  # Update git repo
-  git -C $SCRIPT_DIR switch main
+# shellcheck shell=sh
 
-  # if pull fails, exit
-  if ! git -C $SCRIPT_DIR pull; then
-    echo "Pull failed. Exiting..."
-    exit 1
+# Usage: git_commit [directory]
+# Stage all changes in the repository and commit on the current branch.
+# Existing staged changes are included. Branch selection and remote sync are
+# the caller's responsibility. No SCRIPT_DIR or other caller variable is needed.
+git_commit() (
+  if [ "$#" -gt 1 ]; then
+    echo "Usage: git_commit [directory]" >&2
+    return 1
   fi
+  repo=$(git -C "${1:-.}" rev-parse --show-toplevel) || return 1
+  git -C "$repo" add -A || return 1
 
-  git -C $SCRIPT_DIR add -A
-  git -C $SCRIPT_DIR commit -v
-  git -C $SCRIPT_DIR push
-}
+  status=0
+  git -C "$repo" diff --cached --quiet || status=$?
+  case "$status" in
+    0) echo "No changes to commit."; return 0 ;;
+    1) ;;
+    *) return "$status" ;;
+  esac
+
+  git -C "$repo" commit -v || return 1
+)

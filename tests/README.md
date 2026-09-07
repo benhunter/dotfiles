@@ -22,5 +22,11 @@ Coverage:
 - Repeated macOS config copying.
 - Ubuntu package checks based on package status, not executable names.
 
+`test_git_commit.py` tests `scripts/functions.sh` using temporary local Git
+repositories: default/explicit directories, repository-wide staging, preservation
+of the current branch, existing staged changes, unchanged commits, and failures.
+Commits use a noninteractive test message hook and isolated Git configuration.
+No pulls, pushes, or network access are performed.
+
 These are helper tests, not full installer or platform integration tests.
 If helper sections move, update the extraction markers in `test_setup_helpers.py`.
