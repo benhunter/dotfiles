@@ -12,7 +12,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Load the .zshrc unique to this host
 ZSHRC_HOSTNAME="$HOME/.zshrc.$(hostname)"
-if [[ -f "$ZSHRC_HOSTNAME" ]]; then
+if [[ -r "$ZSHRC_HOSTNAME" ]]; then
   source "$ZSHRC_HOSTNAME"
 fi
 
@@ -22,7 +22,7 @@ plugins=(
   $ZSH_PLUGINS_EXTRA
 	)
 
-source $ZSH/oh-my-zsh.sh
+[[ -r "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
 
 # Neovim for git, etc
 export EDITOR=nvim
@@ -30,18 +30,20 @@ export VISUAL=$EDITOR
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ -r "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"
 
 
 # fnm
-FNM_PATH="/home/$USER/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/$USER/.local/share/fnm:$PATH"
-  eval "`fnm env`"
+FNM_PATH="$HOME/.local/share/fnm"
+if [[ -d "$FNM_PATH" ]]; then
+  export PATH="$FNM_PATH:$PATH"
+fi
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --shell zsh)"
 fi
 
 # fd
-export PATH="/home/$USER/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # 2024-02 AOS MCSO
 # Project 1
@@ -53,13 +55,15 @@ export PATH="/home/$USER/.local/bin:$PATH"
 # Project 4
 # export PATH="$HOME/projects/aos_pintos_project_4/src/utils:$PATH"
 
-source $HOME/projects/dotfiles/ubuntu/helpers.sh
+[[ -r "$HOME/projects/dotfiles/ubuntu/helpers.sh" ]] && source "$HOME/projects/dotfiles/ubuntu/helpers.sh"
 
 # fzf
 # installed:
 # sudo apt install fzf
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+if command -v fzf >/dev/null 2>&1; then
+  [[ -r /usr/share/doc/fzf/examples/key-bindings.zsh ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+  [[ -r /usr/share/doc/fzf/examples/completion.zsh ]] && source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 # Scripts
 export PATH="$HOME/projects/dotfiles/ubuntu/:$PATH"
@@ -77,19 +81,27 @@ export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # direnv hook
-eval "$(direnv hook zsh)"
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
 
-# moar as pager
-export PAGER=$(which moor)
+# Prefer moor when installed; otherwise preserve the user's pager.
+if command -v moor >/dev/null 2>&1; then
+  export PAGER="$(command -v moor)"
+else
+  export PAGER="${PAGER:-less}"
+fi
 
 # 2024-11-28 MCSO PS Lab 5
 alias mr="make && make run"
 
 # atuin Shell History
-. "$HOME/.atuin/bin/env"
-eval "$(atuin init zsh)"
+[[ -r "$HOME/.atuin/bin/env" ]] && source "$HOME/.atuin/bin/env"
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+fi
 
-. "$HOME/.cargo/env"
+[[ -r "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 alias gs=gst
 alias nv=nvim
@@ -103,22 +115,26 @@ esac
 # pnpm end
 
 # Load secrets
-source $HOME/.secrets.zshrc
+[[ -r "$HOME/.secrets.zshrc" ]] && source "$HOME/.secrets.zshrc"
 
 # Homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 alias dcp='docker compose'
 
 # bun
-[ -s "/home/ben/.bun/_bun" ] && source "/home/ben/.bun/_bun" # bun completions
+[[ -r "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun" # bun completions
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/ben/.zsh/completions:"* ]]; then export FPATH="/home/ben/.zsh/completions:$FPATH"; fi
+if [[ -d "$HOME/.zsh/completions" && ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then
+  export FPATH="$HOME/.zsh/completions:$FPATH"
+fi
 
-. "/home/ben/.deno/env"
+[[ -r "$HOME/.deno/env" ]] && source "$HOME/.deno/env"
 
 export PAI_DIR="$HOME/.codex/"
 
