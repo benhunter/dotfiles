@@ -1,255 +1,200 @@
-#!/bin/sh
-#
-# TODO setup one liner
-# Run with:
-# TODO curl -fsSL https://raw.githubusercontent.com/benhunter/dotfiles/main/ubuntu/setup-ubuntu.sh | bash
+#!/usr/bin/env bash
+# Run from a local checkout: bash ubuntu/setup-ubuntu.sh
 
-SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+set -e
+set -o pipefail
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 has() { command -v "$1" >/dev/null 2>&1; }
 
-# update sudoers
-LINE="$USER ALL=(ALL) NOPASSWD:ALL"
-if [ ! -f /etc/sudoers/sudoers.d/user ];
-then 
-    # if $LINE is not in /etc/sudoers.d/user
-    if ! sudo grep -qF "$LINE" /etc/sudoers.d/user;
-    then
-        echo $LINE | (sudo su -c 'EDITOR="tee" visudo -f /etc/sudoers.d/user')
-    fi;
-fi;
-
-# apt packages
-echo "Updating apt..."
-sudo DEBIAN_FRONTEND=noninteractive apt update
-echo "Upgrading apt..."
-sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
-echo "Full-upgrading apt..."
-sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -y
-
-echo "Installing nice things from apt ..."
-for pkg in tree fd-find fzf unzip tmux direnv kubectx; do
-    if ! has "$pkg"; then
-        sudo DEBIAN_FRONTEND=noninteractive apt install -y "$pkg"
+link_file() {
+    local source="$1" target="$2" backup="$2.bak" n=1
+    if [[ ! -e "$source" && ! -L "$source" ]]; then
+        echo "Skipping missing source: $source"
+        return
     fi
-done
+    if [[ -L "$target" && "$(readlink "$target")" == "$source" ]]; then
+        return
+    fi
+    mkdir -p "$(dirname "$target")"
+    if [[ -e "$target" || -L "$target" ]]; then
+        while [[ -e "$backup" || -L "$backup" ]]; do
+            backup="$target.bak.$n"
+            n=$((n + 1))
+        done
+        mv -- "$target" "$backup"
+    fi
+    ln -s "$source" "$target"
+}
 
-echo "Installing zsh..."
-if ! has zsh; then
-    sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh
+ensure_repo() {
+    local url="$1" target="$2"
+    if [[ -d "$target/.git" || -f "$target/.git" ]]; then
+        echo "Keeping existing checkout: $target"
+        git -C "$target" rev-parse --is-inside-work-tree >/dev/null
+    elif [[ -e "$target" || -L "$target" ]]; then
+        echo "Refusing to overwrite non-Git path: $target" >&2
+        return 1
+    else
+        mkdir -p "$(dirname "$target")"
+        git clone --depth=1 "$url" "$target"
+    fi
+}
+
+install_apt() {
+    local pkg
+    local missing=()
+    for pkg in "$@"; do
+        if [[ $(dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null) != 'install ok installed' ]]; then
+            missing+=("$pkg")
+        fi
+    done
+    if ((${#missing[@]})); then
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "${missing[@]}"
+    fi
+}
+
+# Preserve other sudoers entries and validate before replacing the file.
+LINE="$USER ALL=(ALL) NOPASSWD:ALL"
+if ! sudo grep -qxF "$LINE" /etc/sudoers.d/user; then
+    SUDOERS_TMP=$(mktemp)
+    trap 'rm -f "$SUDOERS_TMP"' EXIT
+    if sudo test -e /etc/sudoers.d/user; then
+        # Only the read requires root; the temporary file belongs to this user.
+        # shellcheck disable=SC2024
+        sudo cat /etc/sudoers.d/user > "$SUDOERS_TMP"
+    fi
+    printf '\n%s\n' "$LINE" >> "$SUDOERS_TMP"
+    sudo visudo -cf "$SUDOERS_TMP"
+    sudo install -o root -g root -m 0440 "$SUDOERS_TMP" /etc/sudoers.d/user
+    rm -f "$SUDOERS_TMP"
+    trap - EXIT
 fi
+
+# System updates intentionally run every time.
+sudo DEBIAN_FRONTEND=noninteractive apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y
+install_apt curl ca-certificates git tree fd-find fzf unzip tmux direnv kubectx zsh
+install_apt aqemu make gcc valgrind inotify-tools texlive texlive-formats-extra
+install_apt pkg-config libssl-dev python3-venv
 
 DEFAULT_SHELL=$(getent passwd "$USER" | cut -d: -f7)
-if [ "$DEFAULT_SHELL" != "$(which zsh)" ]; then
+if [[ "$DEFAULT_SHELL" != "$(command -v zsh)" ]]; then
     echo "Changing shell to zsh..."
-    chsh -s "$(which zsh)"
-fi
-# TODO have to enter password for sudo. Can we chsh last?
-
-# mcso-aos
-# echo "Installing mcso-aos dependencies..."
-for pkg in aqemu make git gcc valgrind inotify-tools texlive texlive-formats-extra; do
-    if ! has "$pkg"; then
-        sudo DEBIAN_FRONTEND=noninteractive apt install -y "$pkg"
-    fi
-done
-
-# Oh My Zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "Installing Oh My Zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-# TODO Oh My Zsh prompts to switch default shell to zsh. Then drops into zsh. Have to exit to continue script.
-
-# PowerLevel10k
-# Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc
-THEME_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-if [ ! -d "$THEME_DIR" ]; then
-    echo "Installing PowerLevel10k..."
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$THEME_DIR"
+    chsh -s "$(command -v zsh)"
 fi
 
-# .zshrc
-echo "Backing up and linking .zshrc..."
-[ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
-ln -s $SCRIPT_DIR/.zshrc $HOME/.zshrc
+if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+    RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+ZSH_CUSTOM_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+ensure_repo https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM_DIR/themes/powerlevel10k"
+ensure_repo https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM_DIR/plugins/zsh-autosuggestions"
 
-echo "Backing up and linking .zshrc.$(hostname)..."
+link_file "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
 HOST_ZSHRC=".zshrc.$(hostname)"
-if [ -f "$HOME/$HOST_ZSHRC" ]; then
-    mv "$HOME/$HOST_ZSHRC" "$HOME/$HOST_ZSHRC.break"
-fi
-ln -sf "$SCRIPT_DIR/$HOST_ZSHRC" "$HOME/$HOST_ZSHRC"
-
-echo "Linking .secrets.zshrc"
-ln -s $HOME/projects/secrets/.secrets.zshrc $HOME/.secrets.zshrc
-
-echo "Linking .p10k.zsh..."
-ln -sf $SCRIPT_DIR/.p10k.zsh $HOME/.p10k.zsh
-
-# zsh-autosuggestions
-ZSH_PLUGIN_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-if [ ! -d "$ZSH_PLUGIN_DIR" ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGIN_DIR"
-else
-    git -C "$ZSH_PLUGIN_DIR" pull
-fi
-
-# Homebrew
-"$SCRIPT_DIR/../linux/install-homebrew.sh"
-
-brew install hub
-
-echo "Linking .gitconfig..."
-ln -sf $SCRIPT_DIR/.gitconfig $HOME/.gitconfig
-
-# Tmux
-echo "Linking .tmux.conf..."
-ln -sf "$SCRIPT_DIR/../.tmux.conf" "$HOME/.tmux.conf"
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    echo "Installing Tmux plugins..."
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-fi
+link_file "$SCRIPT_DIR/$HOST_ZSHRC" "$HOME/$HOST_ZSHRC"
+link_file "$HOME/projects/secrets/.secrets.zshrc" "$HOME/.secrets.zshrc"
+link_file "$SCRIPT_DIR/.p10k.zsh" "$HOME/.p10k.zsh"
+link_file "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
+link_file "$SCRIPT_DIR/../.tmux.conf" "$HOME/.tmux.conf"
+ensure_repo https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 "$HOME/.tmux/plugins/tpm/bin/update_plugins" all
-echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
 
-# Rust
-if ! has cargo; then
-    echo "Installing Rust..."
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    # TODO Rust install prompts for options.
-    source "$HOME/.cargo/env"
+# Expose previously installed tools before deciding whether to install them.
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.local/share/fnm:$HOME/.fnm:$HOME/.local/share/pnpm:$HOME/.atuin/bin:/usr/local/go/bin:${GOPATH:-$HOME/go}/bin:$PATH"
+if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+if ! has brew; then
+    "$SCRIPT_DIR/../linux/install-homebrew.sh"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+if ! brew list --formula hub >/dev/null 2>&1; then
+    brew install hub
 fi
 
-# rust-analyzer
+if ! has rustup; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+fi
 rustup component add rust-analyzer
 
-$SCRIPT_DIR/install-cargo-watch.sh
-
-echo "Installing prereqs for cargo-update..."
-for pkg in pkg-config libssl-dev; do
-    if ! has "$pkg"; then
-        sudo DEBIAN_FRONTEND=noninteractive apt install -y "$pkg"
-    fi
-done
-
-# rust crates
-CRATES="just cargo-update topgrade"
-echo "Installing rust cargo crates"
-for crate in $CRATES; do
+if ! cargo watch --version >/dev/null 2>&1; then
+    cargo install cargo-watch --locked
+fi
+if ! cargo install-update --version >/dev/null 2>&1; then
+    cargo install cargo-update
+fi
+for crate in just topgrade; do
     if ! has "$crate"; then
         cargo install "$crate"
     fi
 done
-
-# bottom
-# btm - https://github.com/ClementTsang/bottom
 if ! has btm; then
-  echo "Installing bottom..."
-  cargo +stable install bottom --locked
-
+    cargo +stable install bottom --locked
 fi
-
-# delta - https://github.com/dandavison/delta
 if ! has delta; then
-  echo "Installing delta..."
-  cargo install git-delta
+    cargo install git-delta
 fi
-
-# leetup - https://crates.io/crates/leetup
 if ! has leetup; then
-  echo "Installing leetup..."
-  cargo install leetup
-  ln -s $SCRIPT_DIR/../.leetup $HOME/
+    cargo install leetup
+fi
+link_file "$SCRIPT_DIR/../.leetup" "$HOME/.leetup"
+if ! cargo nextest --version >/dev/null 2>&1; then
+    cargo install cargo-nextest
 fi
 
-# just - https://github.com/casey/just
-if ! has just; then
-  echo "Installing just..."
-  cargo install just
-fi
-
-# nextest
-if has cargo; then
-  echo "Installing cargo-nextest..."
-  cargo install cargo-nextest
-fi
-
-# fnm and Node
 if ! has fnm; then
-  curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts to modify .bashrc but fails.
-  # source $HOME/.zshrc # TODO source not found?
-  export PATH="$HOME/.fnm:$PATH"
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$HOME/.local/share/fnm" --skip-shell
 fi
-
-if ! fnm list | grep -q 'v20'; then
+eval "$(fnm env --shell bash)"
+if ! fnm list | grep -E 'v20\.' >/dev/null; then
     fnm install 20
-    #fnm install 20 --corepack-enabled # for yarn
 fi
-eval "$(fnm env)"
 
-# Neovim
-# https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu
-# Use unstable repo for PPA
-echo "Installing Neovim..."
 if ! has nvim; then
-  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
-  sudo DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:neovim-ppa/unstable # TODO prompts for Enter to continue.
-  sudo DEBIAN_FRONTEND=noninteractive apt-get update
-  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y neovim python3-pip fonts-powerline ripgrep fd-find
+    install_apt software-properties-common
+    sudo DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:neovim-ppa/unstable
+    sudo DEBIAN_FRONTEND=noninteractive apt-get update
+    install_apt neovim
 fi
-
-## Python prerequisites - docs may be outdated
-#sudo apt-get install python2-dev python-pip python3-dev python3-pip
-# sudo apt install python3.10-venv
-sudo apt install python3.13-venv # 2025-07-10
-
-## NvChad for Neovim
-## https://nvchad.com/docs/quickstart/install
-echo "Installing NvChad for Neovim..."
-if [ ! -d "$HOME/.config/nvim" ]; then
-    git clone https://github.com/benhunter/nvchad-config "$HOME/.config/nvim" --depth 1 && nvim
-    echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
+install_apt python3-pip fonts-powerline ripgrep fd-find
+if [[ ! -e "$HOME/.config/nvim" && ! -L "$HOME/.config/nvim" ]]; then
+    ensure_repo https://github.com/benhunter/nvchad-config "$HOME/.config/nvim"
 fi
+link_file "$(command -v fdfind)" "$HOME/.local/bin/fd"
 
-## Neovim config for VSCode Remote
-# TODO should just be in the nvim config repo
-# echo "Copying Neovim config..."
-# cp "$SCRIPT_DIR/.config/nvim/init.lua" "$HOME/.config/nvim/init.lua"
-
-# fd
-echo "Linking fdfind to fd..."
-mkdir -p "$HOME/.local/bin"
-ln -sf "$(which fdfind)" "$HOME/.local/bin/fd"
-
-# golang
-# TODO use latest
-# https://go.dev/doc/install
+# Keep an existing Go installation rather than downgrading it on every rerun.
 GO_VERSION="go1.23.1"
-if ! has go || ! go version | grep -q "$GO_VERSION"; then
-    echo "Installing golang..."
-    GO_FILE="$GO_VERSION.linux.amd-64.tar.gz"
-    curl -LO https://dl.google.com/go/$GO_FILE --output "/tmp/$GO_FILE"
-    sudo rm -rf /usr/local/go
-    sudo tar -C /usr/local -xzf "/tmp/$GO_FILE"
+if ! has go; then
+    case "$(uname -m)" in
+        x86_64) GO_ARCH=amd64 ;;
+        aarch64|arm64) GO_ARCH=arm64 ;;
+        *) echo "Unsupported Go architecture" >&2; exit 1 ;;
+    esac
+    GO_TMP=$(mktemp -d)
+    trap 'rm -rf "$GO_TMP"' EXIT
+    curl -fL "https://go.dev/dl/$GO_VERSION.linux-$GO_ARCH.tar.gz" -o "$GO_TMP/go.tar.gz"
+    tar -xzf "$GO_TMP/go.tar.gz" -C "$GO_TMP"
+    if [[ -e /usr/local/go || -L /usr/local/go ]]; then
+        echo "Refusing to overwrite existing /usr/local/go" >&2
+        exit 1
+    fi
+    sudo mv "$GO_TMP/go" /usr/local/go
+    rm -rf "$GO_TMP"
+    trap - EXIT
 fi
-
-# moor - the pager that's better than less
 if ! has moor; then
     go install github.com/walles/moor/v2/cmd/moor@latest
-    # go install github.com/walles/moar@latest # old package
 fi
-
-# pnpm - https://pnpm.io/ - used in Loco development
 if ! has pnpm; then
     curl -fsSL https://get.pnpm.io/install.sh | sh -
 fi
-
-# atuin
 if ! has atuin; then
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 fi
 
-echo "Reminders:"
-echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
-echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
+printf '%s\n' 'Reminders:' \
+    'Open nvim and run MasonInstallAll to finish NvChad setup.' \
+    'Open tmux and press [prefix] + I to install plugins.'
