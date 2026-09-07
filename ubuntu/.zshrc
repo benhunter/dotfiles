@@ -148,4 +148,4 @@ alias watch1='watch -n 1 -d -c '
 
 # Pi 2026-09-06
 # TODO does fnm add its bin to PATH automatically?
-#export PATH="/home/ben/.local/share/fnm/node-versions/v24.3.0/installation/bin:$PATH"
+#export PATH="$HOME/.local/share/fnm/node-versions/v24.3.0/installation/bin:$PATH"
