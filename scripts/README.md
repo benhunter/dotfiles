@@ -26,10 +26,11 @@ Existing legacy script findings are reported rather than suppressed.
 
 ## Git credentials
 
-The shared, Ubuntu, and EndeavourOS Git configs reset inherited credential
-helpers and use `cache --timeout=3600`, keeping credentials in memory for one
-hour rather than saving them in plaintext. For native secure storage, use
-`osxkeychain` on macOS or Git Credential Manager (`manager`) on Windows.
+The shared, Ubuntu, and EndeavourOS Git configs use `store` as the persistent
+fallback. This saves credentials in plaintext. Prefer a configured system helper
+where available: `osxkeychain` on macOS, Git Credential Manager (`manager`) on
+Windows, or an installed and configured `libsecret` helper on Linux. Do not use
+the temporary credential cache.
 
 Changing helpers does **not** remove old plaintext credential files. Review and
 remove any obsolete `~/.git-credentials` or
