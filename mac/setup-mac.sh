@@ -4,63 +4,11 @@ set -e
 set -o pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
-
-# Never overwrite an earlier backup, including a dangling symlink.
-backup_path() {
-  local target="$1" backup="$1.bak" n=1
-  if [[ -e "$target" || -L "$target" ]]; then
-    while [[ -e "$backup" || -L "$backup" ]]; do
-      backup="$target.bak.$n"
-      n=$((n + 1))
-    done
-    mv -- "$target" "$backup"
-  fi
-}
-
-link_file() {
-  local source="$1" target="$2"
-  if [[ ! -e "$source" && ! -L "$source" ]]; then
-    echo "Skipping missing source: $source"
-    return
-  fi
-  if [[ -L "$target" && "$(readlink "$target")" == "$source" ]]; then
-    return
-  fi
-  mkdir -p "$(dirname "$target")"
-  backup_path "$target"
-  ln -s "$source" "$target"
-}
-
-copy_file() {
-  local source="$1" target="$2"
-  if [[ ! -f "$source" ]]; then
-    echo "Skipping missing source: $source"
-    return
-  fi
-  if [[ -f "$target" ]] && cmp -s "$source" "$target"; then
-    return
-  fi
-  mkdir -p "$(dirname "$target")"
-  backup_path "$target"
-  cp "$source" "$target"
-}
-
-ensure_repo() {
-  local url="$1" target="$2"
-  if [[ -d "$target/.git" || -f "$target/.git" ]]; then
-    echo "Using existing checkout: $target"
-    git -C "$target" rev-parse --is-inside-work-tree >/dev/null
-  elif [[ -e "$target" || -L "$target" ]]; then
-    echo "Refusing to overwrite non-Git path: $target" >&2
-    return 1
-  else
-    mkdir -p "$(dirname "$target")"
-    git clone --depth=1 "$url" "$target"
-  fi
-}
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
 
 # Homebrew may already be installed but absent from this shell's PATH.
-if ! command -v brew >/dev/null 2>&1; then
+if ! has brew; then
   if [[ -x /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   elif [[ -x /usr/local/bin/brew ]]; then
@@ -117,7 +65,7 @@ if [[ -d "$SCRIPT_DIR/.pandoc" ]]; then
 fi
 
 # Rust Programming Language
-if ! command -v rustup >/dev/null 2>&1 && [[ ! -x "$HOME/.cargo/bin/rustup" ]]; then
+if ! has rustup && [[ ! -x "$HOME/.cargo/bin/rustup" ]]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
 

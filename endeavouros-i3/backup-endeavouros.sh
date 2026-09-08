@@ -2,7 +2,7 @@
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
-# shellcheck source-path=SCRIPTDIR
+# shellcheck source=../scripts/functions.sh disable=SC1091
 . "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
 
 cp ~/.Xresources "$SCRIPT_DIR"

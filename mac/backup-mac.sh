@@ -3,10 +3,12 @@
 set +x
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
 echo "Script Directory: $SCRIPT_DIR"
 
 echo "Dumping brew..."
-brew bundle dump --file=$SCRIPT_DIR/Brewfile --force
+brew bundle dump --file="$SCRIPT_DIR/Brewfile" --force
 
 # Neovim and NvChad backup
 echo "TODO git commit changes to ~/.config/nvim repo"
@@ -16,14 +18,13 @@ echo "TODO git commit changes to ~/.config/nvim repo"
 #rsync -av --exclude='.git' ~/.config/nvim/lua/custom/ $SCRIPT_DIR/.config/nvim/lua/custom/
 
 # Update git repo
-git -C $SCRIPT_DIR switch main
+git -C "$SCRIPT_DIR" switch main
 
 # if pull fails, exit
-if ! git -C $SCRIPT_DIR pull; then
+if ! git -C "$SCRIPT_DIR" pull; then
   echo "Pull failed. Exiting..."
   exit 1
 fi
 
-git -C $SCRIPT_DIR add -A
-git -C $SCRIPT_DIR commit -v
-git -C $SCRIPT_DIR push
+git_commit "$SCRIPT_DIR"
+git -C "$SCRIPT_DIR" push

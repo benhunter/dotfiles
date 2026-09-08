@@ -1,6 +1,8 @@
 #!/bin/bash
 
-has() { command -v "$1" >/dev/null 2>&1; }
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
 
 # Homebrew
 # https://brew.sh/

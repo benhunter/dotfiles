@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
 
 # SDKMAN
 curl -s "https://get.sdkman.io" | bash
+# shellcheck source=/dev/null disable=SC1091
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Atuin config
@@ -28,41 +31,31 @@ done 3< "$SCRIPT_DIR/pacman/pacman-packages.txt"
 
 # .zshrc
 echo "Backing up and linking .zshrc..."
-if [ -e "$HOME/.zshrc" ] || [ -L "$HOME/.zshrc" ]; then
-  if [ -e "$HOME/.zshrc.bak" ] || [ -L "$HOME/.zshrc.bak" ]; then
-    echo "Could not back up .zshrc, found a .zshrc.bak"
-    echo "Error: stopping setup"
-    exit 1
-  fi
-  echo "Backing up .zshrc"
-  mv "$HOME/.zshrc" "$HOME/.zshrc.bak" || exit 1
-fi
-
-echo "Linking ~/.zshrc"
-ln -s "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
+link_file "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
 
 echo "Linking .gitconfig..."
-ln -s "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
+link_file "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
 
 # Tmux
 echo "Linking .tmux.conf..."
-ln -s "$SCRIPT_DIR/../.tmux.conf" "$HOME/.tmux.conf"
+link_file "$SCRIPT_DIR/../.tmux.conf" "$HOME/.tmux.conf"
 echo "Installing Tmux plugins..."
-git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+ensure_repo https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 "$HOME/.tmux/plugins/tpm/bin/update_plugins" all
 echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
 
 # Rust
-if ! command -v cargo >/dev/null 2>&1; then
+if ! has cargo; then
   echo "Installing: Rust, cargo"
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  # shellcheck source=/dev/null disable=SC1091
   source "$HOME/.cargo/env"
 else
   echo "Skipping install: Rust, cargo"
 fi
 
 # bottom
-if ! command -v btm >/dev/null 2>&1; then
+if ! has btm; then
   echo "Installing: bottom"
   cargo install bottom --locked
 else
@@ -83,7 +76,7 @@ else
   echo "Skipping install: cargo-watch"
 fi
 
-if ! command -v fnm >/dev/null 2>&1; then
+if ! has fnm; then
   echo "Installing: Fast Node Manager, fnm"
   cargo install fnm
 else
@@ -94,7 +87,7 @@ fi
 ## https://nvchad.com/docs/quickstart/install
 if [ ! -f ~/.config/nvim/init.lua ]; then
   echo "Installing NvChad..."
-  git clone https://github.com/benhunter/nvchad-config ~/.config/nvim && nvim
+  ensure_repo https://github.com/benhunter/nvchad-config "$HOME/.config/nvim" && nvim
   echo -e "!!\n!!\n!!  To finish NvChad config, run MasonInstallAll\n!!\n!!\n!!"
 else
   echo "Skipping install: NvChad"

@@ -1,7 +1,13 @@
+#!/bin/sh
 # Install Neovim from nightly
+
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# shellcheck source=scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/scripts/functions.sh" || exit 1
+
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
-sudo apt-get install neovim python3-pip fonts-powerline ripgrep fd-find
+install_apt neovim python3-pip fonts-powerline ripgrep fd-find
 
 # pynvim
 pip install pynvim --upgrade

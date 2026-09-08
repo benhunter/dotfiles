@@ -6,27 +6,29 @@
 # This script is basically a copy of ubuntu/setup-ubuntu.sh.
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
 
 echo "Installing nice things from apt ..."
-sudo DEBIAN_FRONTEND=noninteractive apt install -y tree fd-find fzf unzip tmux golang-go direnv
+install_apt tree fd-find fzf unzip tmux golang-go direnv
 
 echo "Installing zsh..."
-sudo DEBIAN_FRONTEND=noninteractive apt install -y zsh
+install_apt zsh
 
 # TODO check if zsh is already default shell
-DEFAULT_SHELL=$(getent passwd $USER | cut -d: -f7)
-IS_DEFAULT_SHELL=$(echo $DEFAULT_SHELL | grep zsh)
+DEFAULT_SHELL=$(getent passwd "$USER" | cut -d: -f7)
+IS_DEFAULT_SHELL=$(echo "$DEFAULT_SHELL" | grep zsh)
 if [ -n "$IS_DEFAULT_SHELL" ]; then
     echo "Default shell is already zsh."
 else
     echo "Changing shell to zsh..."
     echo "!! EXIT ZSH IMMEDIATELY TO CONTINUE THIS SETUP SCRIPT !!"
-    chsh -s $(which zsh) # change for $USER, not root
-    sudo chsh -s $(which zsh)
+    chsh -s "$(command -v zsh)" # change for $USER, not root
+    sudo chsh -s "$(command -v zsh)"
 fi
 
 echo "Installing LaTeX..."
-sudo DEBIAN_FRONTEND=noninteractive apt install -y texlive texlive-formats-extra
+install_apt texlive texlive-formats-extra
 
 # Oh My Zsh
 echo "Installing Oh My Zsh..."
@@ -35,31 +37,29 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # PowerLevel10k
 echo "Installing PowerLevel10k..."
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+ensure_repo https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 # Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc
 
 # .zshrc
 echo "Backing up and linking .zshrc..."
-mv $HOME/.zshrc $HOME/.zshrc.bak
-ln -s $SCRIPT_DIR/../ubuntu/.zshrc $HOME/.zshrc
+link_file "$SCRIPT_DIR/../ubuntu/.zshrc" "$HOME/.zshrc"
 echo "Linking .p10k.zsh..."
-ln -s $SCRIPT_DIR/../ubuntu/.p10k.zsh $HOME/.p10k.zsh
+link_file "$SCRIPT_DIR/../ubuntu/.p10k.zsh" "$HOME/.p10k.zsh"
 
 # zsh-autosuggestions
 echo "Installing zsh-autosuggestions..."
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions pull
+ensure_repo https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 
 echo "Linking .gitconfig..."
-ln -s $SCRIPT_DIR/../ubuntu/.gitconfig $HOME/.gitconfig
+link_file "$SCRIPT_DIR/../ubuntu/.gitconfig" "$HOME/.gitconfig"
 
 # Tmux
 echo "Linking .tmux.conf..."
-ln -s $SCRIPT_DIR/../.tmux.conf $HOME/.tmux.conf
+link_file "$SCRIPT_DIR/../.tmux.conf" "$HOME/.tmux.conf"
 echo "Installing Tmux plugins..."
-git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-$HOME/.tmux/plugins/tpm/bin/update_plugins all
-echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
+ensure_repo https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+"$HOME/.tmux/plugins/tpm/bin/update_plugins" all
+printf '!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!\n'
 
 # Rust
 echo "Installing Rust..."
@@ -75,31 +75,31 @@ cargo install git-delta
 
 # fnm and Node
 curl -fsSL https://fnm.vercel.app/install | bash # TODO zsh? + Script attempts to modify .bashrc but fails.
-source $HOME/.zshrc # TODO source not found?
+# shellcheck source=/dev/null disable=SC1091
+. "$HOME/.zshrc" # TODO source not found?
 fnm install 20 # TODO fnm not found?
 
-$SCRIPT_DIR/install-neovim.sh
+"$SCRIPT_DIR/install-neovim.sh"
 
 ## Python prerequisites - docs may be outdated
 #sudo apt-get install python2-dev python-pip python3-dev python3-pip
-sudo apt install python3.12-venv
+install_apt python3.12-venv
 
 ## NvChad for Neovim
 ## https://nvchad.com/docs/quickstart/install
 echo "Installing NvChad..."
-git clone https://github.com/benhunter/nvchad-config ~/.config/nvim --depth 1 && nvim
-echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
+ensure_repo https://github.com/benhunter/nvchad-config "$HOME/.config/nvim" && nvim
+printf '!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!\n'
 
 # fd
 echo "Linking fdfind to fd..."
-mkdir -p ~/.local/bin
-ln -s $(which fdfind) ~/.local/bin/fd
+link_file "$(command -v fdfind)" "$HOME/.local/bin/fd"
 
-$SCRIPT_DIR/install-hack-nerdfonts.sh
+"$SCRIPT_DIR/install-hack-nerdfonts.sh"
 
 # moar - the pager that's better than less
 go install github.com/walles/moar@latest
 
 echo "Reminders:"
-echo -e "!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!"
-echo -e "!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!"
+printf '!!\n!!\n!!  To finish NvChad config, run NvChadUpdate and MasonInstallAll to finish NvChad setup\n!!\n!!\n!!\n'
+printf '!!\n!!\n!!  To finish tmux config, Open tmux, [prefix] + I\n!!\n!!\n!!\n'

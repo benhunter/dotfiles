@@ -1,12 +1,19 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
+
 echo "Installing Podman..."
-./install-podman.sh
+"$SCRIPT_DIR/install-podman.sh"
 
 echo "Installing Rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+# shellcheck source=/dev/null disable=SC1091
 source "$HOME/.cargo/env"
 
 echo "Installing build tools (gcc)..."
-sudo apt install build-essential
+install_apt build-essential
 
 echo "Installing topgrade..."
 cargo install topgrade

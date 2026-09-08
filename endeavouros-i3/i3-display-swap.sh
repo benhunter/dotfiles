@@ -5,7 +5,11 @@
 # To bind key, in i3 config (~/.config/i3/config) add:
 # bindsym $mod+Shift+s exec /path/to/your/script/i3-display-swap.sh
 
-if ! command -v jq &>/dev/null; then
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
+
+if ! has jq; then
     echo "jq could not be found"
     exit 1
 fi

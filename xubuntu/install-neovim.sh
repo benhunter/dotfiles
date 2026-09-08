@@ -5,8 +5,12 @@
 # https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu
 # Use unstable repo for PPA
 
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
+
 echo "Installing Neovim..."
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
+install_apt software-properties-common
 
 UBUNTU_CODENAME=$(lsb_release -cs)
 
@@ -22,4 +26,4 @@ else
 fi
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y neovim python3-pip fonts-powerline ripgrep fd-find
+install_apt neovim python3-pip fonts-powerline ripgrep fd-find

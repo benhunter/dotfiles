@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
+
 echo "[+] Updating system"
 sudo apt update
 
 echo "[+] Installing Podman and required dependencies"
-sudo apt install -y \
+install_apt \
   podman \
   uidmap \
   slirp4netns \

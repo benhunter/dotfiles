@@ -1,8 +1,12 @@
 #!/bin/sh
 
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
+
 # Check if cargo is installed
 COMMAND='cargo'
-if ! type "$COMMAND" >/dev/null 2>&1; then
+if ! has "$COMMAND"; then
   echo "Error: cargo is not installed. Please install Rust and Cargo first."
   exit 1
 fi

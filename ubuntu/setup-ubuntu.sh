@@ -5,54 +5,8 @@ set -e
 set -o pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
-has() { command -v "$1" >/dev/null 2>&1; }
-
-link_file() {
-    local source="$1" target="$2" backup="$2.bak" n=1
-    if [[ ! -e "$source" && ! -L "$source" ]]; then
-        echo "Skipping missing source: $source"
-        return
-    fi
-    if [[ -L "$target" && "$(readlink "$target")" == "$source" ]]; then
-        return
-    fi
-    mkdir -p "$(dirname "$target")"
-    if [[ -e "$target" || -L "$target" ]]; then
-        while [[ -e "$backup" || -L "$backup" ]]; do
-            backup="$target.bak.$n"
-            n=$((n + 1))
-        done
-        mv -- "$target" "$backup"
-    fi
-    ln -s "$source" "$target"
-}
-
-ensure_repo() {
-    local url="$1" target="$2"
-    if [[ -d "$target/.git" || -f "$target/.git" ]]; then
-        echo "Keeping existing checkout: $target"
-        git -C "$target" rev-parse --is-inside-work-tree >/dev/null
-    elif [[ -e "$target" || -L "$target" ]]; then
-        echo "Refusing to overwrite non-Git path: $target" >&2
-        return 1
-    else
-        mkdir -p "$(dirname "$target")"
-        git clone --depth=1 "$url" "$target"
-    fi
-}
-
-install_apt() {
-    local pkg
-    local missing=()
-    for pkg in "$@"; do
-        if [[ $(dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null) != 'install ok installed' ]]; then
-            missing+=("$pkg")
-        fi
-    done
-    if ((${#missing[@]})); then
-        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "${missing[@]}"
-    fi
-}
+# shellcheck source=../scripts/functions.sh disable=SC1091
+. "$SCRIPT_DIR/../scripts/functions.sh" || exit 1
 
 # Preserve other sudoers entries and validate before replacing the file.
 LINE="$USER ALL=(ALL) NOPASSWD:ALL"
