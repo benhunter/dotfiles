@@ -19,6 +19,7 @@ fi
 plugins=(
   git
   zsh-autosuggestions
+  kubectl
   $ZSH_PLUGINS_EXTRA
 	)
 
