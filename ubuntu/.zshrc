@@ -28,10 +28,8 @@ plugins=(
 export EDITOR=nvim
 export VISUAL=$EDITOR
 
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -r "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"
-
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"
@@ -42,21 +40,6 @@ if command -v fnm >/dev/null 2>&1; then
   eval "$(fnm env --shell zsh)"
 fi
 
-# fd
-export PATH="$HOME/.local/bin:$PATH"
-
-# 2024-02 AOS MCSO
-# Project 1
-# export PATH="$HOME/projects/aos_pintos/src/utils/:$PATH"
-# Project 2
-# export PATH="$HOME/projects/aos_pintos_project_2/aos_pintos/src/utils:$PATH"
-# Project 3
-# export PATH="$HOME/projects/aos_pintos_project_3/src/utils:$PATH"
-# Project 4
-# export PATH="$HOME/projects/aos_pintos_project_4/src/utils:$PATH"
-
-[[ -r "$HOME/projects/dotfiles/ubuntu/helpers.sh" ]] && source "$HOME/projects/dotfiles/ubuntu/helpers.sh"
-
 # fzf
 # installed:
 # sudo apt install fzf
@@ -65,20 +48,29 @@ if command -v fzf >/dev/null 2>&1; then
   [[ -r /usr/share/doc/fzf/examples/completion.zsh ]] && source /usr/share/doc/fzf/examples/completion.zsh
 fi
 
-# Scripts
+# Scripts and tools
+[[ -r "$HOME/projects/dotfiles/ubuntu/helpers.sh" ]] && source "$HOME/projects/dotfiles/ubuntu/helpers.sh"
 export PATH="$HOME/projects/dotfiles/ubuntu/:$PATH"
 export PATH="$HOME/projects/scripts/:$PATH"
+export PATH="$HOME/.local/bin:$PATH" # fd, uv, uvx
 
-# Disk usage
+# Aliases
 alias dush='du -sh * 2> /dev/null | sort -rh'
 alias dusha='du -sh *(D) 2>/dev/null | sort -rh'
+alias gs=gst
+alias nv=nvim
+alias dcp='docker compose'
+alias watch1='watch -n 1 -d -c '
+alias mr="make && make run"
+alias tmuxa="tmux a || tmux"
+alias watch1='watch -n 1 -d -c '
 
-# go - installed binaries
-export PATH="/usr/local/go/bin:$PATH"
 
 # Golang
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+# TODO redundant?
+export PATH="/usr/local/go/bin:$PATH" # go - installed binaries
 
 # direnv hook
 if command -v direnv >/dev/null 2>&1; then
@@ -92,9 +84,6 @@ else
   export PAGER="${PAGER:-less}"
 fi
 
-# 2024-11-28 MCSO PS Lab 5
-alias mr="make && make run"
-
 # atuin Shell History
 [[ -r "$HOME/.atuin/bin/env" ]] && source "$HOME/.atuin/bin/env"
 if command -v atuin >/dev/null 2>&1; then
@@ -102,9 +91,6 @@ if command -v atuin >/dev/null 2>&1; then
 fi
 
 [[ -r "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-
-alias gs=gst
-alias nv=nvim
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -121,8 +107,6 @@ esac
 if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
-
-alias dcp='docker compose'
 
 # bun
 [[ -r "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun" # bun completions
@@ -143,8 +127,6 @@ export PAI_DIR="$HOME/.codex/"
 export DA="Dash"
 export TIME_ZONE="CST"
 export PAI_SOURCE_APP="$DA"
-
-alias watch1='watch -n 1 -d -c '
 
 # Pi 2026-09-06
 # TODO does fnm add its bin to PATH automatically?
