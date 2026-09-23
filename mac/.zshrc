@@ -27,6 +27,13 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/.secrets.zshrc
 
+# Load the .zshrc unique to this host
+ZSHRC_HOSTNAME="$HOME/.zshrc.$(hostname)"
+if [[ -r "$ZSHRC_HOSTNAME" ]]; then
+  source "$ZSHRC_HOSTNAME"
+fi
+
+
 # Open DBeaver installed by Homebrew without admin permissions
 alias dbeaver="open /usr/local/Caskroom/dbeaver-community/21.2.1/DBeaver.app"
 
@@ -46,6 +53,7 @@ if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
   export PATH=`gem environment gemdir`/bin:$PATH
 fi
 
+# Aliases
 alias l='lsd -a' # lsd https://github.com/Peltoche/lsd
 alias ls='lsd'
 alias ll='lsd -lah'
@@ -54,17 +62,25 @@ alias mkd='mkdir -p'
 alias dcp='docker compose '
 alias dus='du -hs * | sort -hr'
 alias dusa='setopt nullglob; du -hs .[^.]* * | sort -hr'
-alias watch1='watch -n 1 -d '
 alias rmrf='rm -rf'
-alias gs=gst
 alias ch='curl cht.sh'
-alias nv='nvim'
 alias n='nvim'
 alias gp='git push && git push --tags'
 alias gpt='git push --tags'
 alias gpot='git push origin --tags'
 alias datestamp-local='date +%Y-%m-%d-%H%M%S'
 alias datestamp='date -u +%Y-%m-%dT%H:%M'
+
+alias dush='du -sh * 2> /dev/null | sort -rh'
+alias dusha='du -sh *(D) 2>/dev/null | sort -rh'
+alias gs=gst
+alias nv=nvim
+alias dcp='docker compose '
+alias mr="make && make run"
+alias tmuxa="tmux a || tmux"
+alias watch1='watch -n 1 -d -c '
+
+source ~/.alias.local.sh
 
 glab-ci-run() {
   glab ci run -b "$(git rev-parse --abbrev-ref HEAD)"
