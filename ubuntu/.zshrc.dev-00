@@ -4,3 +4,6 @@ export PATH=/home/ben/.opencode/bin:$PATH
 export PATH=/home/ben/projects/scripts/:$PATH
 
 export ZSH_PLUGINS_EXTRA="kubectl"
+
+# Pi
+export PATH="/home/ben/.local/share/fnm/node-versions/v24.20.0/installation/bin:$PATH"

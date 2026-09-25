@@ -1,6 +1,21 @@
 #!/bin/sh
 #
 # Pi https://pi.dev/
+
+has() { command -v "$1" >/dev/null 2>&1; }
+
+# Prerequisites
+if ! has fnm; then
+  echo "fnm not found. Install fnm..."
+  exit 1
+fi
+
+if ! has node; then
+  echo "node not found. Install node with fnm..."
+  exit 1
+fi
+
+# Install
 curl -fsSL https://pi.dev/install.sh | sh
 
 # Config for pi.dev harness
