@@ -41,11 +41,15 @@ function Create-DotfileSymlink {
 }
 
 # 1. Layer 1 (Common)
-Write-Host "`n--- Layer 1: Common Dotfiles ---" -ForegroundColor Magentam
+Write-Host "`n--- Layer 1: Common Dotfiles ---" -ForegroundColor Magenta
 Create-DotfileSymlink -Source "$DotfilesDir\common\.gitconfig" -Target "$HOME\.gitconfig"
 Create-DotfileSymlink -Source "$DotfilesDir\common\.ideavimrc" -Target "$HOME\.ideavimrc"
 Create-DotfileSymlink -Source "$DotfilesDir\common\.tmux.conf" -Target "$HOME\.tmux.conf"
 Create-DotfileSymlink -Source "$DotfilesDir\common\nvim\vscode.lua" -Target "$HOME\.config\nvim\vscode.lua"
+
+$vscodeUserDir = "$env:APPDATA\Code\User"
+Create-DotfileSymlink -Source "$DotfilesDir\common\vscode\settings.json" -Target "$vscodeUserDir\settings.json"
+Create-DotfileSymlink -Source "$DotfilesDir\common\vscode\keybindings.json" -Target "$vscodeUserDir\keybindings.json"
 
 # 2. Layer 2 (Windows OS)
 Write-Host "`n--- Layer 2: Windows OS ---" -ForegroundColor Magenta

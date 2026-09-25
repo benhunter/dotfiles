@@ -1,0 +1,103 @@
+{
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "vscode-neovim.neovimInitPath": "~/.config/nvim/vscode.lua",
+  "editor.wordWrap": "on",
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    },
+    "Ubuntu (WSL)": {
+      "path": "C:\\WINDOWS\\System32\\wsl.exe",
+      "args": [
+        "-d",
+        "Ubuntu"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "explorer.confirmDelete": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.iconTheme": "catppuccin-mocha",
+  "editor.renderWhitespace": "none",
+  "[dockercompose]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "files.autoSaveDelay": 100,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "git.ignoreLegacyWarning": true,
+  "remote.SSH.remotePlatform": {
+    "192.168.77.128": "linux",
+    "mcso-aos": "linux",
+    "mcso-aos-last": "linux",
+    "Codio-Lab-2-Kmeans": "linux"
+  },
+  "git.ignoreRebaseWarning": true,
+  "git.terminalAuthentication": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.definitionLinkOpensInPeek": true,
+  "editor.insertSpaces": false,
+  "editor.formatOnSave": true,
+  "editor.fontFamily": "Hack Nerd Font Mono, Consolas, 'Courier New', monospace",
+  "git.openRepositoryInParentFolders": "always",
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "files.autoSave": "afterDelay",
+  "debug.toolBarLocation": "commandCenter",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.customTitleBarVisibility": "auto",
+  "explorer.confirmDragAndDrop": false,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "redhat.telemetry.enabled": false,
+  "makefile.configureOnOpen": true,
+  "diffEditor.codeLens": true,
+  "java.test.config": {},
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "security.allowedUNCHosts": [
+    "wsl.localhost"
+  ],
+  "docker.extension.enableComposeLanguageServer": false,
+  "mssql.connectionGroups": [
+    {
+      "name": "ROOT",
+      "id": "ROOT"
+    }
+  ],
+  "python.createEnvironment.trigger": "off",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "yaml.disableSchemaDetection": [
+    "**/.github/workflows/*.yml",
+    "**/.github/workflows/*.yaml",
+    "**/.gitea/workflows/*.yml",
+    "**/.gitea/workflows/*.yaml",
+    "**/.forgejo/workflows/*.yml",
+    "**/.forgejo/workflows/*.yaml"
+  ]
+}

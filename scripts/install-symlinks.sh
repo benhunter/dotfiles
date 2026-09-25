@@ -35,6 +35,15 @@ link_file "$DOTFILES_DIR/common/.ideavimrc" "$HOME/.ideavimrc"
 link_file "$DOTFILES_DIR/common/.tmux.conf" "$HOME/.tmux.conf"
 link_file "$DOTFILES_DIR/common/nvim/vscode.lua" "$HOME/.config/nvim/vscode.lua"
 
+# VS Code settings
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
+else
+  VSCODE_USER_DIR="$HOME/.config/Code/User"
+fi
+link_file "$DOTFILES_DIR/common/vscode/settings.json" "$VSCODE_USER_DIR/settings.json"
+link_file "$DOTFILES_DIR/common/vscode/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
+
 echo ""
 echo "--- Layer 2: OS-Specific Dotfiles ---"
 if [[ "$OSTYPE" == "darwin"* ]]; then

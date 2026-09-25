@@ -1,0 +1,18 @@
+[
+  {
+    "key": "ctrl+`",
+    "command": "-workbench.action.selectTheme"
+  },
+  {
+    "command": "-vscode-neovim.send",
+    "key": "ctrl+a"
+  },
+  {
+    "command": "-vscode-neovim.send",
+    "key": "ctrl+c"
+  },
+  {
+    "command": "-vscode-neovim.send",
+    "key": "ctrl+v"
+  }
+]

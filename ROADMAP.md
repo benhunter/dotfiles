@@ -22,9 +22,11 @@ dotfiles/
 │   ├── .gitconfig                  # Base gitconfig (aliases, colors, delta, defaults)
 │   ├── .ideavimrc                  # Shared IdeaVim keymaps
 │   ├── .tmux.conf                  # Shared Tmux configuration (TPM + theme)
-│   ├── nvim/                       # Unified Neovim configuration (NvChad v2.5)
-│   │   ├── init.lua
-│   │   └── lua/
+│   ├── nvim/                       # Neovim configs
+│   │   └── vscode.lua              # VSCode Neovim configuration
+│   ├── vscode/                     # Shared VS Code settings & keybindings
+│   │   ├── settings.json           # VS Code settings with neovimInitPath
+│   │   └── keybindings.json        # Shared VS Code keybindings
 │   ├── shell/                      # Shared shell definitions
 │   │   ├── aliases.sh              # Cross-platform aliases (gs, nv, dcp, lsd, etc.)
 │   │   └── p10k.zsh                # Powerlevel10k prompt theme

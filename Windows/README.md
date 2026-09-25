@@ -29,31 +29,14 @@ Yank to system clipboard works!
 
 ## VSCode
 
-- use Neovim with config above
+Tracked under Layer 1 (`common/vscode/`):
+- `common/vscode/settings.json` (includes `"vscode-neovim.neovimInitPath": "~/.config/nvim/vscode.lua"`)
+- `common/vscode/keybindings.json`
+- `common/nvim/vscode.lua` (VSCode Neovim plugin init)
 
-`keybindings.json`
-
-```json
-// Place your key bindings in this file to override the defaultsauto[]
-[
-    {
-        "key": "ctrl+`",
-        "command": "-workbench.action.selectTheme"
-    },
-    {
-        "command": "-vscode-neovim.send",
-        "key": "ctrl+a"
-    },
-    {
-        "command": "-vscode-neovim.send",
-        "key": "ctrl+c"
-    },
-    {
-        "command": "-vscode-neovim.send",
-        "key": "ctrl+v"
-    }
-]
-
+To link them automatically to `%APPDATA%\Code\User\`:
+```powershell
+.\scripts\Install-Symlinks.ps1
 ```
 
 ## IdeaVim Plugin for IntelliJ, PyCharm, etc

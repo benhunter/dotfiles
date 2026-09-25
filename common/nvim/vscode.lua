@@ -11,4 +11,4 @@ vim.opt.scrolloff = 5
 vim.keymap.set("n", "Q", "gq", { desc = "Format text" })
 
 -- Clear search highlights on Esc
-vim.keymap.set("n", "<Esc>", "<cmd:nohlsearch><CR>")
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
