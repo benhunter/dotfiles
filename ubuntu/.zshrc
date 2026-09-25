@@ -128,6 +128,9 @@ export DA="Dash"
 export TIME_ZONE="CST"
 export PAI_SOURCE_APP="$DA"
 
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
+
 # Pi 2026-09-06
 # TODO does fnm add its bin to PATH automatically?
 #export PATH="$HOME/.local/share/fnm/node-versions/v24.3.0/installation/bin:$PATH"
