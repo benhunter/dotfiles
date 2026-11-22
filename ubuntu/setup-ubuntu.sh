@@ -36,7 +36,7 @@ install_apt pkg-config libssl-dev python3-venv
 DEFAULT_SHELL=$(getent passwd "$USER" | cut -d: -f7)
 if [[ "$DEFAULT_SHELL" != "$(command -v zsh)" ]]; then
     echo "Changing shell to zsh..."
-    chsh -s "$(command -v zsh)"
+    chsh -s "$(command -v zsh)" # TODO: chsh fails with PAM authentication error when run via curling bootstrap-ubuntu.sh
 fi
 
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
@@ -91,9 +91,9 @@ fi
 if ! has delta; then
     cargo install git-delta
 fi
-if ! has leetup; then
-    cargo install leetup
-fi
+#if ! has leetup; then
+#    cargo install leetup
+#fi
 link_file "$SCRIPT_DIR/../.leetup" "$HOME/.leetup"
 if ! cargo nextest --version >/dev/null 2>&1; then
     cargo install cargo-nextest
@@ -147,6 +147,9 @@ if ! has pnpm; then
 fi
 if ! has atuin; then
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+fi
+if ! has obsidian; then
+  sudo snap install obsidian --classic
 fi
 
 printf '%s\n' 'Reminders:' \

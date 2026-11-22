@@ -2,7 +2,11 @@
 #
 # Pi https://pi.dev/
 
-has() { command -v "$1" >/dev/null 2>&1; }
+# Script setup
+set -e
+set -o pipefail
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+. "$SCRIPT_DIR/scripts/functions.sh" || exit 1
 
 # Prerequisites
 if ! has fnm; then
